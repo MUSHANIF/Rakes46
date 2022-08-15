@@ -11,7 +11,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-body{  
+body{
   align-items: center;
   justify-content: center;
   background:url(images/home-bg-img.png) no-repeat;
@@ -27,19 +27,19 @@ nav .logo {
 }
 
 nav .btn{
-  padding: 10px 20px;
-  border-radius: 5rem;
+  /* padding: 10px 20px;
+  border-radius: 5rem; */
   background: var(--gradient);
-  font-size: 16px;
+  /* font-size: 16px;
   color: #fff;
   cursor: pointer;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  transition: all 0.3s linear;
+  transition: all 0.3s linear; */
 }
 
 nav .btn:hover {
   transform: scale(1.1);
-}
+} */
 
 nav .logo span {
   color: var(--pink);
@@ -58,7 +58,7 @@ nav .logo span {
 }
 
 #Home {
-  padding-top: 5rem;  
+  padding-top: 5rem;
 }
 
 #Home h2{
@@ -75,7 +75,7 @@ nav .logo span {
     text-transform: uppercase;
     color: #333;
    }
-   
+
   #Home .banner {
     display: flex;
     flex-direction: column-reverse;
@@ -142,3 +142,12 @@ nav .logo span {
 #footer{
   background-color: var(--pink);;
 }
+
+
+/* navbar */
+
+.container .logo {
+    text-decoration: none;
+}
+
+/* end navbar */
