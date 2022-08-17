@@ -16,6 +16,7 @@ use App\Http\Controllers\dashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::group(['middleware' => ['superadmin']], function () {
     Route::get('/superadmin', function () {
         return view('superadmin.home');
@@ -25,3 +26,11 @@ Route::group(['middleware' => ['superadmin']], function () {
 Auth::routes();
 
 Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
