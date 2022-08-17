@@ -20,13 +20,30 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    protected function redirectTo()
+    {
+        if (auth()->user()->level == 5) {
+            toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
+            return '/dashboard';
+        }
+        if (auth()->user()->level == 4) {
+            toastr()->success('Salam sehat!', 'Selamat datang kepala sekolah!');
+            return '/kepala';
+        }
+        if (auth()->user()->level == 4) {
+            toastr()->success('Salam sehat!', 'Selamat datang puskesmas!');
+            return '/puskesmas';
+        }
+        toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
+        return '/home1';
+        
+    }
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
