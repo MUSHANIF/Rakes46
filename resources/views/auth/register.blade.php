@@ -30,7 +30,7 @@
                       <form action="{{ route('register') }}" method="post" >
                         @csrf
                         <div class="row">
-                            <div class="col-md-6 mb-4">
+                            <div class="col-md-12 mb-4">
                                 <div class="form-outline">
                                     <input type="text" id="form3Example1m" name="name" class="form-control form-control-lg" />
                                     <label class="form-label" for="form3Example1m">First name</label>
@@ -139,11 +139,13 @@
                             <input type="password" name="password_confirmation"  class="form-control form-control-lg" />
                             <label class="form-label" >password confirmasi</label>
                         </div>
-                        <button type="submit"></button>
+                        {{-- <button type="submit" class="btn btn-success">Create Account</button> --}}
 
-                        <div class="d-flex justify-content-end pt-3">
+                        <p>You have an account <a href="{{ route('login') }}" class="justify-content-start ">Login</a></p>
+
+                        <div class="d-flex justify-content-end pt-3 align-items-center">
                             <button type="button" class="btn btn-light btn-lg">Reset all</button>
-                            <button type="button" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                            <button type="submit" class="btn btn-warning btn-lg ms-2">Create Data</button>
                         </div>
                      </form>
                     </div>
