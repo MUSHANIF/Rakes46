@@ -1,17 +1,20 @@
 @extends('layouts.admin')
 @section('isi')
-    @if (Auth::user()->level == 5)
+
+  
+
+
     <div class="container">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            List admin
+            List Siswa
           </h2>
         <table class="table mt-3" cellpadding="10" cellspace="0">
             <thead class="align-self-center text-center">
                 
-                <th>NIk</th>
+               
                 <th>Nama</th>
                 <th>Email</th>
-                <th>No-Hp</th>
+        
                 <th>action</th>
                 
             </thead>
@@ -20,18 +23,19 @@
             <tbody>
                 <tr class="align-self-center" style="border: 1px solid black;">
                 
-                    <td data-label="">{{ $key->nik }}</td>
+              
                     <td data-label="Name">{{ $key->name }}</td>
                     <td data-label="Cost">{{ $key->email }}</td>
-                    <td data-label="Cost">{{ $key->hp }}</td>
+                
                      <td class="text-center justify-content-center align-self-center d-flex">
                         
-                        <a class="btn btn-info" href="{{ route('daftar-admin.edit',$key->id)}}">Ubah</a>
-                        <form action="{{ url('admin/daftar-admin/'.$key->id) }}" method="POST" >
+                        <a class="btn btn-info" href="">Ubah</a>
+                        <form action="" method="POST" >
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-danger ms-2">Delete</button>
                         </form>
+                        <a class="btn btn-info ml-2" href="">Detail</a>
                     </td>
                 
                 </tr>
@@ -41,5 +45,6 @@
     
         </table>
     </div>
-    @endif
+
+  
 @endsection

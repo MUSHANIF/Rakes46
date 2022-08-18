@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class daftarsiswaController extends Controller
 {
     /**
@@ -13,9 +14,9 @@ class daftarsiswaController extends Controller
      */
     public function index()
     {
-        $datas =  DB::table('users')->get();
+        $datas =  DB::table('users')->where('level', '=', 1)->get();
        
-        return view('siswa.index');
+        return view('siswa.index', compact('datas'));
     }
 
     /**

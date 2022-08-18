@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\daftarsiswaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,7 @@ Route::group(['middleware' => ['superadmin']], function () {
     Route::get('/superadmin', function () {
         return view('superadmin.home');
     });
+    Route::resource('siswa', daftarsiswaController::class);
     Route::get('/dashboard', [dashboardController::class, 'index']);
 });
 // Auth::routes();

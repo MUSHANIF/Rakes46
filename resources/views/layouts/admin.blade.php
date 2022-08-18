@@ -234,7 +234,7 @@
                   <li><a class="dropdown-item" href="">Puskesmas</a></li>
                   <li><a class="dropdown-item" href="">wali kelas</a></li>
                   <li><a class="dropdown-item" href="">orang tua</a></li>
-                  <li><a class="dropdown-item" href="">siswa</a></li>
+                  <li><a class="dropdown-item" href="/siswa">siswa</a></li>
               
                 </li>
                   
