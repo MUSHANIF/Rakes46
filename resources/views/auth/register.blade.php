@@ -32,8 +32,13 @@
                         <div class="row">
                             <div class="col-md-12 mb-4">
                                 <div class="form-outline">
-                                    <input type="text" id="form3Example1m" name="name" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example1m">First name</label>
+                                    <label class="form-label" for="form3Example1m">Name</label>
+                                    <input type="text" id="form3Example1m" value="{{ old('name') }}" name="name" class="form-control form-control-lg @error('name')
+                                    is-invalid
+                                    @enderror" />
+                                    @error('email')
+                                        <div class="text-danger text-sm">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- <div class="col-md-6 mb-4">
@@ -127,17 +132,19 @@
                         </div> --}}
 
                         <div class="form-outline mb-4">
-                            <input type="email" name="email" id="form3Example97" class="form-control form-control-lg" />
-                            <label class="form-label" for="form3Example97">Email ID</label>
+                            <input type="email" name="email" value="{{ old('email') }}" id="form3Example97" class="form-control form-control-lg @error('email')
+                            is-invalid
+                            @enderror" />
+                            <label class="form-label" for="form3Example97">Email</label>
                         </div>
 
                         <div class="form-outline mb-4">
                             <input type="password" name="password"  class="form-control form-control-lg" />
-                            <label class="form-label">password </label>
+                            <label class="form-label">Password </label>
                         </div>
                         <div class="form-outline mb-4">
                             <input type="password" name="password_confirmation"  class="form-control form-control-lg" />
-                            <label class="form-label" >password confirmasi</label>
+                            <label class="form-label">Confirmation Password</label>
                         </div>
                         {{-- <button type="submit" class="btn btn-success">Create Account</button> --}}
 
