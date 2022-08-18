@@ -12,9 +12,10 @@ class daftarsiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datas =  DB::table('users')->where('level', '=', 1)->get();
+        $cari = $request->cari;
+        $datas =  DB::table('users')->where('level', '=', 1)->where('name','like',"%".$cari."%")->get();
        
         return view('siswa.index', compact('datas'));
     }
