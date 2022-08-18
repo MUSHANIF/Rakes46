@@ -23,7 +23,7 @@ Route::group(['middleware' => ['superadmin']], function () {
     });
     Route::get('/dashboard', [dashboardController::class, 'index']);
 });
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

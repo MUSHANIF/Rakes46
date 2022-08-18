@@ -15,7 +15,7 @@
               dolore et at placeat animi? Similique, asperiores aliquid.
             </p>
             <div class="row" >
-              <div class="col-sm-4"data-aos="fade-up"  data-aos-delay="400">
+              <div class="col-sm-4 me-md-3"data-aos="fade-up"  data-aos-delay="400">
                 <a href="{{ route('login') }}" class="btn btn-primary">Get Started</a>
               </div>
               <div class="col-sm-4"data-aos="fade-up"  data-aos-delay="500">

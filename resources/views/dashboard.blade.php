@@ -74,6 +74,7 @@
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
            12
           </p>
+
         </div>
       </div>
     </div>
@@ -135,6 +136,9 @@
       </div>
     </div>
    
+
+       
+
   </div>
 </main>
 @endsection
