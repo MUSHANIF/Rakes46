@@ -31,8 +31,21 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (auth()->user()->level == 5) {
+            toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
+            return redirect('/dashboard');
+        }
+        if (auth()->user()->level == 4) {
+            toastr()->success('Salam sehat!', 'Selamat datang kepala sekolah!');
+            return redirect('/dashboard');
+        }
+        if (auth()->user()->level == 4) {
+            toastr()->success('Salam sehat!', 'Selamat datang puskesmas!');
+            return redirect('/dashboard');
+        }
+        toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
+        return redirect('/home1');
+       
     }
 
     /**

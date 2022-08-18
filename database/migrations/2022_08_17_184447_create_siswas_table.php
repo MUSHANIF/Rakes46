@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateSiswasTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('siswas', function (Blueprint $table) {
+            $table->bigIncrements('nisn');
+            $table->char('nis');
+            $table->string('nama_lengkap');
+            $table->string('nama_panggilan');
+            $table->string('tmp_lahir');
+            $table->date('tgl_lahir');
+            $table->enum('jns_kelamin', ['P', 'L']);
+            $table->char('gol_darah');
+            $table->string('anak_ke');
+            $table->enum('tggl_bersama', ['Orang Tuan', 'Wali']);
+            $table->string('alamat');
+            $table->char('no_telp', 12);
+            $table->string('email')->unique();
+            $table->enum('disabilitas', ['Tidak', 'Netra', 'Rungu', 'Rungu Wicara', 'Grahita', 'Daksa', 'Autisme', 'Ganda', 'ADHD']);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('siswas');
+    }
+}
