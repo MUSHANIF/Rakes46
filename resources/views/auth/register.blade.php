@@ -12,18 +12,18 @@
 </head>
 <body>
 
-    <section class="h-100 bg-dark">
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
+    <section class=" bg-dark">
+        <div class="container ">
+          <div class="row d-flex justify-content-center align-items-center h-100 ">
             <div class="col">
               <div class="card card-registration my-4">
-                <div class="row g-0">
-                  <div class="col-xl-6 d-none d-xl-block">
+                <div class="row g-0 ">
+                  <div class="col-xl-5 col-sm-6 d-none d-xl-block">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
                       alt="Sample photo" class="img-fluid"
                       style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
                   </div>
-                  <div class="col-xl-6">
+                  <div class="col-xl-6 ">
                     <div class="card-body p-md-5 text-black">
                       <h3 class="mb-5 text-uppercase">Student registration form</h3>
 
@@ -35,8 +35,8 @@
                                     <label class="form-label" for="form3Example1m">Name</label>
                                     <input type="text" id="form3Example1m" value="{{ old('name') }}" name="name" class="form-control form-control-lg @error('name')
                                     is-invalid
-                                    @enderror" />
-                                    @error('email')
+                                    @enderror" autofocus/>
+                                    @error('name')
                                         <div class="text-danger text-sm">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -132,19 +132,32 @@
                         </div> --}}
 
                         <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example97">Email</label>
                             <input type="email" name="email" value="{{ old('email') }}" id="form3Example97" class="form-control form-control-lg @error('email')
                             is-invalid
                             @enderror" />
-                            <label class="form-label" for="form3Example97">Email</label>
+                            @error('email')
+                                <div class="text-danger text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input type="password" name="password"  class="form-control form-control-lg" />
                             <label class="form-label">Password </label>
+                            <input type="password" name="password"  class="form-control form-control-lg @error('password')
+                                is-invalid
+                            @enderror" />
+                            @error('password')
+                                <div class="text-danger text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-outline mb-4">
-                            <input type="password" name="password_confirmation"  class="form-control form-control-lg" />
                             <label class="form-label">Confirmation Password</label>
+                            <input type="password" name="password_confirmation"  class="form-control form-control-lg @error('password_confirmation')
+                            is-invalid
+                            @enderror" />
+                            @error('password_confirmation')
+                                <div class="text-danger text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
                         {{-- <button type="submit" class="btn btn-success">Create Account</button> --}}
 
