@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class daftarsiswaController extends Controller
@@ -27,7 +27,7 @@ class daftarsiswaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -60,7 +60,8 @@ class daftarsiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $datas = User::find($id);
+        return view('siswa.ubah', compact('datas'));
     }
 
     /**
@@ -72,7 +73,7 @@ class daftarsiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
