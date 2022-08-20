@@ -20,7 +20,7 @@
 
     <div class="container">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            List Siswa
+            List Orangtua
           </h2>
         <table class="table mt-3" cellpadding="10" cellspace="0">
             <thead class="align-self-center text-center">
@@ -43,8 +43,8 @@
                 
                      <td class="text-center justify-content-center align-self-center d-flex">
                         
-                        <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
-                        <form action="{{ url('siswa/'.$key->id) }}" method="POST" ">
+                        <a class="btn btn-info" href="{{ route('orangtua.edit',$key->id)}}">Ubah</a>
+                        <form action="{{ url('orangtua/'.$key->id) }}" method="POST" ">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-danger ms-2">Delete</button>

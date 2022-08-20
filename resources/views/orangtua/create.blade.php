@@ -3,7 +3,7 @@
 
   <div class="container" style="position: relative;">
     
-    <form action="{{ route('siswa.store') }}" method="post" >
+    <form action="{{ route('orangtua.store') }}" method="post" >
         @csrf
          <div class="form-group">
             <label for="formGroupExampleInput">NIK</label>
