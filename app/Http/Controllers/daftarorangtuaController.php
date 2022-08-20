@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-class daftarsiswaController extends Controller
+
+class daftarorangtuaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $cari = $request->cari;
         $datas =  DB::table('users')->where('level', '=', 1)->where('name','like',"%".$cari."%")->get();
        
-        return view('siswa.index', compact('datas'));
+        return view('orangtua.index', compact('datas'));
     }
 
     /**
@@ -27,7 +26,7 @@ class daftarsiswaController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -61,7 +60,7 @@ class daftarsiswaController extends Controller
     public function edit($id)
     {
         $datas = User::find($id);
-        return view('siswa.ubah', compact('datas'));
+        return view('orangtua.ubah', compact('datas'));
     }
 
     /**
@@ -82,7 +81,7 @@ class daftarsiswaController extends Controller
 
         $model->save();
         toastr()->success('Berhasil di terupdate!', 'Sukses');
-        return redirect('/siswa');
+        return redirect('/orangtua');
     }
 
     /**
@@ -96,6 +95,6 @@ class daftarsiswaController extends Controller
         $kantin = User::find($id);
         $kantin->delete();
         toastr()->info('Berhasil di hapus!', 'Sukses');
-        return redirect('siswa');
+        return redirect('orangtua');
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\daftarsiswaController;
+use App\Http\Controllers\daftarorangtuaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,7 @@ Route::group(['middleware' => ['superadmin']], function () {
         return view('superadmin.home');
     });
     Route::resource('siswa', daftarsiswaController::class);
+    Route::resource('oragngtua', daftarorangtuaController::class);
     Route::get('/dashboard', [dashboardController::class, 'index']);
 });
 // Auth::routes();
