@@ -230,9 +230,9 @@
                     <span>List</span></a>
                 </a>
                 <ul class="dropdown-menu bg-dark bg-white"  aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="pengaduan/home">Kepala sekolah</a></li>
-                  <li><a class="dropdown-item" href="">Puskesmas</a></li>
-                  <li><a class="dropdown-item" href="">wali kelas</a></li>
+                  <li><a class="dropdown-item" href="/kepala_sekolah">Kepala sekolah</a></li>
+                  <li><a class="dropdown-item" href="/puskesmas">Puskesmas</a></li>
+                  <li><a class="dropdown-item" href="/wali_kelas">wali kelas</a></li>
                   <li><a class="dropdown-item" href="/orangtua">orang tua</a></li>
                   <li><a class="dropdown-item" href="/siswa">siswa</a></li>
               

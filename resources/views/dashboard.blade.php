@@ -7,6 +7,8 @@
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
       Dashboard
     </h2>
+@if (Auth::user()->level == '5')
+  
 
     <!-- Cards -->
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -19,10 +21,10 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Jumlah Pengaduan
+            Jumlah Siswa
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            12
+            {{ $user }}
           </p>
         </div>
       </div>
@@ -35,10 +37,10 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Belum di Proses
+           Jumlah Kepala Sekolah
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            12
+            {{ $kepala }}
           </p>
         </div>
       </div>
@@ -52,10 +54,10 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Sedang di Proses
+            Jumlah Wali kelas
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-           12
+           {{ $wali }}
           </p>
         </div>
       </div>
@@ -69,17 +71,19 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Selesai
+            Jumlah Puskesmas
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-           12
+           {{ $puskesmas }}
           </p>
 
         </div>
       </div>
     </div>
  
-
+    @elseif (Auth::user()->level == '4')
+  
+   
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
       <!-- Card -->
       <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -90,6 +94,7 @@
             <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
           </svg>
         </div>
+
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
             Jumlah User
@@ -141,5 +146,6 @@
 
   </div>
 </main>
+@endif
 @endsection
 

@@ -5,6 +5,9 @@ use App\Http\Controllers\dashboardController;
 
 use App\Http\Controllers\daftarsiswaController;
 use App\Http\Controllers\daftarorangtuaController;
+use App\Http\Controllers\kepalasekolahController;
+use App\Http\Controllers\walikelasController;
+use App\Http\Controllers\puskesmasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +29,9 @@ Route::group(['middleware' => ['superadmin']], function () {
     });
     Route::resource('siswa', daftarsiswaController::class);
     Route::resource('orangtua', daftarorangtuaController::class);
- 
-
+    Route::resource('kepala_sekolah', kepalasekolahController::class);
+    Route::resource('wali_kelas', walikelasController::class);
+    Route::resource('puskesmas', puskesmasController::class);
     Route::get('/dashboard', [dashboardController::class, 'index']);
 });
 Auth::routes();

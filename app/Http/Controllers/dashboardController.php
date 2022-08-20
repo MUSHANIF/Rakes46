@@ -12,6 +12,10 @@ class dashboardController extends Controller
 
         return view('dashboard',[
             'user' => User::where('level','=', '1')->count(),
+            'puskesmas' => User::where('level','=', '4')->count(),
+            'kepala' => User::where('level','=', '4')->count(),
+            'wali' => User::where('level','=', '3')->count(),
+            'orangtua' => User::where('level','=', '2')->count(),
             'superadmin' => User::where('level','=', '5')->count(),
         ]);
 
