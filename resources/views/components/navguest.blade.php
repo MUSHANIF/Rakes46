@@ -12,9 +12,107 @@
             <li class="nav-item">
               <a class="nav-link" href="#tiga">About</a>
             </li>
-            <li class="nav-item">
-              <a class="btn  btn-small btn-danger rounded" href="{{ route('login') }}">Login</a>
+            @can('superadmin')
+             <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Selamat Datang,{{ Auth::user()->name }}
+              </a>
+              <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                   {{ __('Logout') }}
+               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+              </li>
+                
+              </ul>
             </li>
+            @elsecan('siswa')
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Selamat Datang,{{ Auth::user()->name }}
+              </a>
+              <ul class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="pengaduan/home">keluhan!</a></li>
+                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                   {{ __('Logout') }}
+               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+              </li>
+                
+              </ul>
+            </li>
+            @elsecan('kepala_sekolah')
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Selamat Datang,{{ Auth::user()->name }}
+              </a>
+              <ul class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="pengaduan/home">keluhan!</a></li>
+                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                   {{ __('Logout') }}
+               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+              </li>
+                
+              </ul>
+            </li>
+            @elsecan('wali_kelas')
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Selamat Datang,{{ Auth::user()->name }}
+              </a>
+              <ul class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="pengaduan/home">keluhan!</a></li>
+                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                   {{ __('Logout') }}
+               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+              </li>
+                
+              </ul>
+            </li>
+            @elsecan('orangtua')
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Selamat Datang,{{ Auth::user()->name }}
+              </a>
+              <ul class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="pengaduan/home">keluhan!</a></li>
+                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                   {{ __('Logout') }}
+               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+              </li>
+                
+              </ul>
+            </li>
+            @else
+            
+            <li class="nav-item">
+                <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
+            </li>
+             @endcan
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Login </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
