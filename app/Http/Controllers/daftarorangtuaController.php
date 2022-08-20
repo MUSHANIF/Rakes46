@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class daftarorangtuaController extends Controller
 {
     /**
@@ -11,10 +12,10 @@ class daftarorangtuaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 1)->where('name','like',"%".$cari."%")->get();
+        $datas =  DB::table('users')->where('level', '=', 2)->where('name','like',"%".$cari."%")->get();
        
         return view('orangtua.index', compact('datas'));
     }

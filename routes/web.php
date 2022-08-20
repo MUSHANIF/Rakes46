@@ -24,7 +24,7 @@ Route::group(['middleware' => ['superadmin']], function () {
         return view('superadmin.home');
     });
     Route::resource('siswa', daftarsiswaController::class);
-    Route::resource('oragngtua', daftarorangtuaController::class);
+    Route::resource('orangtua', daftarorangtuaController::class);
     Route::get('/dashboard', [dashboardController::class, 'index']);
 });
 // Auth::routes();
