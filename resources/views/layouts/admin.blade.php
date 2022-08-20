@@ -17,7 +17,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
     <!-- Custom styles for this template-->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('./assets/css/tailwind.output.css')}}" />
@@ -178,7 +178,15 @@
             background-color: #256D85;
             color: white
         }
-   
+
+        .dropdown > .collapse > li > .dropdown-item {
+            color: white !important;
+        }
+
+        .dropdown > .collapse > li > .dropdown-item:hover {
+            background-color: #277994;
+        }
+
         body{ margin:0;  background-color: #2B4865; } canvas{ display: block; vertical-align: bottom; } 
         /* ---- particles.js container ---- */ 
         #particles-js{ position:absolute; width: 100%; height: 100%; background-color: #ffffff; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; } /* ---- stats.js ---- */ .count-particles{ background: #000022; position: absolute; top: 48px; left: 0; width: 80px; color: #0078AA; font-size: .8em; text-align: left; text-indent: 4px; line-height: 14px; padding-bottom: 2px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; } .js-count-particles{ font-size: 1.1em; } #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } .count-particles{ border-radius: 0 0 3px 3px; }
@@ -221,26 +229,23 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="/dashboard">
                     <i class="bi bi-collection"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
-            
+
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" aria-haspopup="true" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link collapsed" href="#" id="navbarDropdownMenuLink" aria-haspopup="true" role="button" data-toggle="collapse" data-target="#submenu1">
                     <i class="bi bi-person-fill"></i>
                     <span>List</span></a>
                 </a>
-                <ul class="dropdown-menu bg-dark bg-white"  aria-labelledby="navbarDropdownMenuLink">
+                <ul class="dropdown-menu collapse border-0" style="background-color: #256D85;" id="submenu1" aria-labelledby="navbarDropdownMenuLink">
                   <li><a class="dropdown-item" href="pengaduan/home">Kepala sekolah</a></li>
                   <li><a class="dropdown-item" href="">Puskesmas</a></li>
-                  <li><a class="dropdown-item" href="">wali kelas</a></li>
-                  <li><a class="dropdown-item" href="/orangtua">orang tua</a></li>
-                  <li><a class="dropdown-item" href="/siswa">siswa</a></li>
-              
-                </li>
-                  
+                  <li><a class="dropdown-item" href="">Wali Kelas</a></li>
+                  <li><a class="dropdown-item" href="/orangtua">Orang Tua</a></li>
+                  <li><a class="dropdown-item" href="/siswa">Siswa</a></li>
                 </ul>
               </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -249,9 +254,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-            
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -315,7 +317,6 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                
                                 
                                 <a class="dropdown-item" href="/" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\dashboardController;
 
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\daftarsiswaController;
 use App\Http\Controllers\daftarorangtuaController;
 /*
@@ -26,15 +27,15 @@ Route::group(['middleware' => ['superadmin']], function () {
     });
     Route::resource('siswa', daftarsiswaController::class);
     Route::resource('orangtua', daftarorangtuaController::class);
- 
+
 
     Route::get('/dashboard', [dashboardController::class, 'index']);
 });
+
 Auth::routes();
 
 Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-   
 
 // Auth::routes();
 
@@ -45,6 +46,4 @@ Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->nam
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
-
-
+require __DIR__ . '/auth.php';
