@@ -15,14 +15,16 @@ class CreateGurusTable extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->bigIncrements('nip');
-            $table->unsignedBigInteger('id_kelas');
+            $table->unsignedBigInteger('userID');
+            $table->unsignedBigInteger('kelasID');
             $table->string('nama');
             $table->string('tmp_lahir');
             $table->date('tgl_lahir');
             $table->enum('jns_kelamin', ['P', 'L']);
             $table->timestamps();
             
-            $table->foreign('id_kelas')->references('id')->on('kelas');
+            $table->foreign('kelasID')->references('id')->on('kelas');
+            $table->foreign('userID')->references('id')->on('users');
            
         });
     }
