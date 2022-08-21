@@ -232,6 +232,15 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            @if (Auth::user()->level == 5)
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/pertanyaan">
+                    <i class="bi bi-collection"></i>
+                    <span>Pertanyaan</span>
+                </a>
+            </li>
+            @endif
+          
 
             <li class="nav-item dropdown">
                 <a class="nav-link collapsed" href="#" id="navbarDropdownMenuLink" aria-haspopup="true" role="button" data-toggle="collapse" data-target="#submenu1">

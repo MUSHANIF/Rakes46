@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\pertanyaan;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class dashboardController extends Controller
             'wali' => User::where('level','=', '3')->count(),
             'orangtua' => User::where('level','=', '2')->count(),
             'superadmin' => User::where('level','=', '5')->count(),
-           
+            'pertanyaan' => pertanyaan::all()->count(),
         ]);
 
     }
