@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body> 
+    @include('components.navguest')
     <h1>selamat datang user</h1> 
 </body> 
 </html>

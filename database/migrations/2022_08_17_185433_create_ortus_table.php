@@ -15,7 +15,7 @@ class CreateOrtusTable extends Migration
     {
         Schema::create('ortus', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nisn');
+            $table->unsignedBigInteger('siswaID');
             $table->string('nama_ayah');
             $table->string('tmplahir_ayah');
             $table->string('pekerjaan_ayah');
@@ -25,7 +25,7 @@ class CreateOrtusTable extends Migration
             $table->string('pekerjaan_ibu');
             $table->string('alamat_ibu');
             $table->timestamps();
-            $table->foreign('nisn')->references('nisn')->on('siswas');
+            $table->foreign('siswaID')->references('id')->on('siswas');
 
             
         });

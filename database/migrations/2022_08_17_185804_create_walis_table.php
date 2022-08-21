@@ -15,13 +15,13 @@ class CreateWalisTable extends Migration
     {
         Schema::create('walis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nisn');
+            $table->unsignedBigInteger('siswaID');
             $table->string('nama_wali');
             $table->string('tmplahir_wali');
             $table->string('pekerjaan_wali');
             $table->string('alamat_wali');
             $table->timestamps();
-            $table->foreign('nisn')->references('nisn')->on('siswas');
+            $table->foreign('siswaID')->references('id')->on('siswas');
         });
     }
 

@@ -17,6 +17,7 @@ class dashboardController extends Controller
             'wali' => User::where('level','=', '3')->count(),
             'orangtua' => User::where('level','=', '2')->count(),
             'superadmin' => User::where('level','=', '5')->count(),
+           
         ]);
 
     }

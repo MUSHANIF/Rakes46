@@ -28,7 +28,8 @@
                
                 <th>Nama</th>
                 <th>Email</th>
-        
+                <th>nama guru</th>                
+                <th>Jenis kelamin</th>  
                 <th>action</th>
                 
             </thead>
@@ -38,9 +39,10 @@
                 <tr class="align-self-center" style="border: 1px solid black;">
                 
               
-                    <td data-label="Name">{{ $key->name }}</td>
+                    <td data-label="Name">{{ $key->nama_lengkap }}</td>
                     <td data-label="Cost">{{ $key->email }}</td>
-                
+                    <td data-label="Cost">{{ $key->nama }}</td>
+                    <td data-label="Cost">{{ $key->jns_kelamin }}</td>
                      <td class="text-center justify-content-center align-self-center d-flex">
                         
                         <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>

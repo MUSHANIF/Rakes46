@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\daftarsiswaController;
+use App\Http\Controllers\daftarsiswawaliController;
 use App\Http\Controllers\daftarorangtuaController;
 use App\Http\Controllers\kepalasekolahController;
 use App\Http\Controllers\walikelasController;
 use App\Http\Controllers\puskesmasController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,14 +32,18 @@ Route::group(['middleware' => ['superadmin']], function () {
     });
     Route::resource('siswa', daftarsiswaController::class);
     Route::resource('orangtua', daftarorangtuaController::class);
-
     Route::resource('kepala_sekolah', kepalasekolahController::class);
     Route::resource('wali_kelas', walikelasController::class);
     Route::resource('puskesmas', puskesmasController::class);
-
     Route::get('/dashboard', [dashboardController::class, 'index']);
 });
+Route::group(['middleware' => ['wali_kelas']], function () {
+   
+    Route::resource('siswa', daftarsiswawaliController::class);
 
+   
+    Route::get('/dashboard', [dashboardController::class, 'index']);
+});
 Auth::routes();
 
 Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -45,7 +51,7 @@ Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->nam
 
 // Auth::routes();
 
-Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 // Route::get('/dashboard', function () {

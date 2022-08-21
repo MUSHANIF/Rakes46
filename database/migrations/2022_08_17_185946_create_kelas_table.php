@@ -15,12 +15,12 @@ class CreateKelasTable extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nisn');
+            $table->unsignedBigInteger('userID');
             $table->string('thn_ajaran');
             $table->string('kelas');
             $table->enum('jurusan', ['AKL 1', 'AKL 2', 'BDP 1', 'BDP 2', 'OTKP 1', 'OTKP 2', 'DKV', 'RPL']);
             $table->timestamps();
-            $table->foreign('nisn')->references('nisn')->on('siswas');
+            $table->foreign('userID')->references('id')->on('users');
          
         });
     }

@@ -219,7 +219,7 @@
                 </div> --}}
                 <div class="mt-3">
                     <h5 class="font-size-13 mb-1">{{ Auth::user()->name }}</h5>
-                    <span class="text-success"><i class="bi bi-person-circle"></i> {{ Auth::user()->level }}</span>
+                    <span class="text-success"><i class="bi bi-person-circle"></i> {{ Auth::user()->id }}</span>
                 </div>
             </div>
             <!-- Nav Item - Dashboard -->
@@ -238,18 +238,24 @@
                     <i class="bi bi-person-fill"></i>
                     <span>List</span></a>
                 </a>
-
+                @if ( Auth::user()->level == 5)
                 <ul class="dropdown-menu collapse border-0" style="background-color: #256D85;" id="submenu1" aria-labelledby="navbarDropdownMenuLink">
                   <li><a class="dropdown-item" href="/kepala_sekolah">Kepala sekolah</a></li>
                   <li><a class="dropdown-item" href="/puskesmas">Puskesmas</a></li>
                   <li><a class="dropdown-item" href="/wali_kelas">wali kelas</a></li>
                   <li><a class="dropdown-item" href="/orangtua">orang tua</a></li>
                   <li><a class="dropdown-item" href="/siswa">siswa</a></li>
-              
+                </ul>
+              @elseif (Auth::user()->level == 3)
+                <ul class="dropdown-menu collapse border-0" style="background-color: #256D85;" id="submenu1" aria-labelledby="navbarDropdownMenuLink">
+                    
+                    <li><a class="dropdown-item" href="/siswa">siswa</a></li>
+                  </ul>
+                @endif
                 </li>
                   
 
-                </ul>
+                
               </li>
 
             <!-- Divider -->
