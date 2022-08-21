@@ -39,10 +39,10 @@ Route::group(['middleware' => ['superadmin']], function () {
 });
 Route::group(['middleware' => ['wali_kelas']], function () {
    
-    Route::resource('siswa', daftarsiswawaliController::class);
+    Route::resource('siswawali', daftarsiswawaliController::class);
 
    
-    Route::get('/dashboard', [dashboardController::class, 'index']);
+    Route::get('/dashboardwali', [dashboardController::class, 'index']);
 });
 Auth::routes();
 

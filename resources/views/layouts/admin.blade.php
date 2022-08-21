@@ -249,7 +249,7 @@
               @elseif (Auth::user()->level == 3)
                 <ul class="dropdown-menu collapse border-0" style="background-color: #256D85;" id="submenu1" aria-labelledby="navbarDropdownMenuLink">
                     
-                    <li><a class="dropdown-item" href="/siswa">siswa</a></li>
+                    <li><a class="dropdown-item" href="/siswawali">siswa</a></li>
                   </ul>
                 @endif
                 </li>
