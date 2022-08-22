@@ -24,9 +24,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard-admin', function () {
-    return view('admin.dashboard-admin');
-});
+// Route::get('/dashboard-admin', function () {
+//     return view('admin.dashboard-admin');
+// });
 
 Route::group(['middleware' => ['superadmin']], function () {
     Route::get('/superadmin', function () {
@@ -39,7 +39,7 @@ Route::group(['middleware' => ['superadmin']], function () {
     Route::resource('wali_kelas', walikelasController::class);
     Route::resource('puskesmas', puskesmasController::class);
 
-    Route::get('/dashboard', [dashboardController::class, 'index']);
+    Route::get('/dashboard-admin', [dashboardController::class, 'index']);
 });
 
 Auth::routes();

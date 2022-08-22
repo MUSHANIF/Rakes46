@@ -1,108 +1,113 @@
-<nav class="navbar navbar-expand-lg ">
-    <div class="container-fluid">
-        <!-- offcanvas trigger -->
-        <button class="navbar-toggler me-2 custom-toggler" 
-            type="button" 
-            data-bs-toggle="offcanvas" 
-            data-bs-target="#offcanvasScrolling" 
-            aria-controls="offcanvasScrolling"> 
-            <span class="navbar-toggler-icon" 
-                data-bs-target="#offcanvasScrolling">
+<input type="checkbox" id="nav-toggle">
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <h2>
+            <span>
+                Rakes 46
             </span>
-        </button>
-        <!-- offcanvas trigger -->
-        <a class="navbar-brand me-auto" href="#">Navbar</a>
-        <ul class="navbar-nav mb-2 mb-lg-0"> 
-            <form class="d-flex ms-auto ms-2">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+        </h2>
+    </div>
+    <div class="sidebar-menu">
+        <ul>
+            <li>
+                <a href="" class="active">
+                    <span>
+                        <i class="bi bi-house-door-fill"></i>
+                    </span>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+            </li>
+            <li>
+                <hr class="dropdown-divider text-white">
+            </li>
+            <li>
+                <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                   <span>
+                    <i class="bi bi-person-fill"></i>
+                   </span>
+                    <span>
+                        List
+                    </span>
+                    <span class="right-icon ms-auto"><i class="bi bi-chevron-down"></i></span>
+                    
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <div >
+                        <ul class="navbar-nav ps-3 "> 
+                            <li><a class="dropdown-item" href="/kepala_sekolah">Kepala sekolah</a></li>
+                            <li><a class="dropdown-item" href="/puskesmas">Puskesmas</a></li>
+                            <li><a class="dropdown-item" href="/wali_kelas">wali kelas</a></li>
+                            <li><a class="dropdown-item" href="/orangtua">orang tua</a></li>
+                            <li><a class="dropdown-item" href="/siswa">siswa</a></li>
+                        </ul>
+                    </div>
+                </div>
+           </li>
+            <li>
+                <a href="">
+                    <span>
+                        <i class="bi bi-card-list"></i>
+                    </span>
+                    <span>
+                        Data Pertanyaan
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span>
+                        <i class="bi bi-house-door-fill"></i>
+                    </span>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span>
+                        <i class="bi bi-house-door-fill"></i>
+                    </span>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span>
+                        <i class="bi bi-table"></i>
+                    </span>
+                    <span>
+                        Laporan
+                    </span>
+                </a>
+            </li>
         </ul>
     </div>
-</nav>
-
-
-<div class="offcanvas offcanvas-start sidebar-nav" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-    {{-- <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div> --}}
-    <div class="offcanvas-body">
-       <nav class="navbar-dark">
-           @can('superadmin')   
-           <ul class="navbar-nav">
-               <li>
-                   <a href="" class="nav-link px-3 active">
-                        <span>
-                            <i class="bi bi-house-door-fill"></i>
-                        </span>
-                        <span>
-                            Dashboard
-                        </span>     
-                   </a>
-               </li>
-               <li class="my-4">
-                   <hr class="dropdown-divider text-white" />
-               </li>
-           </ul>
-            <ul class="navbar-nav">
-                <li class="pt-2">
-                    <a href="" class="nav-link px-3">
-                        <span>
-                            <i class="bi bi-person-fill"></i>
-                        </span>
-                        <span>
-                            Admin
-                        </span>     
-                    </a>
-                </li>
-                <li class="pt-2">
-                    <a href="" class="nav-link px-3">
-                        <span>
-                            <i class="bi bi-people-fill"></i>
-                        </span>
-                        <span>
-                            Data Siswa
-                        </span>     
-                    </a>
-                </li>
-                <li class="pt-2">
-                    <a href="" class="nav-link px-3">
-                        <span>
-                            <i class="bi bi-clipboard-data-fill"></i>
-                        </span>
-                        <span>
-                            Data Kesehatan Siswa
-                        </span>     
-                    </a>
-                </li>
-                <li class="my-4">
-                    <hr class="dropdown-divider text-white" />
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="pt-2">
-                    <a href="" class="nav-link px-3">
-                        <span>
-                            <i class="bi bi-table"></i>
-                        </span>
-                        <span>
-                            Laporan
-                        </span>     
-                    </a>
-                </li>
-                <li class="my-4">
-                    <hr class="dropdown-divider text-white" />
-                </li>
-            </ul>
-            @endcan
-
-            
-            <ul>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
-            </ul>
-           
-        </nav>
-    </div>
 </div>
+<div class="main-content">
+    <header>
+        <h2>
+            <label for="nav-toggle">
+                <span><i class="bi bi-list"></i></span>
+            </label>
+            Dashboard
+        </h2>
+        <div class="search-wrapper">
+            <span><i class="bi bi-search"></i></span>
+            <input type="search" placeholder="search">
+        </div>
+        <div class="user-wrapper">
+            <img src="" alt="" width="30px" height="30px">
+            <div>
+                <h4>{{ Auth::user()->name }}</h4>
+                <small>{{ Auth::user()->level }}</small>
+            </div>
+        </div>
+    </header>
+</div>
+
+

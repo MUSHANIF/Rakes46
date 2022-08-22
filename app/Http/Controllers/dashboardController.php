@@ -10,7 +10,7 @@ class dashboardController extends Controller
 {
     public function index() {
 
-        return view('dashboard',[
+        return view('admin.dashboard-admin',[
             'user' => User::where('level','=', '1')->count(),
             'puskesmas' => User::where('level','=', '4')->count(),
             'kepala' => User::where('level','=', '4')->count(),
