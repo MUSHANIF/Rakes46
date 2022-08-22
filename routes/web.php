@@ -45,7 +45,7 @@ Route::group(['middleware' => ['wali_kelas']], function () {
     Route::get('/dashboardwali', [dashboardController::class, 'index']);
 });
 Route::group(['middleware' => ['puskesmas']], function () {
-   
+    Route::resource('siswapuskesmas', daftarsiswaController::class);
     Route::get('/dashboardpuskesmas', [dashboardController::class, 'index']);
 });
 Auth::routes();

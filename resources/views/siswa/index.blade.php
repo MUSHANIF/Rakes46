@@ -17,7 +17,7 @@
 
   
 
-@if ($data->isEmpty())
+@if ($data->isEmpty() and Auth::user()->level == 2)
 <div class="container" style="position: relative;">
     <h2 class="text-center">Mohon isi data dahulu!</h2>
     <form action="{{ route('siswawali.store') }}" method="post" >
@@ -96,7 +96,7 @@
               
                     <td data-label="Name">{{ $key->nama_lengkap }}</td>
                     <td data-label="Cost">{{ $key->email }}</td>
-                    <td data-label="Cost">{{ $key->nama }}</td>
+                    <td data-label="Cost">{{ $key->nama_guru }}</td>
                     <td data-label="Cost">{{ $key->jns_kelamin }}</td>
                      <td class="text-center justify-content-center align-self-center d-flex">
                         
@@ -132,12 +132,7 @@
                     
                      <td class="text-center justify-content-center align-self-center d-flex">
                         
-                        <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
-                        <form action="{{ url('siswa/'.$key->id) }}" method="POST" ">
-                            @csrf
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-danger ms-2">Delete</button>
-                        </form>
+                        
                         <a class="btn btn-info ml-2" href="">Detail</a>
                     </td>
                 

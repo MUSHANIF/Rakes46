@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 class daftarsiswaController extends Controller
 {
     /**
@@ -16,8 +17,8 @@ class daftarsiswaController extends Controller
     {
         $cari = $request->cari;
         $datas =  DB::table('users')->where('level', '=', 1)->where('name','like',"%".$cari."%")->get();
-       
-        return view('siswa.index', compact('datas'));
+        $data =  DB::table('kelas')->where('kelas.userID' ,  Auth::user()->id )->get();
+        return view('siswa.index', compact('datas','data'));
     }
 
     /**

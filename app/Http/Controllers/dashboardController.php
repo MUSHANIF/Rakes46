@@ -17,7 +17,7 @@ class dashboardController extends Controller
             'siswa' => kela::with([
                 'guru','siswa'
            ]) ->join('siswas', 'siswas.kelasID', '=', 'kelas.id')
-           ->join('gurus', 'gurus.id_kelas', '=', 'kelas.id')
+           
            ->where('kelas.userID' ,  Auth::user()->id )->count(),
             'puskesmas' => User::where('level','=', '3')->count(),
             'kepala' => User::where('level','=', '4')->count(),

@@ -21,7 +21,7 @@ class daftarsiswawaliController extends Controller
         $datas = kela::with([
             'guru','siswa'
        ]) ->join('siswas', 'siswas.kelasID', '=', 'kelas.id')
-       ->join('gurus', 'gurus.id_kelas', '=', 'kelas.id')
+      
        ->where('kelas.userID' ,  Auth::user()->id )
        ->where('nama_lengkap','like',"%".$cari."%")
       
