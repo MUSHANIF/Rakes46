@@ -226,13 +226,22 @@
             
 
             <!-- Nav Item - Tables -->
+            @if(Auth::user()->level == 2)
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/dashboardwali">
+                    <i class="bi bi-collection"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            @endif
+           
+            @if (Auth::user()->level == 5)
             <li class="nav-item">
                 <a class="nav-link text-white" href="/dashboard">
                     <i class="bi bi-collection"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            @if (Auth::user()->level == 5)
             <li class="nav-item">
                 <a class="nav-link text-white" href="/pertanyaan">
                     <i class="bi bi-collection"></i>
@@ -252,10 +261,10 @@
                   <li><a class="dropdown-item" href="/kepala_sekolah">Kepala sekolah</a></li>
                   <li><a class="dropdown-item" href="/puskesmas">Puskesmas</a></li>
                   <li><a class="dropdown-item" href="/wali_kelas">wali kelas</a></li>
-                  <li><a class="dropdown-item" href="/orangtua">orang tua</a></li>
+            
                   <li><a class="dropdown-item" href="/siswa">siswa</a></li>
                 </ul>
-              @elseif (Auth::user()->level == 3)
+              @elseif (Auth::user()->level == 2)
                 <ul class="dropdown-menu collapse border-0" style="background-color: #256D85;" id="submenu1" aria-labelledby="navbarDropdownMenuLink">
                     
                     <li><a class="dropdown-item" href="/siswawali">siswa</a></li>

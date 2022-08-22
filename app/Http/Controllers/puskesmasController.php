@@ -15,7 +15,7 @@ class puskesmasController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 4)->where('name','like',"%".$cari."%")->get();
+        $datas =  DB::table('users')->where('level', '=', 3)->where('name','like',"%".$cari."%")->get();
        
         return view('puskesmas.index', compact('datas'));
     }

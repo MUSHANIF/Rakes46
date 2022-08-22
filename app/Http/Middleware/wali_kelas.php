@@ -16,7 +16,7 @@ class wali_kelas
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || auth()->user()->level !== 3){
+        if(!auth()->check() || auth()->user()->level !== 2){
             abort(403);
        }
         return $next($request);

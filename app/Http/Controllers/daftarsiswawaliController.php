@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\kela;
+use App\Models\guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -26,8 +27,8 @@ class daftarsiswawaliController extends Controller
       
         
         ->get();
-       
-        return view('siswa.index', compact('datas'));
+        $data =  DB::table('kelas')->where('kelas.userID' ,  Auth::user()->id )->get();
+        return view('siswa.index', compact('datas','data'));
     }
 
     /**
@@ -47,8 +48,26 @@ class daftarsiswawaliController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        
+        $kelas = new kela;
+        $kelas->userID = $request->userid;
+        $kelas->nip = $request->nip;
+        $kelas->nama_guru = $request->nama;
+        $kelas->thn_ajaran = $request->thn_ajaran;
+        $kelas->kelas = $request->kelas;
+        $kelas->jurusan = $request->jurusan;
+        $kelas->save();
+           
+
+      
+
+       
+       
+
+       
+        toastr()->success('Berhasil di tanggapi!', 'Selamat');
+        return redirect('siswawali');
     }
 
     /**
