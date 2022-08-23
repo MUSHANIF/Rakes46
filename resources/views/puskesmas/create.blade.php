@@ -3,26 +3,20 @@
 
   <div class="container" style="position: relative;">
     
-    <form action="{{ route('orangtua.store') }}" method="post" >
+    <form action="{{ route('puskesmas.store') }}" method="post" >
         @csrf
-         <div class="form-group">
-            <label for="formGroupExampleInput">NIK</label>
-            <input type="text" class="form-control" id="StoreID" name="nik" required>
-        </div>
+    
         <div class="form-group">
-            <label for="formGroupExampleInput">NAMA</label>
+            <label for="formGroupExampleInput">Nama</label>
             <input type="text" class="form-control" id="LocID" name="name" required>
         </div>
         <div class="form-group">
-            <label for="formGroupExampleInput">email</label>
+            <label for="formGroupExampleInput">Email</label>
             <input type="email" class="form-control" id="LocID" name="email" required>
         </div>
-        <div class="form-group">
-            <label for="formGroupExampleInput">NO HP</label>
-            <input type="text" class="form-control" id="PriceID" name="hp" required>
-        </div>
+       
       
-            <input type="hidden" class="form-control" id="ProdID" name="level" value="ADMIN" required>
+            <input type="hidden" class="form-control" id="ProdID" name="level" value="3" required>
        
         <div class="form-group">
             <label for="formGroupExampleInput">Password</label>

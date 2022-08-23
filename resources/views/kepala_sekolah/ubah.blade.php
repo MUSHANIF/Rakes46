@@ -3,7 +3,7 @@
 
   <div class="container" style="position: relative;">
     
-    <form method="POST" action="{{ route('orangtua.update',$datas->id) }}" >
+    <form method="POST" action="{{ route('kepala_sekolah.update',$datas->id) }}" >
         @csrf
             <input type="hidden" name="_method" value="PATCH">
      
@@ -16,12 +16,13 @@
             <input type="text" class="form-control" id="formGroupExampleInput2" name="email" value="{{ $datas->email }}">
         </div>
      
+        
         <label for="formFile" class="form-label">Ubah level</label>
             <select class="form-select" aria-label="Default select example" name="opsi" required>
             <option value="4">Kepala sekolah</option>
-              <option value="4">Puskesmas</option>
-              <option value="3">Wali kelas </option>
-              <option value="2">Orang tua</option>
+              <option value="3">Puskesmas</option>
+              <option value="2">Wali kelas </option>
+              <option value="1">Siswa</option>
   
             </select>
         <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Ubah</button>

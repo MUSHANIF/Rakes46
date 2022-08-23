@@ -25,6 +25,7 @@
     <link rel="icon" href="{{ asset('img/favicon.svg')}}">
     <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <script src="https://cdn.statically.io/gh/devanka761/notipin/v1.24.49/all.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -256,7 +257,15 @@
                 </a>
             </li>
             @endif
-          
+            @if (Auth::user()->level == 4)
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/dashboardkepala">
+                    <i class="bi bi-collection"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            @endif
 
             <li class="nav-item dropdown">
                 <a class="nav-link collapsed" href="#" id="navbarDropdownMenuLink" aria-haspopup="true" role="button" data-toggle="collapse" data-target="#submenu1">
@@ -271,6 +280,14 @@
             
                   <li><a class="dropdown-item" href="/siswa">siswa</a></li>
                 </ul>
+            @elseif (Auth::user()->level == 4)
+            <ul class="dropdown-menu collapse border-0" style="background-color: #256D85;" id="submenu1" aria-labelledby="navbarDropdownMenuLink">
+                
+                <li><a class="dropdown-item" href="/puskesmaskepala">Puskesmas</a></li>
+                <li><a class="dropdown-item" href="/wali_kelaskepala">wali kelas</a></li>
+          
+                <li><a class="dropdown-item" href="/siswakepala">siswa</a></li>
+              </ul>
               @elseif (Auth::user()->level == 2)
                 <ul class="dropdown-menu collapse border-0" style="background-color: #256D85;" id="submenu1" aria-labelledby="navbarDropdownMenuLink">
                     
@@ -450,7 +467,11 @@
     <!-- Page level custom scripts -->
     <script src="/js/demo/chart-area-demo.js"></script>
     <script src="/js/demo/chart-pie-demo.js"></script>
-
+    <script>
+        @foreach($errors->all() as $error)
+            Notipin.Alert({msg: " {{ $error }} "});
+        @endforeach
+    </script>
 </body>
 
 </html>

@@ -18,7 +18,7 @@
                 Selamat Datang,{{ Auth::user()->name }}
               </a>
               <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="/dashboardsuperadmin">Dashboard</a></li>
+                <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -37,7 +37,7 @@
                 Selamat Datang,{{ Auth::user()->name }}
               </a>
               <ul class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="pengaduan/home">keluhan!</a></li>
+                <li><a class="dropdown-item" href="#">Form</a></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -56,7 +56,7 @@
                 Selamat Datang,{{ Auth::user()->name }}
               </a>
               <ul class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="pengaduan/home">keluhan!</a></li>
+                <li><a class="dropdown-item" href="/dashboardkepala">dashboard</a></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -75,7 +75,7 @@
                 Selamat Datang,{{ Auth::user()->name }}
               </a>
               <ul class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="pengaduan/home">keluhan!</a></li>
+                <li><a class="dropdown-item" href="/dashboardwali">dashboard</a></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -88,13 +88,13 @@
                 
               </ul>
             </li>
-            @elsecan('orangtua')
+            @elsecan('puskesmas')
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Selamat Datang,{{ Auth::user()->name }}
               </a>
               <ul class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="pengaduan/home">keluhan!</a></li>
+                <li><a class="dropdown-item" href="/dashboardpuskesmas">dahsboard</a></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
