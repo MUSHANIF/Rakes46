@@ -16,7 +16,7 @@ class puskesmas
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || auth()->user()->level !== 4){
+        if(!auth()->check() || auth()->user()->level !== 3){
             abort(403);
        }
         return $next($request);

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\guru;
+use App\Models\kela;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class walikelasController extends Controller
@@ -15,8 +17,8 @@ class walikelasController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 3)->where('name','like',"%".$cari."%")->get();
-       
+        $datas =  DB::table('users')->where('level', '=', 2)->where('name','like',"%".$cari."%")->get();
+     
         return view('wali_kelas.index', compact('datas'));
     }
 
@@ -38,7 +40,7 @@ class walikelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -16,9 +16,7 @@ class orangtua
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || auth()->user()->level !== 1){
-            abort(403);
-       }
+       
         return $next($request);
     }
 }

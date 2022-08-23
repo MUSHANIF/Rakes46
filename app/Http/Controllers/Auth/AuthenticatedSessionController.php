@@ -40,8 +40,12 @@ class AuthenticatedSessionController extends Controller
             return redirect('/dashboard');
         }
         if (auth()->user()->level == 3) {
+            toastr()->success('Salam sehat!', 'Selamat datang Puskesmas!');
+            return redirect('/dashboardpuskesmas');
+        }
+        if (auth()->user()->level == 2) {
             toastr()->success('Salam sehat!', 'Selamat datang wali kelas!');
-            return redirect('/dashboard');
+            return redirect('/dashboardwali');
         }
         toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
         return redirect('/home1');

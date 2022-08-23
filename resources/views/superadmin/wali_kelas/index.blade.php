@@ -20,7 +20,7 @@
 
     <div class="container">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            List Wali kelas
+            List wali kelas
           </h2>
         <table class="table mt-3" cellpadding="10" cellspace="0">
             <thead class="align-self-center text-center">
