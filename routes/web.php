@@ -27,6 +27,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/dashboard-admin', function () {
+//     return view('admin.dashboard-admin');
+// });
+
 Route::group(['middleware' => ['superadmin']], function () {
     Route::get('/superadmin', function () {
         return view('superadmin.home');
@@ -37,7 +41,9 @@ Route::group(['middleware' => ['superadmin']], function () {
     Route::resource('wali_kelas', walikelasController::class);
     Route::resource('puskesmas', puskesmasController::class);
     Route::resource('pertanyaan', pertanyaanController::class);
-    Route::get('/dashboard', [dashboardController::class, 'index']);
+    // Route::get('/dashboard', [dashboardController::class, 'index']);
+
+    Route::get('/dashboard-admin', [dashboardController::class, 'index']);
 });
 Route::group(['middleware' => ['wali_kelas']], function () {
    

@@ -61,7 +61,7 @@ class daftarorangtuaController extends Controller
     public function edit($id)
     {
         $datas = User::find($id);
-        return view('orangtua.ubah', compact('datas'));
+        return view('superadmin.orangtua.ubah', compact('datas'));
     }
 
     /**

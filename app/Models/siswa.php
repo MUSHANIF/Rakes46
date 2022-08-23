@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class siswa extends Model
 {
     use HasFactory;
+
     public function kelas() {
         return $this->belongsTo(kela::class, 'kelasID', 'id');
     }
@@ -15,4 +16,6 @@ class siswa extends Model
     {
         return $this->hasOne(kela::class, 'kelasID', 'id');
     }
+
+
 }

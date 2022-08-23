@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dashboard')
 @section('isi')
 
   <div class="container" style="position: relative;">

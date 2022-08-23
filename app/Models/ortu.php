@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class guru extends Model
+class ortu extends Model
 {
     use HasFactory;
-
-    public function guru() {
-        return $this->belongsTo(kela::class, 'id_kelas', 'id');
-        }
-
 }

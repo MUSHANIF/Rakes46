@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.dashboard')
 @section('isi')
 
   <div class="container" style="position: relative;">
     
-    <form method="POST" action="{{ route('orangtua.update',$datas->id) }}" >
+    <form method="POST" action="{{ route('siswa.update',$datas->id) }}" >
         @csrf
             <input type="hidden" name="_method" value="PATCH">
      

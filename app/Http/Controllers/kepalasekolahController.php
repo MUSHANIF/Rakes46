@@ -17,7 +17,7 @@ class kepalasekolahController extends Controller
         $cari = $request->cari;
         $datas =  DB::table('users')->where('level', '=', 4)->where('name','like',"%".$cari."%")->get();
        
-        return view('kepala_sekolah.index', compact('datas'));
+        return view('superadmin.kepala_sekolah.index', compact('datas'));
     }
 
     /**

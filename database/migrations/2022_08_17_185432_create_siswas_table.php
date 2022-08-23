@@ -25,12 +25,14 @@ class CreateSiswasTable extends Migration
             $table->enum('jns_kelamin', ['P', 'L']);
             $table->char('gol_darah');
             $table->string('anak_ke');
-            $table->enum('tggl_bersama', ['Orang Tuan', 'Wali']);
+            $table->enum('tggl_bersama', ['Orang Tua', 'Wali']);
             $table->string('alamat');
             $table->char('no_telp', 12);
             $table->string('email')->unique();
             $table->enum('disabilitas', ['Tidak', 'Netra', 'Rungu', 'Rungu Wicara', 'Grahita', 'Daksa', 'Autisme', 'Ganda', 'ADHD']);
             $table->timestamps();
+
+
             $table->foreign('kelasID')->references('id')->on('kelas');
 
         });

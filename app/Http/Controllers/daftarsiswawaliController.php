@@ -27,7 +27,7 @@ class daftarsiswawaliController extends Controller
         
         ->get();
        
-        return view('siswa.index', compact('datas'));
+        return view('superadmin.siswa.index', compact('datas'));
     }
 
     /**
@@ -71,7 +71,7 @@ class daftarsiswawaliController extends Controller
     public function edit($id)
     {
         $datas = User::find($id);
-        return view('siswa.ubah', compact('datas'));
+        return view('superadmin.siswa.ubah', compact('datas'));
     }
 
     /**
