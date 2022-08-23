@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('search')
 <main>
-    <form action="{{ url('siswa') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <form action="{{ url('siswawali') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         @csrf
     <div class="input-group">
         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
