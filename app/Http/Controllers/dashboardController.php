@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\pertanyaan;
 use App\Models\kela;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class dashboardController extends Controller
             'puskesmas' => User::where('level','=', '3')->count(),
             'kepala' => User::where('level','=', '4')->count(),
             'wali' => User::where('level','=', '2')->count(),
-
+            'data' => DB::table('siswas')->where('siswas.userID' ,  Auth::user()->id )->get(),
             'superadmin' => User::where('level','=', '5')->count(),
             'pertanyaan' => pertanyaan::all()->count(),
         ]);

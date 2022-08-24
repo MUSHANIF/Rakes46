@@ -48,7 +48,7 @@ class AuthenticatedSessionController extends Controller
             return redirect('/dashboardwali');
         }
         toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
-        return redirect('/home1');
+        return redirect('/siswaid');
        
     }
 

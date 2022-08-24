@@ -11,6 +11,7 @@ use App\Http\Controllers\kepalasekolahController;
 use App\Http\Controllers\walikelasController;
 use App\Http\Controllers\puskesmasController;
 use App\Http\Controllers\pertanyaanController;
+use App\Http\Controllers\siswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,10 @@ Route::group(['middleware' => ['kepala_sekolah']], function () {
 Route::group(['middleware' => ['puskesmas']], function () {
     Route::resource('siswapuskesmas', daftarsiswaController::class);
     Route::get('/dashboardpuskesmas', [dashboardController::class, 'index']);
+});
+Route::group(['middleware' => ['siswa']], function () {
+    Route::resource('siswaid', siswaController::class);
+   
 });
 Auth::routes();
 

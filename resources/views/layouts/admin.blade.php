@@ -243,6 +243,24 @@
                 </a>
             </li>
             @endif
+            @if (Auth::user()->level == 4)
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/dashboardkepala">
+                    <i class="bi bi-collection"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            @endif
+            {{-- @if (Auth::user()->level == 1 and $data->isNotEmpty())
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/dashboardsiswa">
+                    <i class="bi bi-collection"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            @endif --}}
             @if (Auth::user()->level == 5)
             <li class="nav-item">
                 <a class="nav-link text-white" href="/dashboard">
@@ -257,15 +275,9 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->level == 4)
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/dashboardkepala">
-                    <i class="bi bi-collection"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            
-            @endif
+            @if (Auth::user()->level != 1)
+                
+           
 
             <li class="nav-item dropdown">
                 <a class="nav-link collapsed" href="#" id="navbarDropdownMenuLink" aria-haspopup="true" role="button" data-toggle="collapse" data-target="#submenu1">
@@ -300,11 +312,16 @@
                   </ul>
                 @endif
                 </li>
-                  
-
-                
+   
               </li>
-
+              @else
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/siswaid">
+                    <i class="bi bi-collection"></i>
+                    <span>Pertanyaan</span>
+                </a>
+            </li>
+              @endif
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

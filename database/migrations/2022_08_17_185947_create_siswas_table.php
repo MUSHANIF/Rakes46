@@ -16,6 +16,7 @@ class CreateSiswasTable extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kelasID');
+            $table->unsignedBigInteger('userID');
             $table->integer('nisn');
             $table->char('nis');
             $table->string('nama_lengkap');
@@ -32,6 +33,7 @@ class CreateSiswasTable extends Migration
             $table->enum('disabilitas', ['Tidak', 'Netra', 'Rungu', 'Rungu Wicara', 'Grahita', 'Daksa', 'Autisme', 'Ganda', 'ADHD']);
             $table->timestamps();
             $table->foreign('kelasID')->references('id')->on('kelas');
+            $table->foreign('userID')->references('id')->on('users');
 
         });
     }
