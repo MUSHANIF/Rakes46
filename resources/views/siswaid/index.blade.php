@@ -112,21 +112,16 @@
                 
             </div>
         <label for="formFile" class="form-label">Disabilitas</label>
-        <select class="form-select" aria-label="Default select example" name="disabilitas" required>
-        
-            <option value="Tidak">Tidak</option>
-             <option value="ADHD">ADHD</option>
-              <option value="Autismes">Autismes</option>
-               <option value="Daksa">Daksa</option>
-               <option value="Ganda">Ganda</option>
+        <select class="form-select" aria-label="Default select example" name="disabilitas" required>        
+                 <option value="Tidak">Tidak</option>
+                 <option value="ADHD">ADHD</option>
+                 <option value="Autismes">Autismes</option>
+                 <option value="Daksa">Daksa</option>
+                 <option value="Ganda">Ganda</option>
                  <option value="Grahita">Grahita</option>
                  <option value="Netra">Netra</option>
                  <option value="Rungu">Rungu</option>
-                 <option value="Rungu Wicara" >Rungu Wicara</option>
-            
-            
-           
-          
+                 <option value="Rungu Wicara" >Rungu Wicara</option>    
         </select>
          <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
          <button type="reset" class="btn btn-danger mt-4">Reset</button>
@@ -142,7 +137,35 @@
           
           @if (Auth::user()->level == 1)
         
-           <h1>ada datanya!</h1>
+          <main class="">
+            <div class="container-grid px-6 ">
+              <h4 class="m-3 font-semibold text-center text-gray-700 dark:text-gray-200">
+                detail informasi anda
+              </h4>
+          
+          
+              <div class="w-full mb-8 ">
+                <div class="w-full overflow-x-auto">
+                  @foreach($data as $ite)
+                  <div
+                    class="text-gray-800 text-sm font-semibold px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100 ">
+          
+                  
+                    <h5>Nama : {{ $ite->nama_lengkap }}</h5>
+                    <h5>Nisn : {{ $ite->nisn }}</h5>
+                    {{-- <h2 class="mt-4">NIK : {{ $ite->nik }}</h2> --}}
+                    <h5 >Tgl lahir : {{ $ite->tgl_lahir}}</h5>
+                    <h5 >Jenis Kelamin : {{ $ite->jns_kelamin }}</h5>
+                    
+                   
+                  </div>
+          
+                 
+              
+          
+          </main>
+        
+          @endforeach
     
         
           @endif
