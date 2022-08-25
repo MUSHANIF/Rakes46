@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class kepalasekolahController extends Controller
+use Illuminate\Http\Request;
+use App\Models\siswa;
+class biodataController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 4)->where('name','like',"%".$cari."%")->get();
-       
-        return view('kepala_sekolah.index', compact('datas'));
+        $datas=  DB::table('siswa');
+        return view('biodata.index', compact('datas'));
     }
 
     /**
@@ -60,8 +58,7 @@ class kepalasekolahController extends Controller
      */
     public function edit($id)
     {
-        $datas = User::find($id);
-        return view('orangtua.ubah', compact('datas'));
+        //
     }
 
     /**
@@ -73,16 +70,7 @@ class kepalasekolahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model = User::find($id);
-      
-        $model->name = $request->name;
-        $model->email = $request->email;
-     
-        $model->level = $request->opsi;
-
-        $model->save();
-        toastr()->success('Berhasil di terupdate!', 'Sukses');
-        return redirect('/orangtua');
+        //
     }
 
     /**
@@ -93,9 +81,6 @@ class kepalasekolahController extends Controller
      */
     public function destroy($id)
     {
-        $kantin = User::find($id);
-        $kantin->delete();
-        toastr()->info('Berhasil di hapus!', 'Sukses');
-        return redirect('orangtua');
+        //
     }
 }

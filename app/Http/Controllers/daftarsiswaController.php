@@ -17,13 +17,8 @@ class daftarsiswaController extends Controller
     {
         $cari = $request->cari;
         $datas =  DB::table('users')->where('level', '=', 1)->where('name','like',"%".$cari."%")->get();
-<<<<<<< HEAD
-       
-        return view('superadmin.siswa.index', compact('datas'));
-=======
         $data =  DB::table('kelas')->where('kelas.userID' ,  Auth::user()->id )->get();
         return view('siswa.index', compact('datas','data'));
->>>>>>> 7fadac3c731ee58708bb7841ef8167c62b0f6dad
     }
 
     /**

@@ -24,7 +24,7 @@ class LoginController extends Controller
     {
         if (auth()->user()->level == 5) {
             toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
-            return '/dashboard-admin';
+            return '/superadmin';
         }
         if (auth()->user()->level == 4) {
             toastr()->success('Salam sehat!', 'Selamat datang kepala sekolah!');

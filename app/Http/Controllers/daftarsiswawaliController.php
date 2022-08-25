@@ -27,13 +27,8 @@ class daftarsiswawaliController extends Controller
       
         
         ->get();
-<<<<<<< HEAD
-       
-        return view('superadmin.siswa.index', compact('datas'));
-=======
         $data =  DB::table('kelas')->where('kelas.userID' ,  Auth::user()->id )->get();
         return view('siswa.index', compact('datas','data'));
->>>>>>> 7fadac3c731ee58708bb7841ef8167c62b0f6dad
     }
 
     /**

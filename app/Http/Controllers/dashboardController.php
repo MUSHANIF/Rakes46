@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\pertanyaan;
-use App\Models\kela;
+use App\Models\kelas;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class dashboardController extends Controller
 
         return view('superadmin.home',[
             'user' => User::where('level','=', '1')->count(),
-            'siswa' => kela::with([
+            'siswa' => kelas::with([
                 'guru','siswa'
            ]) ->join('siswas', 'siswas.kelasID', '=', 'kelas.id')
            

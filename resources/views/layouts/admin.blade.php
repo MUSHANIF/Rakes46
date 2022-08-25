@@ -190,7 +190,7 @@
         body{ margin:0;  background-color: #2B4865; } canvas{ display: block; vertical-align: bottom; } 
         /* ---- particles.js container ---- */ 
         #particles-js{ position:absolute; width: 100%; height: 100%; background-color: #ffffff; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; } /* ---- stats.js ---- */ .count-particles{ background: #000022; position: absolute; top: 48px; left: 0; width: 80px; color: #0078AA; font-size: .8em; text-align: left; text-indent: 4px; line-height: 14px; padding-bottom: 2px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; } .js-count-particles{ font-size: 1.1em; } #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } .count-particles{ border-radius: 0 0 3px 3px; }
-      </style>
+    </style>
       <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 </head>
 
@@ -259,10 +259,11 @@
           
 
             <li class="nav-item dropdown">
-                <a class="nav-link collapsed" href="#" id="navbarDropdownMenuLink" aria-haspopup="true" role="button" data-toggle="collapse" data-target="#submenu1">
+                <a class="nav-link collapsed" href="#" id="navbarDropdownMenuLink"  aria-expanded="false" role="button" data-toggle="collapse" data-target="#submenu1">
                     <i class="bi bi-person-fill"></i>
                     <span>List</span></a>
                 </a>
+               
                 @if ( Auth::user()->level == 5)
                 <ul class="dropdown-menu collapse border-0" style="background-color: #256D85;" id="submenu1" aria-labelledby="navbarDropdownMenuLink">
                   <li><a class="dropdown-item" href="/kepala_sekolah">Kepala sekolah</a></li>

@@ -14,7 +14,7 @@
                     <span><i class="bi bi-graph-up-arrow"></i></span>
                 </div>
             </div>
-            <div class="card-single">
+            {{-- <div class="card-single">
                 <div>
                     <h1>{{ $orangtua }}</h1>
                     <span>Data Orang Tua</span>
@@ -22,7 +22,7 @@
                 <div>
                     <span><i class="bi bi-people-fill"></i></span>
                 </div>
-            </div>
+            </div> --}}
             <div class="card-single">
                 <div>
                     <h1>{{ $wali }}</h1>

@@ -11,7 +11,8 @@ use App\Http\Controllers\kepalasekolahController;
 use App\Http\Controllers\walikelasController;
 use App\Http\Controllers\puskesmasController;
 use App\Http\Controllers\pertanyaanController;
-
+use App\Http\Controllers\biodataController;
+use App\Http\Controllers\dataortuController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,9 +42,12 @@ Route::group(['middleware' => ['superadmin']], function () {
     Route::resource('wali_kelas', walikelasController::class);
     Route::resource('puskesmas', puskesmasController::class);
     Route::resource('pertanyaan', pertanyaanController::class);
-    // Route::get('/dashboard', [dashboardController::class, 'index']);
+    Route::get('/dashboard', [dashboardController::class, 'index']);
+    Route::get('/superadmin', [dashboardController::class, 'index']);
+    Route::get('/biodata', [biodataController::class, 'index']);
 
-    Route::get('/dashboard-admin', [dashboardController::class, 'index']);
+    Route::get('/data-ortu', [dataortuController::class, 'index']);
+
 });
 Route::group(['middleware' => ['wali_kelas']], function () {
    
@@ -54,7 +58,11 @@ Route::group(['middleware' => ['puskesmas']], function () {
     Route::resource('siswapuskesmas', daftarsiswaController::class);
     Route::get('/dashboardpuskesmas', [dashboardController::class, 'index']);
 });
+
+
 Auth::routes();
+
+
 
 Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
