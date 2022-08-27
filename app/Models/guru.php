@@ -9,6 +9,6 @@ class guru extends Model
 {
     use HasFactory;
     public function guru() {
-        return $this->belongsTo(kela::class, 'id_kelas', 'id');
+        return $this->belongsTo(kela::class, 'kelasID', 'id');
         }
 }

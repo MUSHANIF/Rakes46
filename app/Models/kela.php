@@ -14,6 +14,6 @@ class kela extends Model
     }
     public function guru()
     {
-        return $this->hasOne(guru::class, 'id_kelas', 'id');
+        return $this->hasOne(guru::class, 'kelasID', 'id');
     }
 }

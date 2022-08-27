@@ -46,10 +46,10 @@
         
             
             <input type="hidden" class="form-control" id="LocID" name="userID" required value="{{ Auth::user()->id }}">
-            <label for="formFile" class="form-label">Kelas</label>
-            <select class="form-select" aria-label="Default select example" name="kelasID" required>
+            <label for="formFile" class="form-label">Kelas yang tersedia</label>
+            <select class="form-select  col-12" aria-label="Default select example" name="kelasID" required>
                 @foreach ($kelas as $data)
-                    <option value="{{ $data->id }}">{{ $data->jurusan }}</option>
+                    <option value="{{ $data->id }}">{{ $data->kelas }} {{ $data->jurusan }}</option>
                 @endforeach
                
               
@@ -77,7 +77,7 @@
             <input type="date" class="form-control" id="ProdID" name="tgl_lahir" required>
         </div>
         <label for="formFile" class="form-label">Jenis kelamin</label>
-            <select class="form-select" aria-label="Default select example" name="jns_kelamin" required>
+            <select class="form-select col-12" aria-label="Default select example" name="jns_kelamin" required>
                 <option value="L">L</option>
                 <option value="P">P</option>
             </select>
@@ -91,11 +91,11 @@
                 <input type="text" class="form-control" id="ProdID" name="anak_ke" required>
             </div>
             <label for="formFile" class="form-label">Tinggal Bersama</label>
-            <select class="form-select" aria-label="Default select example" name="tggl_bersama" required>
-                @foreach ($datas as $data)
-                <option value="{{ $data->tggl_bersama }}">{{ $data->tggl_bersama }}</option>
-                @endforeach
-              
+            <select class="form-select col-12" aria-label="Default select example" name="tggl_bersama" required>
+                
+                <option value="Orang Tua">Orang tua</option>
+                <option value="Wali">Wali</option>
+               
              
             </select>
             <div class="form-group">
@@ -112,7 +112,7 @@
                 
             </div>
         <label for="formFile" class="form-label">Disabilitas</label>
-        <select class="form-select" aria-label="Default select example" name="disabilitas" required>        
+        <select class="form-select col-12" aria-label="Default select example" name="disabilitas" required>        
                  <option value="Tidak">Tidak</option>
                  <option value="ADHD">ADHD</option>
                  <option value="Autismes">Autismes</option>

@@ -17,7 +17,7 @@ class CreateSiswasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('kelasID');
             $table->unsignedBigInteger('userID');
-            $table->integer('nisn');
+            $table->string('nisn');
             $table->char('nis');
             $table->string('nama_lengkap');
             $table->string('nama_panggilan');
@@ -26,7 +26,7 @@ class CreateSiswasTable extends Migration
             $table->enum('jns_kelamin', ['P', 'L']);
             $table->char('gol_darah');
             $table->string('anak_ke');
-            $table->enum('tggl_bersama', ['Orang Tuan', 'Wali']);
+            $table->enum('tggl_bersama', ['Orang Tua', 'Wali']);
             $table->string('alamat');
             $table->char('no_telp', 12);
             $table->string('email')->unique();

@@ -17,7 +17,7 @@ class CreateJawabansTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_pertanyaan');
             $table->unsignedBigInteger('id_kelas');
-            $table->string('jawaban');
+            $table->string('jawaban')->nullable();
             $table->timestamps();
 
             $table->foreign('id_pertanyaan')->references('id')->on('pertanyaans');
