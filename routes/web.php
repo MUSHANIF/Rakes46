@@ -55,12 +55,10 @@ Route::group(['middleware' => ['revalidate']], function () {
     });
     Route::group(['middleware' => ['siswa']], function () {
         Route::resource('siswaid', siswaController::class);
-    
     });
 });
-    // Auth::routes();
+// Auth::routes();
 
-<<<<<<< HEAD
 // Route::get('/dashboard-admin', function () {
 //     return view('admin.dashboard-admin');
 // });
@@ -95,16 +93,11 @@ Route::group(['middleware' => ['siswa']], function () {
     Route::resource('siswaid', siswaController::class);
     Route::resource('kuisioner', jawabanController::class);
     Route::resource('dataorangtua', dataortuController::class);
-
 });
 Auth::routes();
 
 
-
 Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
-    Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
->>>>>>> 04631c90147695a169358c2621e089f93329013f
 
 
 // Auth::routes();

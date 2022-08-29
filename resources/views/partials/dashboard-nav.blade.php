@@ -56,31 +56,6 @@
                         
                     </a> 
                  
-                            @if (Auth::user()->level == 5)
-                            <ul class="navbar-nav dropdown-menu collapse ps-3 " id="submenu1" aria-labelledby="navbarDropdownMenuLink"> 
-                                <li><a class="dropdown-item" href="/kepala_sekolah">Kepala sekolah</a></li>
-                                <li><a class="dropdown-item" href="/puskesmas">Puskesmas</a></li>
-                                <li><a class="dropdown-item" href="/wali_kelas">wali kelas</a></li>
-                               
-                                <li><a class="dropdown-item" href="/siswa">siswa</a></li>
-                            </ul>
-                            @elseif(Auth::user()->level == 4)
-                            <ul class="navbar-nav ps-3 " id="submenu1" aria-labelledby="navbarDropdownMenuLink"> 
-                                <li><a class="dropdown-item" href="/puskesmaskepala">Puskesmas</a></li>
-                                <li><a class="dropdown-item" href="/wali_kelaskepala">wali kelas</a></li>
-                                <li><a class="dropdown-item" href="/siswakepala">Data Kesehatan Siswa</a></li>
-                            </ul>
-                            
-                            @elseif(Auth::user()->level == 3)
-                            <ul class="navbar-nav ps-3 " id="submenu1" aria-labelledby="navbarDropdownMenuLink"> 
-                                <li><a class="dropdown-item" href="/siswapuskesmas">Data kesehatan Siswa</a></li>
-                            </ul>
-                            
-                            @elseif (Auth::user()->level == 2)
-                            <ul class="navbar-nav ps-3 " id="submenu1" aria-labelledby="navbarDropdownMenuLink"> 
-                                <li><a class="dropdown-item" href="/siswawali">Data kesehatan Siswa</a></li>
-                            </ul>
-                            @endif
                     
                 </li> --}}
                 <li class="dropdown">
@@ -88,13 +63,38 @@
                         <i class="bi bi-person-fill"></i>
                         <span>List</span></a>
                     </a>
+                    @if (Auth::user()->level == 5)
+                    <ul class="dropdown-menu collapse border-0" style="background-color: rgb(57, 177, 224);" >
+                        <li><a class="dropdown-item" href="/kepala_sekolah">Kepala sekolah</a></li>
+                        <li><a class="dropdown-item" href="/puskesmas">Puskesmas</a></li>
+                        <li><a class="dropdown-item" href="/wali_kelas">wali kelas</a></li>
+                       
+                        <li><a class="dropdown-item" href="/siswa">siswa</a></li>
+                    </ul>
+                    @elseif(Auth::user()->level == 4)
+                    <ul class="dropdown-menu collapse border-0" style="background-color: rgb(57, 177, 224);" >
+                        <li><a class="dropdown-item" href="/puskesmaskepala">Puskesmas</a></li>
+                        <li><a class="dropdown-item" href="/wali_kelaskepala">wali kelas</a></li>
+                        <li><a class="dropdown-item" href="/siswakepala">Data Kesehatan Siswa</a></li>
+                    </ul>
+                    
+                    @elseif(Auth::user()->level == 3)
+                    <ul class="dropdown-menu collapse border-0" style="background-color: rgb(57, 177, 224);" >                        
+                        <li><a class="dropdown-item" href="/siswapuskesmas">Data kesehatan Siswa</a></li>
+                    </ul>
+                    
+                    @elseif (Auth::user()->level == 2)
+                    <ul class="dropdown-menu collapse border-0" style="background-color: rgb(57, 177, 224);" >
+                        <li><a class="dropdown-item" href="/siswawali">Data kesehatan Siswa</a></li>
+                    </ul>
+                    @endif
 
                     <ul class="dropdown-menu collapse border-0" style="background-color: rgb(57, 177, 224);" >
                       <li><a class="dropdown-item" href="#">Action</a></li>
                       <li><a class="dropdown-item" href="#">Another action</a></li>
                       <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
-                  </li>
+                </li>
 
             @else
                 <li>
@@ -141,7 +141,7 @@
             <label for="nav-toggle">
                 <span><i class="bi bi-list"></i></span>
             </label>
-            {{ $title }}
+            {{ $title ?? config('app.name')}}
             {{-- Dashboard --}}
         </h2>
         {{-- <div class="search-wrapper">

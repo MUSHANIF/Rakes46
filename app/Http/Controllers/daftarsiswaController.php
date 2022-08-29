@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 class daftarsiswaController extends Controller
 {
     /**
@@ -16,9 +17,9 @@ class daftarsiswaController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 1)->where('name','like',"%".$cari."%")->get();
-        $data =  DB::table('kelas')->where('kelas.userID' ,  Auth::user()->id )->get();
-        return view('siswa.index', compact('datas','data'));
+        $datas =  DB::table('users')->where('level', '=', 1)->where('name', 'like', "%" . $cari . "%")->get();
+        $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
+        return view('siswa.index', compact('datas', 'data'));
     }
 
     /**
@@ -28,7 +29,6 @@ class daftarsiswaController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -62,13 +62,15 @@ class daftarsiswaController extends Controller
     public function edit($id)
     {
         $datas = User::find($id);
-        return view('siswa.ubah', compact('datas'),
-        [
-            "title" => "List Siswa"
-        ]
-    
-    
-    );
+        return view(
+            'siswa.ubah',
+            compact('datas'),
+            [
+                "title" => "List Siswa"
+            ]
+
+
+        );
     }
 
     /**
@@ -81,10 +83,10 @@ class daftarsiswaController extends Controller
     public function update(Request $request, $id)
     {
         $model = User::find($id);
-      
+
         $model->name = $request->name;
         $model->email = $request->email;
-     
+
         $model->level = $request->opsi;
 
         $model->save();
