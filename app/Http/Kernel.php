@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'wali_kelas' => \App\Http\Middleware\wali_kelas::class,
         'siswa' => \App\Http\Middleware\siswa::class,
         'orangtua' => \App\Http\Middleware\orangtua::class,
+        'revalidate' => \App\Http\Middleware\RevalidateBackHistory::class,
     ];
 }

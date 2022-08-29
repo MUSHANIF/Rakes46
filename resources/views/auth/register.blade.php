@@ -36,17 +36,13 @@
                                     <input type="text" id="form3Example1m" value="{{ old('name') }}" name="name" class="form-control form-control-lg @error('name')
                                     is-invalid
                                     @enderror" autofocus/>
+                                   
                                     @error('name')
                                         <div class="text-danger text-sm">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
-                            {{-- <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <input type="text" id="form3Example1n" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example1n">Last name</label>
-                                </div>
-                            </div> --}}
+                            <input id="level" type="hidden" name="level" value="1" >
                         </div>
 
                         {{-- <div class="row">
