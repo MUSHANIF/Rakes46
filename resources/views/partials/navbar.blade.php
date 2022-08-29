@@ -20,9 +20,127 @@
                <li>
                  <a href="#about" id="navAbout" class="block py-2 pl-3 pr-4 not-active navscroll">About</a>
                </li>
-               <li>
-                   <a href="/login" class="bg-blue-600 text-white flex justify-center items-center rounded-full hover:bg-blue-700 border-0 py-1 px-2.5 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-transparent">Login</a>
-               </li>
+
+               @can('superadmin')
+               <div class="relative">
+                <div>
+                  <button type="button" class="inline-flex justify-center w-full rounded-md items-center font-medium focus:outline-none" id="dropdownDefault" data-dropdown-toggle="dropdown">
+                    Selamat Datang, <span class="ml-1 font-semibold">{{ Auth::user()->name }}</span>
+                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              
+                <div class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white border border-slate-500/30 focus:outline-none hidden z-10 divide-y divide-gray-300 dark:bg-gray-700" role="menu" id="dropdown">
+                  <ul class="py-1" role="none" aria-labelledby="dropdownDefault">
+                    <li><a href="/dashboard" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a></li>
+                </ul>
+                <div class="py-1">
+                    <form method="POST" action="/logout" role="none">
+                        @csrf
+                        <button type="submit" class="text-gray-700 block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
+                    </form>
+                </div>
+                </div>
+              </div>
+              @elsecan('puskesmas')
+              <div class="relative">
+                <div>
+                  <button type="button" class="inline-flex justify-center w-full rounded-md items-center font-medium focus:outline-none" id="dropdownDefault" data-dropdown-toggle="dropdown">
+                    Selamat Datang, <span class="ml-1 font-semibold">{{ Auth::user()->name }}</span>
+                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              
+                <div class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white border border-slate-500/30 focus:outline-none hidden z-10 divide-y divide-gray-300 dark:bg-gray-700" role="menu" id="dropdown">
+                  <ul class="py-1" role="none" aria-labelledby="dropdownDefault">
+                    <li><a href="/dashboardpuskesmas" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a></li>
+                </ul>
+                <div class="py-1">
+                    <form method="POST" action="/logout" role="none">
+                        @csrf
+                        <button type="submit" class="text-gray-700 block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
+                    </form>
+                </div>
+                </div>
+              </div>
+              @elsecan('kepala_sekolah')
+              <div class="relative">
+                <div>
+                  <button type="button" class="inline-flex justify-center w-full rounded-md items-center font-medium focus:outline-none" id="dropdownDefault" data-dropdown-toggle="dropdown">
+                    Selamat Datang, <span class="ml-1 font-semibold">{{ Auth::user()->name }}</span>
+                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              
+                <div class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white border border-slate-500/30 focus:outline-none hidden z-10 divide-y divide-gray-300 dark:bg-gray-700" role="menu" id="dropdown">
+                  <ul class="py-1" role="none" aria-labelledby="dropdownDefault">
+                    <li><a href="/dashboardkepala" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a></li>
+                </ul>
+                <div class="py-1">
+                    <form method="POST" action="/logout" role="none">
+                        @csrf
+                        <button type="submit" class="text-gray-700 block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
+                    </form>
+                </div>
+                </div>
+              </div>
+              @elsecan('wali_kelas')
+              <div class="relative">
+                <div>
+                  <button type="button" class="inline-flex justify-center w-full rounded-md items-center font-medium focus:outline-none" id="dropdownDefault" data-dropdown-toggle="dropdown">
+                    Selamat Datang, <span class="ml-1 font-semibold">{{ Auth::user()->name }}</span>
+                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              
+                <div class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white border border-slate-500/30 focus:outline-none hidden z-10 divide-y divide-gray-300 dark:bg-gray-700" role="menu" id="dropdown">
+                  <ul class="py-1" role="none" aria-labelledby="dropdownDefault">
+                    <li><a href="/dashboardwali" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a></li>
+                </ul>
+                <div class="py-1">
+                    <form method="POST" action="/logout" role="none">
+                        @csrf
+                        <button type="submit" class="text-gray-700 block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
+                    </form>
+                </div>
+                </div>
+              </div>
+              @elsecan('siswa')
+              <div class="relative">
+                <div>
+                  <button type="button" class="inline-flex justify-center w-full rounded-md items-center font-medium focus:outline-none" id="dropdownDefault" data-dropdown-toggle="dropdown">
+                    Selamat Datang, <span class="ml-1 font-semibold">{{ Auth::user()->name }}</span>
+                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              
+                <div class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white border border-slate-500/30 focus:outline-none hidden z-10 divide-y divide-gray-300 dark:bg-gray-700" role="menu" id="dropdown">
+                  <ul class="py-1" role="none" aria-labelledby="dropdownDefault">
+                    <li><a href="/siswaid" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Form</a></li>
+                </ul>
+                <div class="py-1">
+                    <form method="POST" action="/logout" role="none">
+                        @csrf
+                        <button type="submit" class="text-gray-700 block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
+                    </form>
+                </div>
+                </div>
+              </div>
+              @else
+              <li>
+                <a href="/login" class="bg-blue-600 text-white flex justify-center items-center rounded-full hover:bg-blue-700 border-0 py-1 px-2.5 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-transparent">Login</a>
+            </li>
+              @endcan
            </ul>
        </div>
 

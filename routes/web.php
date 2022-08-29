@@ -30,6 +30,7 @@ use App\Http\Controllers\jawabanController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::group(['middleware' => ['revalidate']], function () {
     Route::group(['middleware' => ['superadmin']], function () {
         Route::resource('siswa', daftarsiswaController::class);
