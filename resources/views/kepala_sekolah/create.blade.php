@@ -2,41 +2,34 @@
 @section('isi')
 
  <div class="main-content">
-     <main>
+    <main>
         <div class="container" style="position: relative;">
-    
-            <form action="{{ route('orangtua.store') }}" method="post" >
+            <form action="{{ route('kepala_sekolah.store') }}" method="post" >
                 @csrf
-                 <div class="form-group">
-                    <label for="formGroupExampleInput">NIK</label>
-                    <input type="text" class="form-control" id="StoreID" name="nik" required>
-                </div>
+                
                 <div class="form-group">
-                    <label for="formGroupExampleInput">NAMA</label>
+                    <label for="formGroupExampleInput">Nama</label>
                     <input type="text" class="form-control" id="LocID" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="formGroupExampleInput">email</label>
+                    <label for="formGroupExampleInput">Email</label>
                     <input type="email" class="form-control" id="LocID" name="email" required>
                 </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput">NO HP</label>
-                    <input type="text" class="form-control" id="PriceID" name="hp" required>
-                </div>
-              
-                    <input type="hidden" class="form-control" id="ProdID" name="level" value="ADMIN" required>
-               
+            
+            
+                    <input type="hidden" class="form-control" id="ProdID" name="level" value="4" required>
+            
                 <div class="form-group">
                     <label for="formGroupExampleInput">Password</label>
                     <input type="password" class="form-control" id="ProdID" name="password" required>
                 </div>
-        
-                 <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
-                 <button type="reset" class="btn btn-danger mt-4">Reset</button>
+
+                <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
+                <button type="reset" class="btn btn-danger mt-4">Reset</button>
             </form>
-          </div>
-     </main>
- </div>
+        </div>
+    </main>
+</div>
 
 <!-- Optional JavaScript; choose one of the two! -->
 

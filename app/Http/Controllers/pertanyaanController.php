@@ -18,7 +18,11 @@ class pertanyaanController extends Controller
         $cari = $request->cari;
         $datas =  DB::table('pertanyaans')->where('pertanyaan','like',"%".$cari."%")->get();
        
-        return view('pertanyaan.index', compact('datas'));
+        return view('pertanyaan.index', compact('datas'), 
+        [
+            "title" => "List Pertanyaan"
+        ]
+    );
     }
 
     /**

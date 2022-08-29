@@ -1,10 +1,9 @@
 @extends('layouts.admin')
 @section('isi')
 
-  <div class="main-content">
-      <main>
+<div class="main-content">
+    <main>
         <div class="container" style="position: relative;">
-    
             <form action="{{ route('orangtua.store') }}" method="post" >
                 @csrf
                  <div class="form-group">
@@ -34,9 +33,9 @@
                  <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
                  <button type="reset" class="btn btn-danger mt-4">Reset</button>
             </form>
-          </div>
-      </main>
-  </div>
+        </div>
+    </main>
+</div>
 
 <!-- Optional JavaScript; choose one of the two! -->
 

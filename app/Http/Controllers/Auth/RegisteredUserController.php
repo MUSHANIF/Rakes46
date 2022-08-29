@@ -49,6 +49,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/home1');
+        return redirect('/siswaid');
     }
 }

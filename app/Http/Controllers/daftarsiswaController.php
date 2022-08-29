@@ -62,7 +62,13 @@ class daftarsiswaController extends Controller
     public function edit($id)
     {
         $datas = User::find($id);
-        return view('siswa.ubah', compact('datas'));
+        return view('siswa.ubah', compact('datas'),
+        [
+            "title" => "List Siswa"
+        ]
+    
+    
+    );
     }
 
     /**

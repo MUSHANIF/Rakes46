@@ -183,7 +183,7 @@
           background-color: #277994;
       }
 
-      body{ margin:0;  background-color: #2B4865; } canvas{ display: block; vertical-align: bottom; } 
+      body{ margin:0;} canvas{ display: block; vertical-align: bottom; } 
       /* ---- particles.js container ---- */ 
       #particles-js{ position:absolute; width: 100%; height: 100%; background-color: #ffffff; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; } /* ---- stats.js ---- */ .count-particles{ background: #000022; position: absolute; top: 48px; left: 0; width: 80px; color: #0078AA; font-size: .8em; text-align: left; text-indent: 4px; line-height: 14px; padding-bottom: 2px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; } .js-count-particles{ font-size: 1.1em; } #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } .count-particles{ border-radius: 0 0 3px 3px; }
     </style> --}}
@@ -192,8 +192,15 @@
   </head>
   <body>
     @include('partials.dashboard-nav')
-    @yield('button')
-    @yield('isi')
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"></h1>
+        {{-- @yield('search') --}}
+        @yield('button')
+    </div>
+    <div class="table-responsive">
+        @yield('isi')
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

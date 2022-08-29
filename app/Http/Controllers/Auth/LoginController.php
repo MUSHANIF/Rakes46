@@ -35,7 +35,8 @@ class LoginController extends Controller
             return '/puskesmas';
         }
         toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
-        return '/home1';
+        // return '/home1';
+        return '/siswaid';
         
     }
     /**

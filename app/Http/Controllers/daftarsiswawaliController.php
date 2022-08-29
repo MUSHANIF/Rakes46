@@ -28,7 +28,11 @@ class daftarsiswawaliController extends Controller
         
         ->get();
         $data =  DB::table('kelas')->where('kelas.userID' ,  Auth::user()->id )->get();
-        return view('siswa.index', compact('datas','data'));
+        return view('siswa.index', compact('datas','data'),
+            [
+                "title" => "List Siswa"
+            ]
+    );
     }
 
     /**

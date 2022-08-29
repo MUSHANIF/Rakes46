@@ -1,18 +1,39 @@
 @extends('layouts.dashboard')
 @section('search')
-<form action="{{ url('siswawali') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-    @csrf
-<div class="input-group">
-    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-        aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}">
-    <div class="input-group-append">
-        <button class="btn" style="background-color: #256D85;" type="submit">
-            <i class="fas fa-search fa-sm text-white"></i>
-        </button>
-    </div>
+<div class="main-content">
+    <main>
+        @if (Auth::user()->level == 2)
+        <form action="{{ url('siswawali') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                    aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}">
+                <div class="input-group-append">
+                    <button class="btn" style="background-color: #256D85;" type="submit">
+                        <i class="fas fa-search fa-sm text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        @else
+        <form action="{{ url('siswa') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                    aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}">
+                <div class="input-group-append">
+                    <button class="btn" style="background-color: #256D85;" type="submit">
+                        <i class="fas fa-search fa-sm text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        @endif
+    </main>
 </div>
-</form>
+
 @endsection
+
 @section('isi')
 
 <div class="main-content">
@@ -25,20 +46,13 @@
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nip</label>
                     <input type="number" class="form-control" id="StoreID" name="nip" required>
-                </div>
-                
-                    
+                </div>    
                     <input type="hidden" class="form-control" id="LocID" name="userid" required value="{{ Auth::user()->id }}">
-                
-            
+
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nama</label>
                     <input type="text" class="form-control" id="LocID" name="nama" required>
                 </div>
-        
-                    
-            
-
                 <div class="form-group">
                     <label for="formGroupExampleInput">tahun ajaran</label>
                     <input type="number" class="form-control" id="ProdID" name="thn_ajaran" required>
@@ -70,7 +84,6 @@
             </form>
         </div>
         @else
-    
 
         <div class="container">
             {{-- <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -79,68 +92,70 @@
             @if (Auth::user()->level == 2)
             <table class="table mt-3" cellpadding="10" cellspace="0">
                 <thead class="align-self-center text-center">
-                    
-                
                     <th>Nama</th>
                     <th>Email</th>
                     <th>nama guru</th>                
                     <th>Jenis kelamin</th>  
-                    <th>action</th>
-                    
+                    <th>action</th>  
                 </thead>
-            
                 @foreach ($datas as $key) 
                 <tbody>
                     <tr class="align-self-center" style="border: 1px solid black;">
-                    
-                
                         <td data-label="Name">{{ $key->nama_lengkap }}</td>
                         <td data-label="Cost">{{ $key->email }}</td>
                         <td data-label="Cost">{{ $key->nama_guru }}</td>
                         <td data-label="Cost">{{ $key->jns_kelamin }}</td>
                         <td class="text-center justify-content-center align-self-center d-flex">
-                            
-                        
                             <a class="btn btn-info ml-2" href="">Detail</a>
                         </td>
-                    
                     </tr>
                 </tbody>
                 @endforeach
-            
-        
             </table>
-            @else
+            @elseif (Auth::user()->level == 4 or Auth::user()->level == 3)
             <table class="table mt-3" cellpadding="10" cellspace="0">
                 <thead class="align-self-center text-center">
-                    
-                
                     <th>Nama</th>
                     <th>Email</th>
-                
-                    <th>action</th>
-                    
+                    <th>action</th>  
                 </thead>
-            
                 @foreach ($datas as $key) 
                 <tbody>
                     <tr class="align-self-center" style="border: 1px solid black;">
-                    
-                
                         <td data-label="Name">{{ $key->name }}</td>
                         <td data-label="Cost">{{ $key->email }}</td>
-                        
+                            
                         <td class="text-center justify-content-center align-self-center d-flex">
-                            
-                            
                             <a class="btn btn-info ml-2" href="">Detail</a>
                         </td>
-                    
                     </tr>
                 </tbody>
                 @endforeach
-            
-        
+            </table>
+            @elseif (Auth::user()->level == 5)
+            <table class="table mt-3" cellpadding="10" cellspace="0">
+                <thead class="align-self-center text-center">
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>action</th>
+                </thead>
+                @foreach ($datas as $key) 
+                <tbody>
+                    <tr class="align-self-center" style="border: 1px solid black;">
+                        <td data-label="Name">{{ $key->name }}</td>
+                        <td data-label="Cost">{{ $key->email }}</td>
+                        <td class="text-center justify-content-center align-self-center d-flex">
+                            <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
+                            <form action="{{ url('siswa/'.$key->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                            </form>
+                            <a class="btn btn-info ml-2" href="">Detail</a>
+                        </td>
+                    </tr>
+                </tbody>
+                @endforeach
             </table>
             @endif
         
@@ -148,7 +163,6 @@
         @endif
     </main>
 </div>  
-
 
   
 @endsection

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class jawaban extends Model
 {
     use HasFactory;
+    public function pertanyaan(){
+        return $this->belongsTo(pertanyaan::class, 'id_pertanyaan', 'id');
+    }
 }

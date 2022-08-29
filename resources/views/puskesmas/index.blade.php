@@ -13,6 +13,11 @@
 </div>
 </form>
 @endsection
+@section("button")
+<a href="{{ route('puskesmas.create') }}" class="d-none d-sm-inline-block btn btn-sm text-white  shadow-sm" style="background-color: #256D85;"><i
+    class="fas fa-download fa-sm text-white"></i>
+   Tambah</a>
+@endsection
 @section('isi')
 
 <div class="main-content">
@@ -42,14 +47,18 @@
                     <td data-label="Cost">{{ $key->email }}</td>
                 
                      <td class="text-center justify-content-center align-self-center d-flex">
-                        
-                        <a class="btn btn-info" href="{{ route('orangtua.edit',$key->id)}}">Ubah</a>
-                        <form action="{{ url('orangtua/'.$key->id) }}" method="POST" ">
+                        @can('superadmin')
+                        <a class="btn btn-info" href="{{ route('puskesmas.edit',$key->id)}}">Ubah</a>
+                        <form action="{{ url('puskesmas/'.$key->id) }}" method="POST" ">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-danger ms-2">Delete</button>
                         </form>
+                        @else
                         <a class="btn btn-info ml-2" href="">Detail</a>
+                        @endcan
+                        
+                       
                     </td>
                 
                 </tr>

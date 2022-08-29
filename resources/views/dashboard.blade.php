@@ -6,7 +6,7 @@
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
       Dashboard
     </h2>
-@if (Auth::user()->level == '5')
+@if (Auth::user()->level == '5' or Auth::user()->level == '4' )
   
 
     <!-- Cards -->
@@ -122,43 +122,7 @@
         </div>
       </div>
       <!-- Card -->
-      @elseif (Auth::user()->level == '4')
-      <!-- Card -->
-      <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-        <div class="p-3 mr-4 text-purple-700 bg-red-100 rounded-full dark:text-purple-100 dark:bg-purple-700
-        ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-        </svg>
-        </div>
-        <div>
-          <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Jumlah Admin
-          </p>
-          <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            12
-          </p>
-        </div>
-      </div>
-      <!-- Card -->
-      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-        <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-check-fill" viewBox="0 0 16 16">
-            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zm-2.6 5.854a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-          </svg>
-        </div>
-        <div>
-          <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-          Jumlah Tanggapan
-          </p>
-          <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-          12
-          </p>
-        </div>
-      </div>
-      </div>  
-    </div>
+      
     @elseif (Auth::user()->level == '3')
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
       <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">

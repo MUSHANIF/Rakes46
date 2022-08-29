@@ -13,6 +13,9 @@ use App\Http\Controllers\puskesmasController;
 use App\Http\Controllers\pertanyaanController;
 use App\Http\Controllers\biodataController;
 use App\Http\Controllers\dataortuController;
+use App\Http\Controllers\siswaController;
+use App\Http\Controllers\jawabanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,33 +36,37 @@ Route::get('/', function () {
 // });
 
 Route::group(['middleware' => ['superadmin']], function () {
-    Route::get('/superadmin', function () {
-        return view('superadmin.home');
-    });
     Route::resource('siswa', daftarsiswaController::class);
-    Route::resource('orangtua', daftarorangtuaController::class);
     Route::resource('kepala_sekolah', kepalasekolahController::class);
     Route::resource('wali_kelas', walikelasController::class);
     Route::resource('puskesmas', puskesmasController::class);
     Route::resource('pertanyaan', pertanyaanController::class);
     Route::get('/dashboard', [dashboardController::class, 'index']);
     Route::get('/superadmin', [dashboardController::class, 'index']);
-    Route::get('/biodata', [biodataController::class, 'index']);
+    // Route::get('/biodata', [biodataController::class, 'index']);
 
-    Route::get('/data-ortu', [dataortuController::class, 'index']);
 
 });
 Route::group(['middleware' => ['wali_kelas']], function () {
-   
     Route::resource('siswawali', daftarsiswawaliController::class);
     Route::get('/dashboardwali', [dashboardController::class, 'index']);
+});
+Route::group(['middleware' => ['kepala_sekolah']], function () {
+    Route::get('/dashboardkepala', [dashboardController::class, 'index']);
+    Route::resource('siswakepala', daftarsiswaController::class);
+    Route::resource('wali_kelaskepala', walikelasController::class);
+    Route::resource('puskesmaskepala', puskesmasController::class);
 });
 Route::group(['middleware' => ['puskesmas']], function () {
     Route::resource('siswapuskesmas', daftarsiswaController::class);
     Route::get('/dashboardpuskesmas', [dashboardController::class, 'index']);
 });
+Route::group(['middleware' => ['siswa']], function () {
+    Route::resource('siswaid', siswaController::class);
+    Route::resource('kuisioner', jawabanController::class);
+    Route::resource('dataorangtua', dataortuController::class);
 
-
+});
 Auth::routes();
 
 

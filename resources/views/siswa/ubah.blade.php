@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
 @section('isi')
 
- <div class="main-content">
-   <main>
+<div class="main-content">
+  <main>
     <div class="container" style="position: relative;">
     
       <form method="POST" action="{{ route('siswa.update',$datas->id) }}" >
@@ -29,8 +29,8 @@
           <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Ubah</button>
       </form>
     </div>
-   </main>
- </div>
+  </main>
+</div>
 
 <!-- Optional JavaScript; choose one of the two! -->
 
