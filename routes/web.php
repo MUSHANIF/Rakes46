@@ -57,11 +57,8 @@ Route::group(['middleware' => ['revalidate']], function () {
         Route::resource('siswaid', siswaController::class);
     });
 });
-// Auth::routes();
 
-// Route::get('/dashboard-admin', function () {
-//     return view('admin.dashboard-admin');
-// });
+// Auth::routes();
 
 Route::group(['middleware' => ['superadmin']], function () {
     Route::resource('siswa', daftarsiswaController::class);
@@ -72,19 +69,20 @@ Route::group(['middleware' => ['superadmin']], function () {
     Route::get('/dashboard', [dashboardController::class, 'index']);
     Route::get('/superadmin', [dashboardController::class, 'index']);
     // Route::get('/biodata', [biodataController::class, 'index']);
-
-
 });
+
 Route::group(['middleware' => ['wali_kelas']], function () {
     Route::resource('siswawali', daftarsiswawaliController::class);
     Route::get('/dashboardwali', [dashboardController::class, 'index']);
 });
+
 Route::group(['middleware' => ['kepala_sekolah']], function () {
     Route::get('/dashboardkepala', [dashboardController::class, 'index']);
     Route::resource('siswakepala', daftarsiswaController::class);
     Route::resource('wali_kelaskepala', walikelasController::class);
     Route::resource('puskesmaskepala', puskesmasController::class);
 });
+
 Route::group(['middleware' => ['puskesmas']], function () {
     Route::resource('siswapuskesmas', daftarsiswaController::class);
     Route::get('/dashboardpuskesmas', [dashboardController::class, 'index']);
