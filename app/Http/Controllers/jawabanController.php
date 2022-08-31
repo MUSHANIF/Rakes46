@@ -19,17 +19,12 @@ class jawabanController extends Controller
     public function index()
     {
         $datas = DB::table('pertanyaans')->get();
-        $data = DB::table('pertanyaans')
-                    ->where('type', '=' , 1 )
-                    ->where('group', '=','a')
-                    ->get();
-        return view(
-            'jawaban.index', 
-            compact('datas', 'data'), 
-            [
-                "title" => "Kuisioner"
-            ]
-    );
+        $data = pertanyaan::where('type', '=', 1)
+            ->where('group', '=', 'a')
+            ->get();
+        return view('jawaban.index', compact('datas', 'data'), [
+            "title" => "Kuisioner"
+        ]);
     }
 
     /**
@@ -50,18 +45,23 @@ class jawabanController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // return $request;
-        
-        $model = $request->all();
+
+        $request['jawaban'] = [
+            $request->boolean('jawaban.pertanyaan1'),
+            $request->boolean('jawaban.pertanyaan2'),
+            $request->boolean('jawaban.pertanyaan3'),
+            $request->boolean('jawaban.pertanyaan4'),
+            $request->boolean('jawaban.pertanyaan5'),
+            $request->boolean('jawaban.pertanyaan6'),
+            $request->boolean('jawaban.pertanyaan7'),
+        ];
+
         $model = new jawaban;
-        // $model->id = $request->id;
         $model->userID = $request->userID;
-        $model->id_pertanyaan = $request->id_pertanyaan;
         $model->jawaban = $request->jawaban;
         $model->save();
-        return redirect('jawaban.index');
 
+        return redirect('/kuisioner');
     }
 
     /**

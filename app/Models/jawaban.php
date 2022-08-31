@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class jawaban extends Model
 {
     use HasFactory;
-    public function pertanyaan(){
-        return $this->belongsTo(pertanyaan::class, 'id_pertanyaan', 'id');
+
+    protected $casts = [
+        'jawaban' => 'array'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userID', 'id');
     }
 }

@@ -26,7 +26,7 @@ class CreateSiswasTable extends Migration
             $table->enum('jns_kelamin', ['P', 'L']);
             $table->char('gol_darah');
             $table->string('anak_ke');
-            $table->enum('tggl_bersama', ['Orang Tuan', 'Wali']);
+            $table->enum('tggl_bersama', ['Orang Tua', 'Wali']);
             $table->string('alamat');
             $table->char('no_telp', 12);
             $table->string('email')->unique();
@@ -34,7 +34,6 @@ class CreateSiswasTable extends Migration
             $table->timestamps();
             $table->foreign('kelasID')->references('id')->on('kelas');
             $table->foreign('userID')->references('id')->on('users');
-
         });
     }
 
