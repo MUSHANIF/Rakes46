@@ -13,7 +13,7 @@ class dashboardController extends Controller
 {
     public function index() {
 
-        return view('superadmin.home',   
+        return view('dashboard',   
         [
             "title" => "Dashboard"
         ],

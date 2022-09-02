@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dashboard')
 
 @section('isi')
     <main class="h-full overflow-y-auto">
