@@ -20,23 +20,30 @@
          <div class="body-card ms-5 me-5">
             <div class="container" style="position: relative">
                <form action="{{ route('kuisioner.store') }}" method="POST">
-                  @csrf @foreach ($data as $key => $pertanyaan) 
+                  @csrf 
+                  <input type="hidden" class="form-control" id="LocID" name="userID" required value="{{ Auth::user()->id }}" />
+                  @foreach ($data as $key => $pertanyaan) 
                   @php
-                   $p = 1+$key   
-                  @endphp
+                   $p = 1 + $key   
+                   @endphp
+                   <input type="hidden" name="jumlahPertanyaan" value="{{ $p }}">
                   <div class="row">
                      <div class="col-lg-10 col-sm-7 mb-4">
                         <p style="font-size: 20px">{{ $pertanyaan->pertanyaan }}</p>
+                        <input type="hidden" class="form-control" id="LocID" name="pertanyaanID{{$p}}" required value="{{ $pertanyaan->id }}" />
                      </div>
                      <div class="col-lg-2 col-sm-5 mb-4">
                         <div class="form-check form-check-inline">
-                           <input type="hidden" class="form-control" id="LocID" name="userID" required value="{{ Auth::user()->id }}" />
-                           <input class="form-check-input" type="radio" name="jawaban[pertanyaan{{ $p }}]" id="inlineRadio1" value="0" />
-                           <label class="form-check-label" for="inlineRadio1">Tidak</label>
+                           <label class="form-check-label">
+                              <input class="form-check-input" type="radio" name="jawaban{{ $p }}" value="false" />
+                              Tidak
+                           </label>
                         </div>
                         <div class="form-check form-check-inline">
-                           <input class="form-check-input" type="radio" name="jawaban[pertanyaan{{ $p }}]" id="inlineRadio2" value="1" />
-                           <label class="form-check-label" for="inlineRadio2">Ya</label>
+                           <label class="form-check-label">
+                              <input class="form-check-input" type="radio" name="jawaban{{ $p }}" value="true  " />
+                              Ya
+                           </label>
                         </div>
                      </div>
                   </div>

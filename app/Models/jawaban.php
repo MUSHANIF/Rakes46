@@ -9,12 +9,13 @@ class jawaban extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'jawaban' => 'array'
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'userID', 'id');
+    }
+
+    public function pertanyaan()
+    {
+        return $this->belongsTo(pertanyaan::class, 'pertanyaanID', 'id');
     }
 }

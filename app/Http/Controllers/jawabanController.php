@@ -45,21 +45,17 @@ class jawabanController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
 
-        $request['jawaban'] = [
-            $request->boolean('jawaban.pertanyaan1'),
-            $request->boolean('jawaban.pertanyaan2'),
-            $request->boolean('jawaban.pertanyaan3'),
-            $request->boolean('jawaban.pertanyaan4'),
-            $request->boolean('jawaban.pertanyaan5'),
-            $request->boolean('jawaban.pertanyaan6'),
-            $request->boolean('jawaban.pertanyaan7'),
-        ];
+        $jumlahPertanyaan = $request["jumlahPertanyaan"];
 
-        $model = new jawaban;
-        $model->userID = $request->userID;
-        $model->jawaban = $request->jawaban;
-        $model->save();
+        for ($i = 1; $i <= $jumlahPertanyaan; $i++) {
+            $model = new jawaban;
+            $model->userID = $request->userID;
+            $model->pertanyaanID = $request["pertanyaanID$i"];
+            $model->jawaban = $request["jawaban$i"];
+            $model->save();
+        }
 
         return redirect('/kuisioner');
     }
