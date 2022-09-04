@@ -118,7 +118,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/kuisioner"  class="py-3">
+                    <a href={{ Auth::user()->jawaban ? '/isikuisioner' : '/kuisioner'}}  class="py-3">
                         <span class="sidebar-menu-logo">
                             <i class="bi bi-card-checklist"></i>
                         </span>

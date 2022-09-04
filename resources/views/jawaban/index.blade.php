@@ -1,6 +1,12 @@
-@extends('layouts.dashboard') @section('isi')
-<div class="main-content">
+@extends('layouts.dashboard') 
+@section('isi')
+<div class="main-content mt-5">
    <main>
+      @if (session()->has('dont'))
+         <div class="alert alert-danger" role="alert">
+            {{ session('dont') }}
+         </div>
+      @endif
       <div class="card">
          <div class="card-title pt-4 pb-2 mb-4">
             <h2 class="text-center">
@@ -30,18 +36,18 @@
                   <div class="row">
                      <div class="col-lg-10 col-sm-7 mb-4">
                         <p style="font-size: 20px">{{ $pertanyaan->pertanyaan }}</p>
-                        <input type="hidden" class="form-control" id="LocID" name="pertanyaanID{{$p}}" required value="{{ $pertanyaan->id }}" />
+                        <input type="hidden" class="form-control" id="LocID" name="pertanyaanID[{{ $p }}]" required value="{{ $pertanyaan->id }}" />
                      </div>
                      <div class="col-lg-2 col-sm-5 mb-4">
                         <div class="form-check form-check-inline">
                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="jawaban{{ $p }}" value="false" />
+                              <input class="form-check-input" type="radio" name="jawaban[{{ $p }}]" value="false" />
                               Tidak
                            </label>
                         </div>
                         <div class="form-check form-check-inline">
                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="jawaban{{ $p }}" value="true  " />
+                              <input class="form-check-input" type="radio" name="jawaban[{{ $p }}]" value="true  " />
                               Ya
                            </label>
                         </div>
