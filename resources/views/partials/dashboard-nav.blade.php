@@ -116,8 +116,16 @@
                             Data Orang Tua Siswa
                         </span>
                     </a>
-                </li>
+                </li> 
                 <li>
+                    {{-- <a href="{{ route('step1') }}"  class="py-3">
+                        <span class="sidebar-menu-logo">
+                            <i class="bi bi-card-checklist"></i>
+                        </span>
+                        <span>
+                            Rapor Kesehatan 
+                        </span>
+                    </a> --}}
                     <a href={{ Auth::user()->jawaban ? '/isikuisioner' : '/kuisioner'}}  class="py-3">
                         <span class="sidebar-menu-logo">
                             <i class="bi bi-card-checklist"></i>

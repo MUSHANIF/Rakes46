@@ -15,6 +15,7 @@ use App\Http\Controllers\biodataController;
 use App\Http\Controllers\dataortuController;
 use App\Http\Controllers\siswaController;
 use App\Http\Controllers\jawabanController;
+use App\Http\Controllers\KuisionerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,10 @@ Route::group(['middleware' => ['siswa']], function () {
     Route::resource('kuisioner', jawabanController::class);
     Route::get('/isikuisioner', [jawabanController::class, 'tampilkan']);
     Route::resource('dataorangtua', dataortuController::class);
+    Route::get('step1', [KuisionerController::class, 'createStepOne'])->name('step1');
+    Route::post('step1-store', [KuisionerController::class, 'storeStepOne'])->name('step1.store');
+    Route::get('step2', [KuisionerController::class, 'createStepTwo'])->name('step2');
+    Route::post('step2-store', [KuisionerController::class, 'storeStepTwo'])->name('step2.store');
 });
 Auth::routes();
 
