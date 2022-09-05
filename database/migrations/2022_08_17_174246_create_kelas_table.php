@@ -23,7 +23,6 @@ class CreateKelasTable extends Migration
             $table->enum('jurusan', ['AKL 1', 'AKL 2', 'BDP 1', 'BDP 2', 'OTKP 1', 'OTKP 2', 'DKV', 'RPL']);
             $table->timestamps();
             $table->foreign('userID')->references('id')->on('users');
-         
         });
     }
 

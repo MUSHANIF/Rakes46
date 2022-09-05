@@ -19,7 +19,8 @@ class siswaController extends Controller
         $datas =  DB::table('siswas')->get();
         $kelas =  DB::table('kelas')->get();
         $data =  DB::table('siswas')->where('siswas.userID' ,  Auth::user()->id )->get();
-        return view('siswaid.index',compact('data','datas','kelas'),
+        $data1 =  DB::table('ortus')->where('ortus.userID' ,  Auth::user()->id )->get();
+        return view('siswaid.index',compact('data','datas','kelas','data1'),
         [
             "title" => "List Siswa"
         ]

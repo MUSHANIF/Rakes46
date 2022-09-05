@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+    @apply text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white;
+}
+
+.not-active {
+    @apply text-gray-700 border-0 rounded hover:bg-gray-100 hover:bg-transparent hover:text-blue-500 md:p-0 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent;
+}
+
+.accordion-button:not(.collapsed) {
+    @apply bg-slate-100 bg-opacity-[0.55];
+}
+
+.form-normal-login {
+    @apply focus:ring-emerald-200 focus:border-emerald-200 transition duration-200 shadow-sm !important;
+}
+
+.form-normal {
+    @apply focus:ring-sky-200 focus:border-sky-200 transition duration-200 shadow-sm;
+}
+
+.form-invalid {
+    @apply border-rose-500 focus:!ring-rose-200 focus:!border-rose-200 !important;
+}

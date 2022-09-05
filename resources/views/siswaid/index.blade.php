@@ -157,25 +157,45 @@
                 
                 <main class="">
                     <div class="container-grid px-6 ">
-                    <h4 class="m-3 font-semibold text-center text-gray-700 dark:text-gray-200">
-                        Detail Informasi Anda
-                    </h4>
-                
-                
-                    <div class="w-full mb-8 ">
-                        <div class="w-full overflow-x-auto">
-                        @foreach($data as $ite)
-                        <div
-                            class="text-gray-800 text-sm font-semibold px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100 ">
-                
+                            <h4 class="m-3 font-semibold text-center text-gray-700 dark:text-gray-200">
+                                Detail Informasi Anda
+                            </h4>
                         
-                            <h5>Nama : {{ $ite->nama_lengkap }}</h5>
-                            <h5>NISN : {{ $ite->nisn }}</h5>
-                            {{-- <h2 class="mt-4">NIK : {{ $ite->nik }}</h2> --}}
-                            <h5 >Tanggal lahir : {{ $ite->tgl_lahir}}</h5>
-                            <h5 >Jenis Kelamin : {{ $ite->jns_kelamin }}</h5>
-                            
                         
+                            <div class="w-full mb-8 ">
+                                <div class="w-full overflow-x-auto">
+                                @foreach($data as $ite)
+                               
+                                <div
+                                    class="text-gray-800 text-sm font-normal px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100 ">
+                        
+                                    <h5 class="h5">Profil Anda:</h5>
+                                    <h5>Nama : {{ $ite->nama_lengkap }}</h5>
+                                    <h5>NISN : {{ $ite->nisn }}</h5>
+                                    
+                                    <h5 >Tanggal lahir : {{ $ite->tgl_lahir}}</h5>
+                                    <h5 >Jenis Kelamin : {{ $ite->jns_kelamin }}</h5>
+                                </div>
+                                
+                                   
+                                
+                                
+                               
+                                        
+                                        @foreach($data1 as $ite)
+                                        <div
+                                            class="text-gray-800 text-sm font-normal px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100 ">
+                                
+                                            <h5 class="h5">Profil orangtua anda:</h5>
+                                            <h5>Nama Ayah: {{ $ite->nama_ayah }}</h5>
+                                            <h5>Nama Ibu : {{ $ite->nama_ibu }}</h5>
+                                            {{-- <h2 class="mt-4">NIK : {{ $ite->nik }}</h2> --}}
+                                            <h5 >Pekerjaan Ayah : {{ $ite->pekerjaan_ayah}}</h5>
+                                            <h5 >Pekerjaan Ibu : {{ $ite->pekerjaan_ibu }}</h5>
+                                            
+                                        
+                                        </div>
+                                        @endforeach
                         </div>
                 
                         
@@ -192,7 +212,5 @@
         @endif
     </main>
 </div>
-  
-
 
 @endsection

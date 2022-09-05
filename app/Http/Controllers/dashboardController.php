@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kela;
 use App\Models\User;
 use App\Models\pertanyaan;
-use App\Models\kela;
-use Illuminate\Support\Facades\DB;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class dashboardController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+
+       
+
 
         return view('dashboard',   
         [
@@ -34,5 +38,7 @@ class dashboardController extends Controller
       
     );
 
+
+        
     }
 }

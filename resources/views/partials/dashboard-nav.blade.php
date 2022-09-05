@@ -1,9 +1,9 @@
-<!--Sidebar-->
+
 <div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
     <div class="sidebar-content"> 
         <div id="sidebar">
         
-        <!-- Logo -->
+     
         <div class="logo">
                 <h2 class="mb-0"><i class="bi bi-heart-pulse-fill"></i></h2>
         </div>
@@ -52,7 +52,7 @@
             @endif
 
             @if (Auth::user()->level != 1)
-               
+
                 <li>
                     <a href="#">
                         <i class='bx bx-columns icon' ></i> 
@@ -98,10 +98,8 @@
         </ul>
 
       
-    </div>
+   
 
    </div> 
  </div>
 </div>
-<!-- End Sidebar-->
-        

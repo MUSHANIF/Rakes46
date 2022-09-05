@@ -21,7 +21,7 @@ class dataortuController extends Controller
     {
         $datas = DB::table('ortus');
         $siswa = DB::table('siswas')->get();
-        $data =  DB::table('siswas')->where('siswas.userID' , Auth::user()->id)->get();
+        // $data =  DB::table('siswas')->where('siswas.userID' , Auth::user()->id)->get();
         $data =  DB::table('ortus')->where('ortus.userID' ,  Auth::user()->id )->get();
         return view(
             'biodata_ortu.index', 

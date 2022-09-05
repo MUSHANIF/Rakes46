@@ -9,13 +9,18 @@ class siswa extends Model
 {
     use HasFactory;
 
-    public function kelas() {
+    public function kelas()
+    {
         return $this->belongsTo(kela::class, 'kelasID', 'id');
     }
-    public function siswa()
+
+    public function user()
     {
-        return $this->hasOne(kela::class, 'kelasID', 'id');
+        return $this->belongsTo(User::class, 'userID', 'id');
     }
 
-
+    // public function siswa()
+    // {
+    //     return $this->hasOne(kela::class, 'kelasID', 'id');
+    // }
 }

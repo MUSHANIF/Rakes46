@@ -30,6 +30,7 @@ use App\Http\Controllers\jawabanController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::group(['middleware' => ['revalidate']], function () {
     Route::group(['middleware' => ['superadmin']], function () {
         Route::resource('siswa', daftarsiswaController::class);
@@ -55,11 +56,13 @@ Route::group(['middleware' => ['revalidate']], function () {
     });
     Route::group(['middleware' => ['siswa']], function () {
         Route::resource('siswaid', siswaController::class);
+
         Route::resource('kuisioner', jawabanController::class);
         Route::resource('dataorangtua', dataortuController::class);
+
     });
 });
-    // Auth::routes();
+
 
 
     Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -133,47 +133,55 @@
                 @endforeach
             </table>
             @elseif (Auth::user()->level == 5)
+
+
+
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Data siswa SMKN 46</h4>
+                        <h4>Data siswa SMKN 46 JAKARTA</h4>
                     </div>
                     <div class="card-body"> 
                     <div class="table-responsive"> 
                     <table class="table table-striped">
-                        <thead>
+                        <thead style="text-align: center;">
                           <tr>
                             <th scope="col">Nama</th>
                             <th scope="col">Email</th>
                             <th scope="col">Action</th>
-                            
                           </tr>
                         </thead>
-                        @foreach ($datas as $key) 
+                        @foreach ($datas as $key )
+                            
+                      
                         <tbody>
-                            <tr class="align-self-center" style="border: 1px solid black;">
-                                <td data-label="Name">{{ $key->name }}</td>
-                                <td data-label="Cost">{{ $key->email }}</td>
-                                <td class="text-center justify-content-center align-self-center d-flex">
-                                    <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
-                                    <form action="{{ url('siswa/'.$key->id) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-danger ms-2">Delete</button>
-                                    </form>
-                                    <a class="btn btn-info ml-2" href="">Detail</a>
-                                </td>
-                            </tr>
+                          <tr>
+                                    <th scope="row">{{ $key->name }}	</th>
+                                    <td>{{ $key->email }}</td>
+                                   
+                                    {{-- <td><button class="btn btn-primary">View Details</button></td> --}}
+                                    <td class="text-center justify-content-center align-self-center d-flex">
+                                        <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
+                                        <form action="{{ url('siswa/'.$key->id) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                                        </form>
+                                        <a class="btn btn-info ml-2" href="">Detail</a>
+                                    </td>
+                          </tr>
+
                         
                         </tbody>
                         @endforeach
                       </table>
-                      @endif
                       </div>
-                      @endif
                     </div>
                 </div>
             </div>
+           
+            @endif
+            @endif
 
           
         </div>
