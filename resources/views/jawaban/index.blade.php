@@ -61,7 +61,6 @@
                               <span aria-hidden="true">&laquo;</span>
                            </a>
                         </li>
-
                         <li class="page-item">
                            <a class="page-link" href="#" aria-label="Next">
                               <span aria-hidden="true">&raquo;</span>

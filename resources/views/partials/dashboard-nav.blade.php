@@ -30,7 +30,7 @@
                 <a href="/siswaid" class="active"> <i class="bx bxs-dashboard icon"></i> Biodata siswa </a>
              </li>
              @endif 
-
+ 
              @if (Auth::user()->level != 1)
  
              <li>
