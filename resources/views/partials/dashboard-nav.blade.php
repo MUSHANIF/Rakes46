@@ -44,11 +44,7 @@
                     <i class='bx bxs-dashboard icon' ></i> Biodata siswa 
                 </a>
             </li>
-            <li>
-                <a href="/dataorangtua" >
-                    <i class='bx bxs-dashboard icon' ></i> Data orang tua 
-                </a>
-            </li>
+           
             @endif
 
             @if (Auth::user()->level != 1)
@@ -89,11 +85,6 @@
                 </li>
             @else
 
-            <li>
-                <a href="/dataorangtua" >
-                    <i class='bx bxs-dashboard icon' ></i>dataorangtua
-                </a>
-            </li>
             <li>
                 <a href="{{ Auth::user()->jawaban ? '/isikuisioner' : '/kuisioner'}}" >
                     <i class='bx bxs-dashboard icon' ></i>pertanyaan

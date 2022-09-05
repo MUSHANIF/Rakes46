@@ -16,11 +16,11 @@
             </div>
         </form>
         @else
-        <form action="{{ url('siswa') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form action="{{ url('siswa') }}" method="GET" class="">
             @csrf
             <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                    aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}">
+                <input type="text" class="form-control bg-light " placeholder="Search for..."
+           name="cari" value="{{ request('cari') }}">
                 <div class="input-group-append">
                     <button class="btn" style="background-color: #256D85;" type="submit">
                         <i class="fas fa-search fa-sm text-white"></i>
@@ -134,51 +134,33 @@
             </table>
             @elseif (Auth::user()->level == 5)
 
-
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Data siswa SMKN 46 JAKARTA</h4>
-                    </div>
-                    <div class="card-body"> 
-                    <div class="table-responsive"> 
-                    <table class="table table-striped">
-                        <thead style="text-align: center;">
-                          <tr>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        @foreach ($datas as $key )
+            <table class="table mt-3" cellpadding="10" cellspace="0">
+                <thead class="align-self-center text-center">
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>action</th>  
+                </thead>
+                @foreach ($datas as $key) 
+                <tbody>
+                    <tr class="align-self-center" style="border: 1px solid black;">
+                        <td data-label="Name">{{ $key->name }}</td>
+                        <td data-label="Cost">{{ $key->email }}</td>
                             
-                      
-                        <tbody>
-                          <tr>
-                                    <th scope="row">{{ $key->name }}	</th>
-                                    <td>{{ $key->email }}</td>
-                                   
-                                    {{-- <td><button class="btn btn-primary">View Details</button></td> --}}
-                                    <td class="text-center justify-content-center align-self-center d-flex">
-                                        <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
-                                        <form action="{{ url('siswa/'.$key->id) }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger ms-2">Delete</button>
-                                        </form>
-                                        <a class="btn btn-info ml-2" href="">Detail</a>
-                                    </td>
-                          </tr>
+                       
+                        <td class="text-center justify-content-center align-self-center d-flex">
+                            <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
+                            <form action="{{ url('siswa/'.$key->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                            </form>
+                            <a class="btn btn-info ml-2" href="">Detail</a>
+                    </tr>
+                </tbody>
+                @endforeach
+            </table>
 
-                        
-                        </tbody>
-                        @endforeach
-                      </table>
-                      </div>
-                    </div>
-                </div>
-            </div>
+           
            
             @endif
             @endif

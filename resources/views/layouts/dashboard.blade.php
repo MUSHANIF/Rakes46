@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="icon" href="{{ asset('img/favicon.svg')}}">
     <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/css/tailwind.output.css" rel="stylesheet">
      <link href="/assets/modules/boxicons/css/boxicons.min.css" rel="stylesheet">
      <link href="/assets/modules/bootstrap-5.1.3/css/bootstrap.css" rel="stylesheet">
      <link href="/assets/modules/fontawesome6.1.1/css/all.css" rel="stylesheet">
@@ -42,7 +43,11 @@
        body{
         background-color: #2B4865;
        }
-        .table {
+      
+       
+      </style>  --}}
+      <style>
+          .table {
             width: 100%;
             border-collapse: collapse;
             
@@ -51,8 +56,8 @@
         .table td,
         .table th {
             text-align: center;
-            background-color: #2B4865;
-            color: white;
+            background-color: #F1F6FF;
+            color: black;
         }
   
         .table th {
@@ -61,8 +66,8 @@
         }
   
         .table tbody:nth-child(even) {
-            background-color: #2B4865;
-            color: white;
+            background-color: white;
+            color: black;
         }
   
         /* Ini Responsivenya */
@@ -77,7 +82,7 @@
             .table td {
                 display: block;
                 width: 100%;
-                background-color: #2B4865;
+                background-color:white;
             }
   
             .table tr {
@@ -198,9 +203,6 @@
         }
 
 
-       
-      </style>  --}}
-      <style>
         .form-group label{
             color: black;
         }
@@ -212,10 +214,17 @@
     
 
     <div class="topbar transition">
+       
+    
         <div class="bars">
-            <button type="button" class="btn transition" id="sidebar-toggle">
+           
+            <button type="button" class="btn1 transition" id="sidebar-toggle">
                 <i class="fa fa-bars"></i>
             </button>
+           
+        </div>
+        <div class="search">
+            @yield('search')
         </div>
             <div class="menu">
                
