@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
-use Auth;
-use Validator;
+
 use App\Models\siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class siswaController extends Controller
 {
@@ -16,15 +17,12 @@ class siswaController extends Controller
      */
     public function index()
     {
-        $datas =  DB::table('siswas')->get();
         $kelas =  DB::table('kelas')->get();
-        $data =  DB::table('siswas')->where('siswas.userID' ,  Auth::user()->id )->get();
-        $data1 =  DB::table('ortus')->where('ortus.userID' ,  Auth::user()->id )->get();
-        return view('siswaid.index',compact('data','datas','kelas','data1'),
-        [
+        $siswa =  DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get();
+        $ortu =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->get();
+        return view('siswaid.index', compact('siswa', 'ortu', 'kelas'), [
             "title" => "List Siswa"
-        ]
-    );
+        ]);
     }
 
     /**
@@ -46,6 +44,12 @@ class siswaController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $validasi = Validator::make($data, [
+            'nisn' => 'required|max:16|unique:siswas',
+            'email' => 'required|max:255|unique:siswas',
+            'nis' => 'required|max:5|unique:siswas',
+        ]);
+
         $model = new siswa;
         $model->nisn = $request->nisn;
         $model->userID = $request->userID;
@@ -57,33 +61,22 @@ class siswaController extends Controller
         $model->tgl_lahir = $request->tgl_lahir;
         $model->jns_kelamin = $request->jns_kelamin;
         $model->gol_darah = $request->gol_darah;
-        $model->anak_ke = $request->anak_ke;    
+        $model->anak_ke = $request->anak_ke;
         $model->tggl_bersama = $request->tggl_bersama;
         $model->alamat = $request->alamat;
         $model->no_telp = $request->no_telp;
         $model->email = $request->email;
         $model->disabilitas = $request->disabilitas;
 
-        
-     
-        
-     
-        $validasi = Validator::make($data,[
-            'nisn'=>'required|max:16|unique:siswas',
-            'email'=>'required|max:255|unique:siswas',
-            'nis' => 'required|max:5|unique:siswas',
-            
 
-        ]);
-        if($validasi->fails())
-        {
+        if ($validasi->fails()) {
             return redirect()->route('siswaid.index')->withInput()->withErrors($validasi);
         }
 
         $model->save();
-   
+
         toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/siswaid');
+        return redirect('/dataorangtua');
     }
 
     /**

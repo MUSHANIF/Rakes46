@@ -42,7 +42,7 @@
         @if ($data->isEmpty())
         <div class="card">
             <div class="card-title pt-4">
-                <h2 class="text-center">DATA ORANG TUA SISWA</h2>
+                <h2 class="text-center text-dark fw-bold">DATA ORANG TUA SISWA</h2>
             </div>
             <div class="card-body">
                 <div class="container" style="position: relative;">

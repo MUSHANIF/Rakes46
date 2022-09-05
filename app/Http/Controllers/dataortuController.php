@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Validator;
 use App\Models\ortu;
 use App\Models\siswa;
-use Auth;
-use Validator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class dataortuController extends Controller
@@ -22,14 +22,14 @@ class dataortuController extends Controller
         $datas = DB::table('ortus');
         $siswa = DB::table('siswas')->get();
         // $data =  DB::table('siswas')->where('siswas.userID' , Auth::user()->id)->get();
-        $data =  DB::table('ortus')->where('ortus.userID' ,  Auth::user()->id )->get();
+        $data =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->get();
         return view(
-            'biodata_ortu.index', 
+            'biodata_ortu.index',
             compact('datas', 'data', 'siswa'),
             [
                 "title" => "Data Orang Tua"
             ]
-        
+
         );
     }
 
@@ -64,15 +64,12 @@ class dataortuController extends Controller
         $model->pekerjaan_ibu = $request->pekerjaan_ibu;
         $model->alamat_ibu = $request->alamat_ibu;
 
-        
-     
-        
-     
+
         // $validasi = Validator::make($data,[
         //     // 'SiswaID'=>'ired|max:16|unique:siswas',
         //     // 'email'=>'required|max:255|unique:siswas',
         //     // 'nis' => 'required|max:5|unique:siswas',
-            
+
 
         // ]);
         // if($validasi->fails())
@@ -81,12 +78,12 @@ class dataortuController extends Controller
         // }
 
         $model->save();
-   
+
         toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/kuisioner');
+        return redirect('/siswaid');
     }
 
-    
+
 
     /**
      * Display the specified resource.

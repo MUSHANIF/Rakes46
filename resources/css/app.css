@@ -19,7 +19,7 @@
 }
 
 .form-normal {
-    @apply focus:ring-sky-200 focus:border-sky-200 transition duration-200 shadow-sm;
+    @apply focus:ring-indigo-300 focus:border-indigo-300 transition duration-200 shadow-sm !important;
 }
 
 .form-invalid {
