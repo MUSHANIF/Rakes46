@@ -18,6 +18,10 @@ class jawabanController extends Controller
      */
     public function index()
     {
+        if (jawaban::find(auth()->user()->jawaban)) {
+            return redirect('/isikuisioner')->with('have', 'You Already Answered The Questions');
+        }
+
         $datas = DB::table('pertanyaans')->get();
         $data = pertanyaan::where('type', '=', 1)
             ->where('group', '=', 'a')
@@ -45,23 +49,20 @@ class jawabanController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->jawaban[2];
+        // return $request;
 
-        $request['jawaban'] = [
-            $request->boolean('jawaban.pertanyaan1'),
-            $request->boolean('jawaban.pertanyaan2'),
-            $request->boolean('jawaban.pertanyaan3'),
-            $request->boolean('jawaban.pertanyaan4'),
-            $request->boolean('jawaban.pertanyaan5'),
-            $request->boolean('jawaban.pertanyaan6'),
-            $request->boolean('jawaban.pertanyaan7'),
-        ];
+        $jumlahPertanyaan = $request["jumlahPertanyaan"];
 
-        $model = new jawaban;
-        $model->userID = $request->userID;
-        $model->jawaban = $request->jawaban;
-        $model->save();
+        for ($i = 1; $i <= $jumlahPertanyaan; $i++) {
+            $model = new jawaban;
+            $model->userID = $request->userID;
+            $model->pertanyaanID = $request->pertanyaanID[$i];
+            $model->jawaban = $request->jawaban[$i];
+            $model->save();
+        }
 
-        return redirect('/kuisioner');
+        return redirect('/isikuisioner');
     }
 
     /**
@@ -107,5 +108,15 @@ class jawabanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tampilkan()
+    {
+        if (!jawaban::find(auth()->user()->jawaban)) {
+            return redirect('/kuisioner')->with('dont', "You haven't answered the question");
+        }
+
+        $jawabans = jawaban::all();
+        return view('jawaban.isi', compact('jawabans'));
     }
 }

@@ -88,12 +88,20 @@
                     @endif
                 </li>
             @else
+
             <li>
-                <a href="/kuisioner" >
+                <a href="/dataorangtua" >
+                    <i class='bx bxs-dashboard icon' ></i>dataorangtua
+                </a>
+            </li>
+            <li>
+                <a href="{{ Auth::user()->jawaban ? '/isikuisioner' : '/kuisioner'}}" >
                     <i class='bx bxs-dashboard icon' ></i>pertanyaan
                 </a>
             </li>
+           
                 
+
             @endif
         </ul>
 
