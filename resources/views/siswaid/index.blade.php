@@ -219,12 +219,16 @@
                                  <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 1</h3>
                                  </div>
-                                 <div class="py-2 px-3 flex gap-x-2">
-                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
-                                       <i data-feather="align-right" class="w-5"></i>
-                                       Detail
-                                    </a>
-                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
+                                 <div class="p-3 flex gap-x-2">
+                                    <form action="/isijawaban" method="post">
+                                       @csrf
+                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
+                                          <input type="hidden" name="group" value="a">
+                                          <i data-feather="align-right" class="w-5"></i>
+                                          Detail
+                                       </button>
+                                    </form>
+                                    <a href="#" class="flex m-0 p-0 items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
                                        <i data-feather="edit" class="w-5"></i>
                                        Edit
                                     </a>
@@ -241,14 +245,10 @@
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 1</h3>
                                  </div>
                                  <div class="p-3 flex gap-x-2">
-                                    <form action="" method="post">
-                                       @csrf
-                                       <input type="hidden" name="group" value="a">
-                                       <button type="submit" class="flex items-center gap-x-2 text-slate-700 hover:text-blue-600">
-                                          <i data-feather="edit-3" class="w-5"></i>
-                                          Jawab Pertanyaan
-                                       </button>
-                                    </form>
+                                    <a href="/kuisioner" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
+                                       <i data-feather="edit-3" class="w-5"></i>
+                                       Jawab Pertanyaan
+                                    </a>
                                  </div>
                               </div>
                            </p>
@@ -264,12 +264,16 @@
                                  <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 2</h3>
                                  </div>
-                                 <div class="py-2 px-3 flex gap-x-2">
-                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
-                                       <i data-feather="align-right" class="w-5"></i>
-                                       Detail
-                                    </a>
-                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
+                                 <div class="p-3 flex gap-x-2">
+                                    <form action="/isijawaban" method="post">
+                                       @csrf
+                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
+                                          <input type="hidden" name="group" value="b">
+                                          <i data-feather="align-right" class="w-5"></i>
+                                          Detail
+                                       </button>
+                                    </form>
+                                    <a href="#" class="flex m-0 p-0 items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
                                        <i data-feather="edit" class="w-5"></i>
                                        Edit
                                     </a>
@@ -286,7 +290,7 @@
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 2</h3>
                                  </div>
                                  <div class="py-2 px-3 flex gap-x-2">
-                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
+                                    <a href="/kuisioner" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
                                        <i data-feather="edit-3" class="w-5"></i>
                                        Jawab Pertanyaan
                                     </a>
@@ -305,12 +309,16 @@
                                  <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 3</h3>
                                  </div>
-                                 <div class="py-2 px-3 flex gap-x-2">
-                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
-                                       <i data-feather="align-right" class="w-5"></i>
-                                       Detail
-                                    </a>
-                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
+                                 <div class="p-3 flex gap-x-2">
+                                    <form action="/isijawaban" method="post">
+                                       @csrf
+                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
+                                          <input type="hidden" name="group" value="c">
+                                          <i data-feather="align-right" class="w-5"></i>
+                                          Detail
+                                       </button>
+                                    </form>
+                                    <a href="#" class="flex m-0 p-0 items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
                                        <i data-feather="edit" class="w-5"></i>
                                        Edit
                                     </a>
@@ -327,7 +335,7 @@
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 3</h3>
                                  </div>
                                  <div class="py-2 px-3 flex gap-x-2">
-                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
+                                    <a href="/kuisioner" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
                                        <i data-feather="edit-3" class="w-5"></i>
                                        Jawab Pertanyaan
                                     </a>

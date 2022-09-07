@@ -199,6 +199,11 @@
          .form-group label {
             color: black;
          }
+
+         input[type="radio"]:checked {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+         }
       </style>
       <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
    </head>

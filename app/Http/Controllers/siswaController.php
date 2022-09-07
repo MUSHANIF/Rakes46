@@ -24,7 +24,6 @@ class siswaController extends Controller
         $ortu =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->get();
         $pertanyaans = pertanyaan::all();
         $jawabans = collect(jawaban::where('userID', auth()->user()->id)->get());
-        // return $pertanyaans->where('type', '1')->where('group', 'a');
         return view('siswaid.index', compact('siswa', 'ortu', 'kelas', 'jawabans', 'pertanyaans'), [
             "title" => "List Siswa"
         ]);
@@ -127,5 +126,22 @@ class siswaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tampilkan(Request $request)
+    {
+        $pertanyaans = pertanyaan::all();
+        $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
+        $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
+        $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
+
+        if ($request->group == "a") {
+            $jawabans = auth()->user()->jawaban->skip(0)->take($jumlahGroupA)->get();
+        } elseif ($request->group == "b") {
+            $jawabans = auth()->user()->jawaban->skip($jumlahGroupA)->take($jumlahGroupB)->get();
+        } elseif ($request->group == 'c') {
+            $jawabans = auth()->user()->jawaban->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+        }
+        return view('jawaban.isi', compact('jawabans'));
     }
 }

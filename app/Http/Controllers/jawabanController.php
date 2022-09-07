@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\User;
-use App\Models\pertanyaan;
 use App\Models\jawaban;
+use App\Models\pertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+use function PHPUnit\Framework\isEmpty;
 
 class jawabanController extends Controller
 {
@@ -18,14 +20,45 @@ class jawabanController extends Controller
      */
     public function index(Request $request)
     {
-        if (jawaban::find(auth()->user()->jawaban)) {
-            return redirect('/isikuisioner')->with('have', 'You Already Answered The Questions');
+        $siswa =  DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get();
+
+        if (auth()->user()->jawaban) {
+            $pertanyaans = pertanyaan::all();
+            $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
+            $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
+            $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
+
+            $jawabanGroupA = auth()->user()->jawaban->skip(0)->take($jumlahGroupA)->get();
+            $jawabanGroupB = auth()->user()->jawaban->skip($jumlahGroupA)->take($jumlahGroupB)->get();
+            $jawabanGroupC = auth()->user()->jawaban->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+
+            if ($jawabanGroupB->count() == 0) {
+                $data = pertanyaan::where('type', '=', 1)
+                    ->where('group', '=', 'b')
+                    ->get();
+                return view('jawaban.index', compact('data', 'siswa'), [
+                    "title" => "Kuisioner"
+                ]);
+            }
+
+            if ($jawabanGroupC->count() == 0) {
+                $data = pertanyaan::where('type', '=', 1)
+                    ->where('group', '=', 'c')
+                    ->get();
+                return view('jawaban.index', compact('data', 'siswa'), [
+                    "title" => "Kuisioner"
+                ]);
+            }
+
+            $jawabans = jawaban::where('userID', auth()->user()->id)->get();
+            return view('jawaban.isi', compact('jawabans'));
         }
 
         $data = pertanyaan::where('type', '=', 1)
             ->where('group', '=', 'a')
             ->get();
-        return view('jawaban.index', compact('data'), [
+
+        return view('jawaban.index', compact('data', 'siswa'), [
             "title" => "Kuisioner"
         ]);
     }
@@ -107,17 +140,5 @@ class jawabanController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function tampilkan()
-    {
-        if (!jawaban::find(auth()->user()->jawaban)) {
-            return redirect('/kuisioner')->with('dont', "You haven't answered the question");
-        }
-
-        $id = auth()->user()->jawaban;
-
-        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
-        return view('jawaban.isi', compact('jawabans'));
     }
 }

@@ -57,7 +57,8 @@ Route::group(['middleware' => ['revalidate']], function () {
     Route::group(['middleware' => ['siswa']], function () {
         Route::resource('siswaid', siswaController::class);
         Route::resource('kuisioner', jawabanController::class);
-        Route::get('/isikuisioner', [jawabanController::class, 'tampilkan']);
+        Route::get('/isijawaban', [siswaController::class, 'tampilkan']);
+        Route::post('/isijawaban', [siswaController::class, 'tampilkan']);
         Route::resource('dataorangtua', dataortuController::class);
     });
     Auth::routes();
