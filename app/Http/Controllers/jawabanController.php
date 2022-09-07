@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\pertanyaan;
 use App\Models\jawaban;
 use Illuminate\Http\Request;
+use Auth;
 use Illuminate\Support\Facades\DB;
 
 class jawabanController extends Controller
@@ -27,7 +28,8 @@ class jawabanController extends Controller
             ->where('group', '=', 'a')
             ->get();
         return view('jawaban.index', compact('datas', 'data'), [
-            "title" => "Kuisioner"
+            "title" => "Kuisioner",
+            'datasiswa' => DB::table('siswas')->where('siswas.userID' ,  Auth::user()->id )->get(),
         ]);
     }
 
