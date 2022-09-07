@@ -31,9 +31,11 @@ class dashboardController extends Controller
             'puskesmas' => User::where('level','=', '3')->count(),
             'kepala' => User::where('level','=', '4')->count(),
             'wali' => User::where('level','=', '2')->count(),
-            'data' => DB::table('siswas')->where('siswas.userID' ,  Auth::user()->id )->get(),
+          
             'superadmin' => User::where('level','=', '5')->count(),
             'pertanyaan' => pertanyaan::all()->count(),
+            'data' => DB::table('kelas')->where('kelas.userID' ,  Auth::user()->id )->get(),
+            'datasiswa' => DB::table('siswas')->where('siswas.userID' ,  Auth::user()->id )->get(),
         ],
       
     );

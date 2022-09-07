@@ -1,10 +1,9 @@
 @extends('layouts.dashboard')
 
 @section('search')
-{{-- <div class="main-content"> --}}
-    <main>
+
         @if (Auth::user()->level == 2)
-        <form action="{{ url('siswawali') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form action="{{ url('siswawali') }}" method="GET" class="">
             @csrf
             <div class="input-group">
                 <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -17,7 +16,7 @@
             </div>
         </form>
         @else
-        <form action="{{ url('siswa') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form action="{{ url('siswa') }}" method="GET" class="">
             @csrf
             <div class="input-group">
                 <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -30,8 +29,6 @@
             </div>
         </form>
         @endif
-    </main>
-</div>
 
 @endsection
 
@@ -51,12 +48,18 @@
            
                         <div class="col-md-6 mb-3">
                             <label for="formGroupExampleInput" class="mb-2">NISN</label>
-                            <input type="number" class="form-control" id="StoreID" name="nisn" required placeholder="0045874511">
+                            <input type="number" class="form-control" id="StoreID" name="nisn" required placeholder="0045874511" minlength="10" autofocus
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="number"
+                            maxlength="10"
+                            >
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label for="formGroupExampleInput" class="mb-2">NIS</label>
-                                <input type="number" class="form-control" id="LocID" name="nis" required placeholder="11504">
+                                <input type="number" class="form-control" id="LocID" name="nis" required placeholder="11504"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type="number"
+                                maxlength="5">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -72,7 +75,7 @@
                             <label for="formFile" class="mb-2">Kelas</label>
                             <select class="form-select" aria-label="Default select example" name="kelasID" required>
                                 @foreach ($kelas as $data)
-                                    <option value="{{ $data->id }}">{{ $data->jurusan }}</option>
+                                    <option value="{{ $data->id }}">{{ $data->kelas }} {{ $data->jurusan }}</option>
                                 @endforeach
                             </select>
                         </div>

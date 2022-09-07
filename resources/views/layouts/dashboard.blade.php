@@ -5,8 +5,18 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Admin dahsboard</title>
+@can('superadmin')
+<title>Superadmin dahsboard</title>
+@elsecan('kepala_sekolah')
+<title>kepala_sekolah dahsboard</title>
+@elsecan('puskesmas')  
+<title>Puskesmas dahsboard</title>
+@elsecan('siswa')
+<title>Siswa dahsboard</title>
+@elsecan('wali_kelas')
+<title>Wali dahsboard</title>
+@endcan
+   
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -69,7 +79,14 @@
             background-color: white;
             color: black;
         }
-  
+        label{
+            color: black;
+            margin-top: 10px;
+        }
+        .form-label{
+            color: black;
+            margin-top: 10px;
+        }
         /* Ini Responsivenya */
         @media (max-width: 768px) {
             .table thead {

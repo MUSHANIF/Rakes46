@@ -22,7 +22,8 @@ class siswaController extends Controller
         $data1 =  DB::table('ortus')->where('ortus.userID' ,  Auth::user()->id )->get();
         return view('siswaid.index',compact('data','datas','kelas','data1'),
         [
-            "title" => "List Siswa"
+            "title" => "List Siswa",
+            'datasiswa' => DB::table('siswas')->where('siswas.userID' ,  Auth::user()->id )->get(),
         ]
     );
     }
@@ -69,9 +70,21 @@ class siswaController extends Controller
         
      
         $validasi = Validator::make($data,[
-            'nisn'=>'required|max:16|unique:siswas',
+            'nisn'=>'required|min:10|unique:siswas',
             'email'=>'required|max:255|unique:siswas',
-            'nis' => 'required|max:5|unique:siswas',
+            'nis' => 'required|min:5|unique:siswas',
+            'nama_lengkap' => 'required|max:25',
+            'nama_panggilan' => 'required|max:8',
+            'tmp_lahir' => 'required|max:10',         
+            'jns_kelamin' => 'required',
+            'gol_darah' => 'required|max:2',
+            'anak_ke' => 'required|max:2',
+            'tggl_bersama' => 'required',
+            'alamat' => 'required|max:30',
+            'no_telp' => 'required|max:13',
+            'email' => 'required|max:40',
+            'disabilitas' => 'required',
+
             
 
         ]);

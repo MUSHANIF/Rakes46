@@ -32,7 +32,7 @@
                     <i class='bx bxs-dashboard icon' ></i> Dashboard
                 </a>
             </li>
-            @elseif(Auth::user()->level == 2) 
+            @elseif(Auth::user()->level == 2 and $data->isNotEmpty()) 
             <li>
                 <a href="/dashboardwali" class="active">
                     <i class='bx bxs-dashboard icon' ></i> Dashboard 
@@ -83,16 +83,17 @@
                     </ul>
                     @endif
                 </li>
-            @else
-
-            <li>
-                <a href="{{ Auth::user()->jawaban ? '/isikuisioner' : '/kuisioner'}}" >
-                    <i class='bx bxs-dashboard icon' ></i>pertanyaan
-                </a>
-            </li>
            
-                
+@else
+@if ($datasiswa->isNotEmpty())
 
+<li>
+    <a href="{{ Auth::user()->jawaban ? '/isikuisioner' : '/kuisioner'}}" >
+        <i class='bx bxs-dashboard icon' ></i>pertanyaan
+    </a>
+</li>
+
+    @endif
             @endif
         </ul>
 

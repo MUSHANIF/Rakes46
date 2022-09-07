@@ -57,12 +57,12 @@
                     <label for="formGroupExampleInput">tahun ajaran</label>
                     <input type="number" class="form-control" id="ProdID" name="thn_ajaran" required>
                 </div>
-                <label for="formFile" class="form-label">Jenis kelamin</label>
+                <label for="formFile" class="form-label text-dark">Jenis kelamin</label>
                 <select class="form-select" aria-label="Default select example" name="jns_kelamin" required>
                 <option value="L">L</option>
                 <option value="P">P</option>
                 </select>
-                <label for="formFile" class="form-label">Mengajar kelas</label>
+                <label for="formFile" class="form-label">Wali kelas</label>
                 <select class="form-select" aria-label="Default select example" name="kelas" required>
                     <option value="10">10</option>
                 <option value="11">11</option>
