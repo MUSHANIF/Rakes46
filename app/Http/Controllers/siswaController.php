@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\siswa;
+use App\Models\jawaban;
+use App\Models\pertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,10 @@ class siswaController extends Controller
         $kelas =  DB::table('kelas')->get();
         $siswa =  DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get();
         $ortu =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->get();
-        return view('siswaid.index', compact('siswa', 'ortu', 'kelas'), [
+        $pertanyaans = pertanyaan::all();
+        $jawabans = collect(jawaban::where('userID', auth()->user()->id)->get());
+        // return $pertanyaans->where('type', '1')->where('group', 'a');
+        return view('siswaid.index', compact('siswa', 'ortu', 'kelas', 'jawabans', 'pertanyaans'), [
             "title" => "List Siswa"
         ]);
     }

@@ -16,17 +16,16 @@ class jawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (jawaban::find(auth()->user()->jawaban)) {
             return redirect('/isikuisioner')->with('have', 'You Already Answered The Questions');
         }
 
-        $datas = DB::table('pertanyaans')->get();
         $data = pertanyaan::where('type', '=', 1)
             ->where('group', '=', 'a')
             ->get();
-        return view('jawaban.index', compact('datas', 'data'), [
+        return view('jawaban.index', compact('data'), [
             "title" => "Kuisioner"
         ]);
     }
@@ -116,7 +115,9 @@ class jawabanController extends Controller
             return redirect('/kuisioner')->with('dont', "You haven't answered the question");
         }
 
-        $jawabans = jawaban::all();
+        $id = auth()->user()->jawaban;
+
+        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
         return view('jawaban.isi', compact('jawabans'));
     }
 }

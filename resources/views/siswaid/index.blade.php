@@ -1,5 +1,8 @@
 @extends('layouts.dashboard')
 
+@section('head')
+@endsection
+
 @section('search') 
 <div class="main-content">
    <main>
@@ -142,8 +145,8 @@
 
          @if (Auth::user()->level == 1)
 
-         <main class="">
-            <div class="container-grid px-6">
+         <main>
+            <div>
                <h2 class="m-3 font-semibold text-center text-gray-700 dark:text-gray-200">Detail Informasi Anda</h2>
 
                <div class="mb-8">
@@ -166,7 +169,7 @@
                                </div>
                                <div class="grid grid-cols-2">
                                  <h5>Jenis Kelamin </h5>
-                                 <h5>: {{ $ite->jns_kelamin }}</h5>
+                                 <h5>: {{ $ite->jns_kelamin == "L" ? "Laki-Laki" : "Perempuan" }}</h5>
                                </div>
                             </div>
                         </div>
@@ -195,8 +198,147 @@
                         </div>
                         @endforeach
                       @endforeach
+                     </div>
                   </div>
-               </div>
+
+                  @php
+                      $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
+                      $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
+                      $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
+                  @endphp
+
+                  <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
+                     <h1 class="text-xl mb-4">Pertanyaan</h1>
+                     <div class="flex gap-x-1">
+                        {{-- Jawaban Group A --}}
+                        @if ($jawabans->slice(0, $jumlahGroupA)->count() == $jumlahGroupA)
+                        <div class="w-full">
+                           <div class="bg-blue-600 h-1"></div>
+                           <p class="text-black mt-3 relative" data-popover-target="popover-group1" data-popover-placement="bottom">Group 1
+                              <div data-popover id="popover-group1" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                 <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+                                    <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 1</h3>
+                                 </div>
+                                 <div class="py-2 px-3 flex gap-x-2">
+                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
+                                       <i data-feather="align-right" class="w-5"></i>
+                                       Detail
+                                    </a>
+                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
+                                       <i data-feather="edit" class="w-5"></i>
+                                       Edit
+                                    </a>
+                                 </div>
+                              </div>
+                           </p>
+                        </div>
+                        @else
+                        <div class="w-full">
+                           <div class="bg-gray-300 h-1"></div>
+                           <p class="text-black mt-3 relative" data-popover-target="popover-group1" data-popover-placement="bottom">Group 1
+                              <div data-popover id="popover-group1" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                 <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+                                    <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 1</h3>
+                                 </div>
+                                 <div class="p-3 flex gap-x-2">
+                                    <form action="" method="post">
+                                       @csrf
+                                       <input type="hidden" name="group" value="a">
+                                       <button type="submit" class="flex items-center gap-x-2 text-slate-700 hover:text-blue-600">
+                                          <i data-feather="edit-3" class="w-5"></i>
+                                          Jawab Pertanyaan
+                                       </button>
+                                    </form>
+                                 </div>
+                              </div>
+                           </p>
+                        </div>
+                        @endif
+                        
+                        {{-- Jawaban Group B --}}
+                        @if ($jawabans->slice($jumlahGroupA, $jumlahGroupB)->count()  == $jumlahGroupB)
+                        <div class="w-full">
+                           <div class="bg-blue-600 h-1"></div>
+                           <p class="text-black mt-3 relative" data-popover-target="popover-group2" data-popover-placement="bottom">Group 2
+                              <div data-popover id="popover-group2" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                 <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+                                    <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 2</h3>
+                                 </div>
+                                 <div class="py-2 px-3 flex gap-x-2">
+                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
+                                       <i data-feather="align-right" class="w-5"></i>
+                                       Detail
+                                    </a>
+                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
+                                       <i data-feather="edit" class="w-5"></i>
+                                       Edit
+                                    </a>
+                                 </div>
+                              </div>
+                           </p>
+                        </div>
+                        @else
+                        <div class="w-full">
+                           <div class="bg-gray-300 h-1"></div>
+                           <p class="text-black mt-3 relative" data-popover-target="popover-group2" data-popover-placement="bottom">Group 2
+                              <div data-popover id="popover-group2" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                 <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+                                    <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 2</h3>
+                                 </div>
+                                 <div class="py-2 px-3 flex gap-x-2">
+                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
+                                       <i data-feather="edit-3" class="w-5"></i>
+                                       Jawab Pertanyaan
+                                    </a>
+                                 </div>
+                              </div>
+                           </p>
+                        </div>
+                        @endif
+
+                        {{-- Jawaban Group C --}}
+                        @if ($jawabans->slice($jumlahGroupA + $jumlahGroupB, $jumlahGroupC)->count()  == $jumlahGroupC)
+                        <div class="w-full">
+                           <div class="bg-blue-600 h-1"></div>
+                           <p class="text-black mt-3 relative" data-popover-target="popover-group3" data-popover-placement="bottom">Group 3
+                              <div data-popover id="popover-group3" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                 <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+                                    <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 3</h3>
+                                 </div>
+                                 <div class="py-2 px-3 flex gap-x-2">
+                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
+                                       <i data-feather="align-right" class="w-5"></i>
+                                       Detail
+                                    </a>
+                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
+                                       <i data-feather="edit" class="w-5"></i>
+                                       Edit
+                                    </a>
+                                 </div>
+                              </div>
+                           </p>
+                        </div>
+                        @else
+                        <div class="w-full">
+                           <div class="bg-gray-300 h-1"></div>
+                           <p class="text-black mt-3 relative" data-popover-target="popover-group3" data-popover-placement="bottom">Group 3
+                              <div data-popover id="popover-group3" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                 <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+                                    <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 3</h3>
+                                 </div>
+                                 <div class="py-2 px-3 flex gap-x-2">
+                                    <a href="#" class="flex items-center gap-x-1 text-xs text-slate-700 hover:text-blue-600">
+                                       <i data-feather="edit-3" class="w-5"></i>
+                                       Jawab Pertanyaan
+                                    </a>
+                                 </div>
+                              </div>
+                           </p>
+                        </div>
+                        @endif
+
+                     </div>
+                  </div>
             </div>
          </main>
 

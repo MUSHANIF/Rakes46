@@ -9,7 +9,7 @@
       @endif
       <div class="card">
          <div class="card-title pt-4 pb-2 mb-4">
-            <h2 class="text-center">
+            <h2 class="text-center text-dark">
                REKAM MEDIS KESEHATAN SISWA
                <br />
                SMKN 46 JAKARTA
@@ -19,12 +19,12 @@
          <div class="card-subtitle">
             <div class="row">
                <div class="col-12 ps-4 ms-4 mt-3">
-                  <h4 class="pb-2">Riwayat Kesehatan Anak</h4>
+                  <h4 class="pb-2 text-dark">Riwayat Kesehatan Anak</h4>
                </div>
             </div>
          </div>
          <div class="body-card">
-            <div class="container ms-4">
+            <div class="container ms-4 text-dark">
                @foreach ($jawabans as $jawaban)
                <div class="mb-3">
                   <h5>{{ $jawaban->pertanyaan->pertanyaan }}</h5>
