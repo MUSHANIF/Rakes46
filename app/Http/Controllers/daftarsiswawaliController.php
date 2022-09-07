@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\kela;
 use App\Models\guru;
+use App\Models\kela;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 class daftarsiswawaliController extends Controller
 {
     /**
@@ -19,20 +21,22 @@ class daftarsiswawaliController extends Controller
     {
         $cari = $request->cari;
         $datas = kela::with([
-            'guru','siswa'
-       ]) ->join('siswas', 'siswas.kelasID', '=', 'kelas.id')
-      
-       ->where('kelas.userID' ,  Auth::user()->id )
-       ->where('nama_lengkap','like',"%".$cari."%")
-      
-        
-        ->get();
-        $data =  DB::table('kelas')->where('kelas.userID' ,  Auth::user()->id )->get();
-        return view('siswa.index', compact('datas','data'),
+            'guru', 'siswa'
+        ])->join('siswas', 'siswas.kelasID', '=', 'kelas.id')
+
+            ->where('kelas.userID',  Auth::user()->id)
+            ->where('nama_lengkap', 'like', "%" . $cari . "%")
+
+
+            ->get();
+        $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
+        return view(
+            'siswa.index',
+            compact('datas', 'data'),
             [
                 "title" => "List Siswa"
             ]
-    );
+        );
     }
 
     /**
@@ -42,7 +46,6 @@ class daftarsiswawaliController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -52,25 +55,37 @@ class daftarsiswawaliController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        
+    {
+        $data = $request->all();
         $kelas = new kela;
         $kelas->userID = $request->userid;
         $kelas->nip = $request->nip;
-        $kelas->nama_guru = $request->nama;
+        $kelas->nama_guru = $request->nama_guru;
         $kelas->thn_ajaran = $request->thn_ajaran;
         $kelas->kelas = $request->kelas;
         $kelas->jurusan = $request->jurusan;
+
+
+        $validasi = Validator::make($data, [
+            'nip' => 'required|max:10|unique:kelas',
+            'nama_guru' => 'required|max:40',
+            'thn_ajaran' => 'required|max:4',
+            'kelas' => 'required',
+            'jurusan' => 'required',
+
+        ]);
+        if ($validasi->fails()) {
+            return redirect()->route('siswawali.index')->withInput()->withErrors($validasi);
+        }
+
         $kelas->save();
-           
 
-      
 
-       
-       
 
-       
-        toastr()->success('Berhasil di tanggapi!', 'Selamat');
+
+
+
+        toastr()->success('Berhasil di tambah!', 'Selamat');
         return redirect('siswawali');
     }
 
@@ -107,10 +122,10 @@ class daftarsiswawaliController extends Controller
     public function update(Request $request, $id)
     {
         $model = User::find($id);
-      
+
         $model->name = $request->name;
         $model->email = $request->email;
-     
+
         $model->level = $request->opsi;
 
         $model->save();

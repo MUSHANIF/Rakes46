@@ -5,7 +5,17 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-      <title>{{ $title ?? "Admin Dashboard" }}</title>
+      @can('superadmin')
+      <title>Superadmin Dashboard</title>
+      @elsecan('kepala_sekolah')
+      <title>Kepala Sekolah Dashboard</title>
+      @elsecan('puskesmas')  
+      <title>Puskesmas Dashboard</title>
+      @elsecan('siswa')
+      <title>Siswa Dashboard</title>
+      @elsecan('wali_kelas')
+      <title>Wali Dashboard</title>
+      @endcan
 
       <!-- Custom fonts for this template-->
       @yield('head')
@@ -196,13 +206,23 @@
             background-color: #277994;
          }
 
-         .form-group label {
+         label{
             color: black;
-         }
+            margin-top: 10px;
+        }
+        .form-label{
+            color: black;
+            margin-top: 10px;
+        }
 
          input[type="radio"]:checked {
             background-color: #3b82f6;
             border-color: #3b82f6;
+         }
+
+         .btn-detail:hover {
+            opacity: .9;
+            color: white;
          }
       </style>
       <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>

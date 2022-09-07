@@ -25,7 +25,8 @@ class siswaController extends Controller
         $pertanyaans = pertanyaan::all();
         $jawabans = collect(jawaban::where('userID', auth()->user()->id)->get());
         return view('siswaid.index', compact('siswa', 'ortu', 'kelas', 'jawabans', 'pertanyaans'), [
-            "title" => "List Siswa"
+            "title" => "List Siswa",
+            'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
         ]);
     }
 
@@ -48,12 +49,6 @@ class siswaController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $validasi = Validator::make($data, [
-            'nisn' => 'required|max:16|unique:siswas',
-            'email' => 'required|max:255|unique:siswas',
-            'nis' => 'required|max:5|unique:siswas',
-        ]);
-
         $model = new siswa;
         $model->nisn = $request->nisn;
         $model->userID = $request->userID;
@@ -73,6 +68,25 @@ class siswaController extends Controller
         $model->disabilitas = $request->disabilitas;
 
 
+        $validasi = Validator::make($data, [
+            'nisn' => 'required|min:10|unique:siswas',
+            'email' => 'required|max:255|unique:siswas',
+            'nis' => 'required|min:5|unique:siswas',
+            'nama_lengkap' => 'required|max:25',
+            'kelasID' => 'required',
+            'nama_panggilan' => 'required|max:8',
+            'tmp_lahir' => 'required|max:10',
+            'jns_kelamin' => 'required',
+            'gol_darah' => 'required|max:2',
+            'anak_ke' => 'required|max:2',
+            'tggl_bersama' => 'required',
+            'alamat' => 'required|max:30',
+            'no_telp' => 'required|max:13',
+            'email' => 'required|max:40',
+            'disabilitas' => 'required',
+
+        ]);
+
         if ($validasi->fails()) {
             return redirect()->route('siswaid.index')->withInput()->withErrors($validasi);
         }
@@ -80,7 +94,7 @@ class siswaController extends Controller
         $model->save();
 
         toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/dataorangtua');
+        return redirect('/siswaid');
     }
 
     /**
@@ -135,12 +149,14 @@ class siswaController extends Controller
         $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
         $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
 
+        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
+
         if ($request->group == "a") {
-            $jawabans = auth()->user()->jawaban->skip(0)->take($jumlahGroupA)->get();
+            $jawabans = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
         } elseif ($request->group == "b") {
-            $jawabans = auth()->user()->jawaban->skip($jumlahGroupA)->take($jumlahGroupB)->get();
+            $jawabans = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
         } elseif ($request->group == 'c') {
-            $jawabans = auth()->user()->jawaban->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+            $jawabans = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
         }
         return view('jawaban.isi', compact('jawabans'));
     }

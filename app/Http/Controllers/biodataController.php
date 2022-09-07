@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\siswa;
+
 class biodataController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class biodataController extends Controller
      */
     public function index()
     {
-        $datas=  DB::table('siswa');
+        $datas =  DB::table('siswa');
         return view('biodata.index', compact('datas'));
     }
 

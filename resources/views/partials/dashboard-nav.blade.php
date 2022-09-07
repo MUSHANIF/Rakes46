@@ -21,7 +21,7 @@
              <li>
                 <a href="/dashboardpuskesmas" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
              </li>
-             @elseif(Auth::user()->level == 2)
+             @elseif(Auth::user()->level == 2 and $data->isNotEmpty())
              <li>
                 <a href="/dashboardwali" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
              </li>
@@ -30,13 +30,12 @@
                 <a href="/siswaid" class="active"> <i class="bx bxs-dashboard icon"></i> Biodata siswa </a>
              </li>
              @endif 
- 
+
              @if (Auth::user()->level != 1)
- 
              <li>
                 <a href="#">
                    <i class="bx bx-columns icon"></i>
-                   list
+                   List
                    <i class="bx bx-chevron-right icon-right"></i>
                 </a>
                 @if (Auth::user()->level == 5)
@@ -63,14 +62,13 @@
                 </ul>
                 @endif
              </li>
-             @else
+             @else 
              {{-- <li>
                 <a href="/dataorangtua"> <i class="bx bxs-dashboard icon"></i>dataorangtua </a>
              </li>
              <li>
                 <a href="{{ Auth::user()->jawaban ? '/isikuisioner' : '/kuisioner'}}"> <i class="bx bxs-dashboard icon"></i>pertanyaan </a>
              </li> --}}
- 
              @endif
           </ul>
        </div>

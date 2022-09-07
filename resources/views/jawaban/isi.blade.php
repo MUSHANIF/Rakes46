@@ -31,7 +31,7 @@
                </div>
             </div>
          </div>
-         <div class="body-card">
+         <div class="body-card mb-3">
             <div class="container ms-4 text-dark">
                @foreach ($jawabans as $jawaban)
                <div class="mb-3">

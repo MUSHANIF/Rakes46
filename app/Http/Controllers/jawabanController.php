@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use function PHPUnit\Framework\isEmpty;
-
 class jawabanController extends Controller
 {
     /**
@@ -22,22 +20,23 @@ class jawabanController extends Controller
     {
         $siswa =  DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get();
 
-        if (auth()->user()->jawaban) {
+        if (auth()->user()->jawaban->count() > 0) {
             $pertanyaans = pertanyaan::all();
             $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
             $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
             $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
 
-            $jawabanGroupA = auth()->user()->jawaban->skip(0)->take($jumlahGroupA)->get();
-            $jawabanGroupB = auth()->user()->jawaban->skip($jumlahGroupA)->take($jumlahGroupB)->get();
-            $jawabanGroupC = auth()->user()->jawaban->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+            $jawabanGroupA = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
+            $jawabanGroupB = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
+            $jawabanGroupC = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
 
             if ($jawabanGroupB->count() == 0) {
                 $data = pertanyaan::where('type', '=', 1)
                     ->where('group', '=', 'b')
                     ->get();
                 return view('jawaban.index', compact('data', 'siswa'), [
-                    "title" => "Kuisioner"
+                    "title" => "Kuisioner",
+                    'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
                 ]);
             }
 
@@ -46,7 +45,8 @@ class jawabanController extends Controller
                     ->where('group', '=', 'c')
                     ->get();
                 return view('jawaban.index', compact('data', 'siswa'), [
-                    "title" => "Kuisioner"
+                    "title" => "Kuisioner",
+                    'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
                 ]);
             }
 
@@ -57,9 +57,9 @@ class jawabanController extends Controller
         $data = pertanyaan::where('type', '=', 1)
             ->where('group', '=', 'a')
             ->get();
-
         return view('jawaban.index', compact('data', 'siswa'), [
-            "title" => "Kuisioner"
+            "title" => "Kuisioner",
+            'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
         ]);
     }
 
@@ -94,7 +94,7 @@ class jawabanController extends Controller
             $model->save();
         }
 
-        return redirect('/isikuisioner');
+        return redirect('/isijawaban');
     }
 
     /**

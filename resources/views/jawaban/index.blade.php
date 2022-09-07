@@ -2,6 +2,7 @@
 @section('isi')
 <div class="main-content text-dark">
    <main>
+   @if ($datasiswa->isNotEmpty())
       @if (session()->has('dont'))
          <div class="alert alert-danger" role="alert">
             {{ session('dont') }}
@@ -59,6 +60,17 @@
             </div>
          </div>
       </div>
+      @else
+      <div id="error">
+         <div class="container text-center">
+         <div class="pt-2">
+             <h1 class="errors-titles">404</h1>
+             <p>Data not found</p>
+             <a href="/" class="text-blue btn btn-primary">Back to page</a>
+           </div>
+         </div>
+     </div>
+      @endif
    </main>
 </div>
 @endsection

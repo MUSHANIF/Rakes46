@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\guru;
 use App\Models\kela;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+
 class walikelasController extends Controller
 {
     /**
@@ -18,9 +19,9 @@ class walikelasController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 2)->where('name','like',"%".$cari."%")->get();
-     
-        return view('wali_kelas.index', compact('datas'), ["title"=>"Wali Kelas"]);
+        $datas =  DB::table('users')->where('level', '=', 2)->where('name', 'like', "%" . $cari . "%")->get();
+
+        return view('wali_kelas.index', compact('datas'), ["title" => "Wali Kelas"]);
     }
 
     /**
@@ -30,7 +31,7 @@ class walikelasController extends Controller
      */
     public function create()
     {
-        return view('wali_kelas.create' , ["title"=>"Create Wali Kelas"]);
+        return view('wali_kelas.create', ["title" => "Create Wali Kelas"]);
     }
 
     /**
@@ -41,33 +42,32 @@ class walikelasController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $data = $request->all();
         $model = new User;
         $password = $request->password;
         $encrypted_password = bcrypt($password);
-      
+
         $model->name = $request->name;
         $model->email = $request->email;
- 
+
         $model->level = $request->level;
         $model->password = $encrypted_password;
-        
-     
-        $validasi = Validator::make($data,[
-            'name'=>'required|max:255|unique:users',
-            'email'=>'required|email|max:255|unique:users',
-            'password'=>'required|min:8',
-            'level'=>'required',
+
+
+        $validasi = Validator::make($data, [
+            'name' => 'required|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:8',
+            'level' => 'required',
 
         ]);
-        if($validasi->fails())
-        {
+        if ($validasi->fails()) {
             return redirect()->route('wali_kelas.create')->withInput()->withErrors($validasi);
         }
 
         $model->save();
-   
+
         toastr()->success('Berhasil di buat!', 'Sukses');
         return redirect('/wali_kelas');
     }
@@ -106,20 +106,19 @@ class walikelasController extends Controller
     {
         $data = $request->all();
         $model = User::findOrFail($id);
-      
+
         $model->name = $request->name;
         $model->email = $request->email;
         $model->level = $request->opsi;
-      
-        $validasi = Validator::make($data,[
-            'name'=>'required|max:255',
-            'email'=>'required|email|max:255|unique:users',
-           
+
+        $validasi = Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+
 
         ]);
-        if($validasi->fails())
-        {
-            return redirect()->route('wali_kelas.edit',[$id])->withErrors($validasi);
+        if ($validasi->fails()) {
+            return redirect()->route('wali_kelas.edit', [$id])->withErrors($validasi);
         }
         $model->save();
         toastr()->success('Berhasil di terupdate!', 'Sukses');
