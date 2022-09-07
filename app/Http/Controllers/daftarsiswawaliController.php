@@ -8,6 +8,7 @@ use App\Models\guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Validator;
 class daftarsiswawaliController extends Controller
 {
     /**
@@ -53,24 +54,37 @@ class daftarsiswawaliController extends Controller
      */
     public function store(Request $request)
     { 
-        
+        $data = $request->all();
         $kelas = new kela;
         $kelas->userID = $request->userid;
         $kelas->nip = $request->nip;
-        $kelas->nama_guru = $request->nama;
+        $kelas->nama_guru = $request->nama_guru;
         $kelas->thn_ajaran = $request->thn_ajaran;
         $kelas->kelas = $request->kelas;
         $kelas->jurusan = $request->jurusan;
-        $kelas->save();
+    
            
+        $validasi = Validator::make($data,[
+            'nip'=>'required|max:10|unique:kelas',
+            'nama_guru'=>'required|max:40',
+            'thn_ajaran'=>'required|max:4',
+            'kelas'=>'required',
+            'jurusan'=>'required',
 
+        ]);
+        if($validasi->fails())
+        {
+            return redirect()->route('siswawali.index')->withInput()->withErrors($validasi);
+        }
+
+        $kelas->save();
       
 
        
        
 
        
-        toastr()->success('Berhasil di tanggapi!', 'Selamat');
+        toastr()->success('Berhasil di tambah!', 'Selamat');
         return redirect('siswawali');
     }
 

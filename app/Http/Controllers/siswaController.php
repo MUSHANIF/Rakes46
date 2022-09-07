@@ -74,6 +74,7 @@ class siswaController extends Controller
             'email'=>'required|max:255|unique:siswas',
             'nis' => 'required|min:5|unique:siswas',
             'nama_lengkap' => 'required|max:25',
+            'kelasID' => 'required',
             'nama_panggilan' => 'required|max:8',
             'tmp_lahir' => 'required|max:10',         
             'jns_kelamin' => 'required',

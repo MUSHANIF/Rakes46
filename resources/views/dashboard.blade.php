@@ -121,6 +121,7 @@
           </p>
         </div>
       </div>
+    </div>
       <!-- Card -->
       
     @elseif (Auth::user()->level == '3')

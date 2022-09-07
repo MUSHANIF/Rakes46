@@ -15,7 +15,7 @@
                 </div>
             </div>
         </form>
-        @elseif (Auth::user()->level == 2 and $data->isNotEmpty())
+        @elseif (Auth::user()->level == 5 )
         <form action="{{ url('siswa') }}" method="GET" class="">
             @csrf
             <div class="input-group">

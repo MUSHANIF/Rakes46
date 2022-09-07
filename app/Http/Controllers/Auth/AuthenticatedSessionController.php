@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,6 +30,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
+        $data =  DB::table('kelas')->where('kelas.userID' ,  auth()->user()->id )->get();
 
         $request->session()->regenerate();
         if (auth()->user()->level == 5) {
@@ -44,8 +46,15 @@ class AuthenticatedSessionController extends Controller
             return redirect('/dashboardpuskesmas');
         }
         if (auth()->user()->level == 2) {
-            toastr()->success('Salam sehat!', 'Selamat datang wali kelas!');
-            return redirect('/dashboardwali');
+            if($data->isEmpty()){
+               
+                toastr()->success('Salam sehat!', 'Selamat datang wali kelas!');
+                return redirect('/siswawali');
+            }else{
+                toastr()->success('Salam sehat!', 'Selamat datang wali kelas!');
+                return redirect('/dashboardwali');
+            }
+          
         }
         toastr()->success('Salam sehat!', 'Selamat datang siswa!');
         return redirect('/siswaid');

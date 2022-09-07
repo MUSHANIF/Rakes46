@@ -2,7 +2,7 @@
 @section('search')
 <div class="main-content">
     <main>
-        @if (Auth::user()->level == 2)
+        @if (Auth::user()->level == 2 and $data->isNotEmpty())
         <form action="{{ url('siswawali') }}" method="GET" class="">
             @csrf
             <div class="input-group">
@@ -15,8 +15,34 @@
                 </div>
             </div>
         </form>
-        @else
+        @elseif (Auth::user()->level == 5 )
         <form action="{{ url('siswa') }}" method="GET" class="">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control bg-light " placeholder="Search for..."
+           name="cari" value="{{ request('cari') }}">
+                <div class="input-group-append">
+                    <button class="btn" style="background-color: #256D85;" type="submit">
+                        <i class="fas fa-search fa-sm text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        @elseif (Auth::user()->level == 3 )
+        <form action="{{ url('siswapuskesmas') }}" method="GET" class="">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control bg-light " placeholder="Search for..."
+           name="cari" value="{{ request('cari') }}">
+                <div class="input-group-append">
+                    <button class="btn" style="background-color: #256D85;" type="submit">
+                        <i class="fas fa-search fa-sm text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        @elseif ( Auth::user()->level == 4 )
+        <form action="{{ url('siswakepala') }}" method="GET" class="">
             @csrf
             <div class="input-group">
                 <input type="text" class="form-control bg-light " placeholder="Search for..."
@@ -45,23 +71,23 @@
                 @csrf
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nip</label>
-                    <input type="number" class="form-control" id="StoreID" name="nip" required>
+                    <input type="number" class="form-control" id="StoreID" name="nip" required  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type="number"
+                    maxlength="10">
                 </div>    
                     <input type="hidden" class="form-control" id="LocID" name="userid" required value="{{ Auth::user()->id }}">
 
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nama</label>
-                    <input type="text" class="form-control" id="LocID" name="nama" required>
+                    <input type="text" class="form-control" id="LocID" name="nama_guru" required>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">tahun ajaran</label>
-                    <input type="number" class="form-control" id="ProdID" name="thn_ajaran" required>
+                    <input type="number" class="form-control" id="ProdID" name="thn_ajaran" required  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type="number"
+                    maxlength="4">
                 </div>
-                <label for="formFile" class="form-label text-dark">Jenis kelamin</label>
-                <select class="form-select" aria-label="Default select example" name="jns_kelamin" required>
-                <option value="L">L</option>
-                <option value="P">P</option>
-                </select>
+             
                 <label for="formFile" class="form-label">Wali kelas</label>
                 <select class="form-select" aria-label="Default select example" name="kelas" required>
                     <option value="10">10</option>
@@ -79,7 +105,7 @@
                     <option value="DKV">DKV </option>
                     <option value="RPL">RPL</option>
                 </select>
-                <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
+                <button style="background-color: #1960a7; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
                 <button type="reset" class="btn btn-danger mt-4">Reset</button>
             </form>
         </div>
