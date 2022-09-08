@@ -143,11 +143,74 @@
             </div>
          </div>
       </div>
+@elseif ($siswa->isNotEmpty() and $ortu->isEmpty())
+<div class="card">
+   <div class="card-title pt-4">
+      <h2 class="text-center text-dark fw-bold">BIODATA ORANG TUA</h2>
+   </div>
+   <div class="card-body">
+      <div class="container">
+         <form class="row" action="{{ route('dataorangtua.store') }}" method="post" >
+            @csrf
 
+            {{-- <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">NISN</label>
+               <input type="number" class="form-control" value="{{ old('nisn') }}" id="StoreID" name="nisn" required placeholder="0045874511" minlength="10" autofocus
+               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+               type="number"
+               maxlength="10"
+               >
+            </div> --}}
+ 
+            <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">Nama Ayah</label>
+               <input type="text" class="form-control" id="ProdID"  value="{{ old('nama_ayah') }}" name="nama_ayah" required placeholder="Udin Bahrudin">
+               <input type="hidden" name="userID" value="{{ Auth::user()->id }}">
+            </div>
+            <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">Tempat lahir Ayah</label>
+               <input type="text" class="form-control" id="ProdID"  value="{{ old('tmplahir_ayah') }}" name="tmplahir_ayah" required placeholder="Jakarta">
+            </div>
+          
+            <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">Pekerjaan Ayah</label>
+               <input type="text" class="form-control" value="{{ old('pekerjaan_ayah') }}" id="pekerjaan_ayah" name="pekerjaan_ayah" required placeholder="Wiraswasta">
+            </div>
+            <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">Alamat Ayah</label>
+               <input type="text" class="form-control" id="ProdID"  value="{{ old('alamat_ayah') }}" name="alamat_ayah" required placeholder="Jl. Kemuning Raya No 29 Rt/Rw 01/08">
+            </div>
+           
+            <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">Nama Ibu</label>
+               <input type="text" class="form-control" id="ProdID"  value="{{ old('nama_ibu') }}" name="nama_ibu" required placeholder="Siti">
+            </div>
+            <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">Tempat Lahir Ibu</label>
+               <input type="text" class="form-control" id="ProdID"  value="{{ old('tmplahir_ibu') }}" name="tmplahir_ibu" required placeholder="Bekasi">
+           </div>
+         
+           <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">Pekerjaan Ibu</label>
+               <input type="text" class="form-control" id="ProdID" name="pekerjaan_ibu"  value="{{ old('pekerjaan_ibu') }}" required placeholder="Ibu rumah tangga">
+            </div>
+   
+           <div class="col-md-6 mb-3">
+               <label for="formGroupExampleInput" class="mb-2">Alamat ibu</label>
+               <input type="text" class="form-control" id="ProdID" name="alamat_ibu"  value="{{ old('alamat_ibu') }}" required placeholder="Jl. Kemuning Raya No 29 Rt/Rw 01/08">
+            </div>
+           
+
+            <button style="background-color: #39b1e0; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
+            <button type="reset" class="btn btn-danger mt-4">Reset</button>
+         </form>
+      </div>
+   </div>
+</div>
       @else
       <div class="container">
 
-         @if (Auth::user()->level == 1)
+         @if (Auth::user()->level == 1 and $ortu->isNotEmpty())
 
          <main>
             <div>
