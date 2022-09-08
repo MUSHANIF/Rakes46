@@ -27,9 +27,9 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
       <link rel="icon" href="{{ asset('img/favicon.svg')}}" />
       <link href="/assets/css/style.css" rel="stylesheet" />
-      {{--
+      
       <link href="/css/tailwind.output.css" rel="stylesheet" />
-      --}}
+     
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
       <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
       <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
@@ -240,7 +240,7 @@
             <ul>
                <li class="nav-item dropdown">
                   <a class="nav-link d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     <h5 class="text-dark me-1">Selamat Datang, {{ auth()->user()->name }}</h5>
+                     <h5 class="text-dark ">{{ auth()->user()->name }}</h5>
                      <img src="assets/images/avatar-1.png" alt="" />
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

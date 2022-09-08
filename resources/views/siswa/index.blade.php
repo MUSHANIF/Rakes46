@@ -116,17 +116,17 @@
             <tbody>
                <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                   <td data-label="Name">{{ $key->nama_lengkap }}</td>
-                  <td data-label="Cost">{{ $key->email }}</td>
-                  <td data-label="Cost">{{ $key->nama_guru }}</td>
-                  <td data-label="Cost">{{ $key->jns_kelamin == "L" ? "Laki-Laki" : "Perempuan" }}</td>
+                  <td data-label="Email">{{ $key->email }}</td>
+                  <td data-label="Nama Guru">{{ $key->nama_guru }}</td>
+                  <td data-label="Jenis kelamin">{{ $key->jns_kelamin == "L" ? "Laki-Laki" : "Perempuan" }}</td>
                   <td class="text-center justify-content-center align-self-center d-flex">
-                     <a class="btn btn-detail border-0 ml-2" href="">Detail</a>
+                     <a class="btn btn-detail border-0 ml-2" href="{{ route('siswawali.show',$key->user->id)}}">Detail</a>
                   </td>
                </tr>
             </tbody>
             @endforeach
          </table>
-         @elseif (Auth::user()->level == 4 or Auth::user()->level == 3)
+         @elseif (Auth::user()->level == 4)
          <table class="table mt-3" cellpadding="10" cellspace="0">
             <thead class="align-self-center text-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                <th class="text-light">Nama</th>
@@ -140,7 +140,27 @@
                   <td data-label="Cost">{{ $key->email }}</td>
 
                   <td class="text-center justify-content-center align-self-center d-flex">
-                     <a class="btn btn-detail border-0 ml-2" href="">Detail</a>
+                     <a class="btn btn-detail border-0 ml-2" href="{{ route('siswakepala.show',$key->id)}}">Detail</a>
+                  </td>
+               </tr>
+            </tbody>
+            @endforeach
+         </table>
+         @elseif (Auth::user()->level == 3)
+         <table class="table mt-3" cellpadding="10" cellspace="0">
+            <thead class="align-self-center text-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
+               <th class="text-light">Nama</th>
+               <th class="text-light">Email</th>
+               <th class="text-light">Action</th>
+            </thead>
+            @foreach ($datas as $key)
+            <tbody>
+              <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
+                  <td data-label="Name">{{ $key->name }}</td>
+                  <td data-label="Cost">{{ $key->email }}</td>
+
+                  <td class="text-center justify-content-center align-self-center d-flex">
+                     <a class="btn btn-detail border-0 ml-2" href="{{ route('siswapuskesmas.show',$key->id)}}">Detail</a>
                   </td>
                </tr>
             </tbody>
@@ -167,7 +187,7 @@
                         <input type="hidden" name="_method" value="DELETE" />
                         <button type="submit" class="btn btn-danger ms-2">Delete</button>
                      </form>
-                     <a class="btn btn-detail border-0 ml-2" href="">Detail</a>
+                     <a class="btn btn-detail border-0 ml-2" href="{{ route('siswa.show',$key->id)}}">Detail</a>
                   </td>
                </tr>
             </tbody>

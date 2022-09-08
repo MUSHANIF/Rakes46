@@ -20,7 +20,7 @@ class jawabanController extends Controller
     {
         $siswa =  DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get();
 
-        if (auth()->user()->jawaban->count() > 0) {
+        if (auth()->user()->jawaban != NULL) {
             $pertanyaans = pertanyaan::all();
             $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
             $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();

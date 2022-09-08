@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\guru;
 use App\Models\kela;
 use App\Models\User;
+use App\Models\jawaban;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class daftarsiswawaliController extends Controller
     {
         $cari = $request->cari;
         $datas = kela::with([
-            'guru', 'siswa'
+            'guru', 'siswa','user'
         ])->join('siswas', 'siswas.kelasID', '=', 'kelas.id')
 
             ->where('kelas.userID',  Auth::user()->id)
@@ -95,9 +96,13 @@ class daftarsiswawaliController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request , $id)
     {
-        //
+         $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
+        $jawabans = jawaban::where('userID', $id)->get();
+        $siswa =  DB::table('siswas')->where('siswas.userID', $id)->get();
+        $ortu =  DB::table('ortus')->where('ortus.userID',  $id)->get();
+        return view('siswa.detail', compact('jawabans','data','siswa','ortu'));
     }
 
     /**
