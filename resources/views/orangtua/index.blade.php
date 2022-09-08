@@ -48,7 +48,7 @@
                          <td class="text-center justify-content-center align-self-center d-flex">
                             
                             <a class="btn btn-info" href="{{ route('orangtua.edit',$key->id)}}">Ubah</a>
-                            <form action="{{ url('orangtua/'.$key->id) }}" method="POST" ">
+                            <form action="{{ url('orangtua/'.$key->id) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-danger ms-2">Delete</button>

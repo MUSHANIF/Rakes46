@@ -67,7 +67,6 @@ class siswaController extends Controller
         $model->email = $request->email;
         $model->disabilitas = $request->disabilitas;
 
-
         $validasi = Validator::make($data, [
             'nisn' => 'required|min:10|unique:siswas',
             'email' => 'required|max:255|unique:siswas',
@@ -152,12 +151,15 @@ class siswaController extends Controller
         $jawabans = jawaban::where('userID', auth()->user()->id)->get();
 
         if ($request->group == "a") {
-            $jawabans = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
+            $jawabans = jawaban::where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
         } elseif ($request->group == "b") {
-            $jawabans = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
+            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
         } elseif ($request->group == 'c') {
-            $jawabans = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
         }
-        return view('jawaban.isi', compact('jawabans'));
+
+        return view('jawaban.isi', compact('jawabans'), [
+            'groupA' => $jumlahGroupA
+        ]);
     }
 }

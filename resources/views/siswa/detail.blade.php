@@ -3,13 +3,7 @@
 <div class="main-content">
    <main>
 @if ($jawabans->isNotEmpty())
-      @if (session()->has('have'))
-         <div class="alert alert-info" role="alert">
-            {{ session('have') }}
-         </div>
-      @endif
       <h2 class="m-3 font-semibold text-center text-dark text-gray-700 dark:text-gray-200">Detail Informasi</h2>
-
                <div class="mb-8">
                   <div class="flex gap-x-6">
                      @foreach($siswa as $ite)
@@ -73,8 +67,11 @@
          <div class="card-subtitle">
             <div class="row">
                <div class="col-12 ps-4 ms-4 mt-3">
-                  @if ($jawabans[0]->pertanyaan->group == "a")
-                  <h3 class="text-dark"></h3> 
+                  @if ($jawabans->count() > 10)
+                  <h3 class="text-dark">Semua Group</h3> 
+                  @endif
+                  @if ($jawabans[0]->pertanyaan->group == "a" && $jawabans->count() <= $groupA)
+                  <h3 class="text-dark">Group A</h3> 
                   @endif
                   @if ($jawabans[0]->pertanyaan->group == "b")
                   <h3 class="text-dark">Group B</h3> 
@@ -106,7 +103,6 @@
         <div class="pt-2">
             <h1 class="errors-titles text-primary">404</h1>
             <p>Data Belom diisi oleh siswa!</p>
-          
           </div>
         </div>
     </div>

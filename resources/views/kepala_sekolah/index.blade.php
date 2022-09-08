@@ -36,22 +36,22 @@
                 List Kepala sekolah
             </h2>
             <table class="table mt-3" cellpadding="10" cellspace="0">
-                <thead class="align-self-center text-center">
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>action</th>
+                <thead class="align-self-center text-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
+                    <th class="text-light">Nama</th>
+                    <th class="text-light">Email</th>
+                    <th class="text-light">Action</th>
                 </thead>
                 @foreach ($datas as $key) 
                 <tbody>
-                    <tr class="align-self-center" style="border: 1px solid black;">
+                    <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                         <td data-label="Name">{{ $key->name }}</td>
                         <td data-label="Cost">{{ $key->email }}</td>
                         <td class="text-center justify-content-center align-self-center d-flex">
-                            <a class="btn btn-info" href="{{ route('kepala_sekolah.edit',$key->id)}}">Ubah</a>
-                            <form action="{{ url('kepala_sekolah/'.$key->id) }}" method="POST" ">
+                            <a class="btn btn-info border-0 text-light" href="{{ route('kepala_sekolah.edit',$key->id)}}">Ubah</a>
+                            <form action="{{ url('kepala_sekolah/'.$key->id) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                                <button type="submit" class="btn btn-danger border-0 ms-2">Delete</button>
                             </form>
                         </td>
                     </tr>

@@ -2,11 +2,6 @@
 @section('isi')
 <div class="main-content">
    <main>
-      @if (session()->has('have'))
-         <div class="alert alert-info" role="alert">
-            {{ session('have') }}
-         </div>
-      @endif
       <div class="card">
          <div class="card-title pt-4">
             <h2 class="text-center text-dark">
@@ -18,8 +13,11 @@
          </div>
          <div class="card-subtitle">
             <div class="row">
-               <div class="col-12 ps-4 ms-4 mt-3">
-                  @if ($jawabans[0]->pertanyaan->group == "a")
+               <div class="col-12 ps-4 ms-4 mt-3"> 
+                  @if ($jawabans->count() > 10)
+                  <h3 class="text-dark">Semua Group</h3> 
+                  @endif
+                  @if ($jawabans[0]->pertanyaan->group == "a" && $jawabans->count() <= $groupA)
                   <h3 class="text-dark">Group A</h3> 
                   @endif
                   @if ($jawabans[0]->pertanyaan->group == "b")

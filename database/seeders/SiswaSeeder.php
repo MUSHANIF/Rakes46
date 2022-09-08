@@ -17,7 +17,7 @@ class SiswaSeeder extends Seeder
         siswa::create([
             'kelasID' => 1,
             'userID' => 2,
-            'nisn' => 4587451,
+            'nisn' => '0054587451',
             'nis' => '11459',
             'nama_lengkap' => 'Angel Calista',
             'nama_panggilan' => 'Angel',
@@ -36,7 +36,7 @@ class SiswaSeeder extends Seeder
         siswa::create([
             'kelasID' => 1,
             'userID' => 3,
-            'nisn' => 4586121,
+            'nisn' => '0058527251',
             'nis' => '11465',
             'nama_lengkap' => 'Musthafa Hanif',
             'nama_panggilan' => 'Musthafa',

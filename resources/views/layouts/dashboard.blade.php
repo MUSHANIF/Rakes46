@@ -241,7 +241,7 @@
                <li class="nav-item dropdown">
                   <a class="nav-link d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                      <h5 class="text-dark ">{{ auth()->user()->name }}</h5>
-                     <img src="assets/images/avatar-1.png" alt="" />
+                     <img src="{{ asset('assets/images/avatar-1.png') }}" alt="Profil" />
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                      <a class="dropdown-item hover:!text-[#081A51] text-white" href="/"><i class="bi bi-arrow-90deg-left"></i> <span>Kembali ke Home</span></a>

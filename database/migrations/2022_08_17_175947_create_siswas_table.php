@@ -17,7 +17,7 @@ class CreateSiswasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('kelasID');
             $table->unsignedBigInteger('userID');
-            $table->integer('nisn');
+            $table->string('nisn');
             $table->char('nis');
             $table->string('nama_lengkap');
             $table->string('nama_panggilan');

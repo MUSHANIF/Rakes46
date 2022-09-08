@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\jawaban;
+use App\Models\pertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -51,13 +52,16 @@ class daftarsiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
+        $jumlahGroupA = pertanyaan::where('type', '1')->where('group', 'a')->count();
         $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
         $jawabans = jawaban::where('userID', $id)->get();
         $siswa =  DB::table('siswas')->where('siswas.userID', $id)->get();
         $ortu =  DB::table('ortus')->where('ortus.userID',  $id)->get();
-        return view('siswa.detail', compact('jawabans','data','siswa','ortu'));
+        return view('siswa.detail', compact('jawabans', 'data', 'siswa', 'ortu'), [
+            'groupA' => $jumlahGroupA //buat ngecek
+        ]);
     }
 
     /**

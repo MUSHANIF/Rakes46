@@ -2,7 +2,7 @@
 @section('isi')
 <main class="">
    <div class="container px-6 mx-auto grid">
-      <h2 class="my-6 text-2xl font-semibold dark:text-gray-600">Dashboard</h2>
+      <h2 class="my-6 text-2xl font-semibold dark:text-gray-600 text-slate-700">Dashboard</h2>
       @if (Auth::user()->level == '5' or Auth::user()->level == '4' )
 
       <!-- Cards -->

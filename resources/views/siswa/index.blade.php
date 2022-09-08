@@ -181,11 +181,11 @@
                   <td data-label="Cost">{{ $key->email }}</td>
 
                   <td class="text-center justify-content-center align-self-center d-flex">
-                     <a class="btn btn-info" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
+                     <a class="btn btn-info text-light border-0" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>
                      <form action="{{ url('siswa/'.$key->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                        <button type="submit" class="btn btn-danger border-0 ms-2">Delete</button>
                      </form>
                      <a class="btn btn-detail border-0 ml-2" href="{{ route('siswa.show',$key->id)}}">Detail</a>
                   </td>

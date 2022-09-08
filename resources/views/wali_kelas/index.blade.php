@@ -41,11 +41,11 @@
                   <td data-label="Cost">{{ $key->email }}</td>
                   <td class="text-center justify-content-center align-self-center d-flex">
                      @if (Auth::user()->level == 5)
-                     <a class="btn btn-info" href="{{ route('wali_kelas.edit',$key->id)}}">Ubah</a>
+                     <a class="btn btn-info text-light border-0" href="{{ route('wali_kelas.edit',$key->id)}}">Ubah</a>
                      <form action="{{ url('wali_kelas/'.$key->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                        <button type="submit" class="btn btn-danger border-0 ms-2">Delete</button>
                      </form>
                      @else
                      <a class="btn btn-detail border-0 ml-2" href="">Detail</a>

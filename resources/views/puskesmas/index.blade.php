@@ -22,7 +22,6 @@
             <thead class="align-self-center text-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                <th class="text-light">Nama</th>
                <th class="text-light">Email</th>
-
                <th class="text-light">Action</th>
             </thead>
 
@@ -32,13 +31,13 @@
                   <td data-label="Name">{{ $key->name }}</td>
                   <td data-label="Cost">{{ $key->email }}</td>
 
-                  <td class="text-center justify-content-center align-self-center">
+                  <td class="text-center justify-content-center align-self-center d-flex">
                      @can('superadmin')
-                     <a class="btn btn-info" href="{{ route('puskesmas.edit',$key->id)}}">Ubah</a>
+                     <a class="btn btn-info text-light border-0" href="{{ route('puskesmas.edit',$key->id)}}">Ubah</a>
                      <form action="{{ url('puskesmas/'.$key->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                        <button type="submit" class="btn btn-danger border-0 ms-2">Delete</button>
                      </form>
                      @else
                      <a class="btn ml-2 border-0 btn-detail" href="">Detail</a>
