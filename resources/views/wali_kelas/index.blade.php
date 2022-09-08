@@ -20,7 +20,8 @@
       <a href="{{ route('wali_kelas.create') }}" class="d-none d-sm-inline-block btn btn-sm text-white shadow-sm" style="background-color: #256d85"><i class="fas fa-download fa-sm text-white"></i> Tambah</a>
    </main>
 </div>
-@endsection @section('isi')
+@endsection
+@section('isi')
 
 <div class="main-content">
    <main>
@@ -30,7 +31,6 @@
             <thead class="align-self-center text-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                <th class="text-light">Nama</th>
                <th class="text-light">Email</th>
-
                <th class="text-light">Action</th>
             </thead>
 

@@ -3,11 +3,6 @@
 <div class="main-content text-dark">
    <main>
    @if ($datasiswa->isNotEmpty())
-      @if (session()->has('dont'))
-         <div class="alert alert-danger" role="alert">
-            {{ session('dont') }}
-         </div>
-      @endif
       <div class="card container px-4">
          <div class="card-title pt-4 pb-2 mb-4">
             <h3 class="text-center">
