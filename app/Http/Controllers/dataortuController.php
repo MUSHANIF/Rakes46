@@ -51,9 +51,9 @@ class dataortuController extends Controller
      */
     public function store(Request $request)
     {
-        $model = $request->all();
+        $data = $request->all();
         $model = new ortu;
-        $model->id = $request->id;
+       
         $model->userID = $request->userID;
         $model->nama_ayah = $request->nama_ayah;
         $model->tmplahir_ayah = $request->tmplahir_ayah;
@@ -65,17 +65,24 @@ class dataortuController extends Controller
         $model->alamat_ibu = $request->alamat_ibu;
 
 
-        // $validasi = Validator::make($data,[
-        //     // 'SiswaID'=>'ired|max:16|unique:siswas',
-        //     // 'email'=>'required|max:255|unique:siswas',
-        //     // 'nis' => 'required|max:5|unique:siswas',
+        $validasi = Validator::make($data,[
+           
+           
+            'nama_ayah' => 'required|max:25',
+            'tmplahir_ayah' => 'required|max:10',
+            'pekerjaan_ayah' => 'required|max:20',
+            'alamat_ayah' => 'required|max:20',
+            'nama_ibu' => 'required|max:15',
+            'tmplahir_ibu' => 'required|max:10',
+            'pekerjaan_ibu' => 'required|max:15',
+            'alamat_ibu' => 'required|max:20',
 
 
-        // ]);
-        // if($validasi->fails())
-        // {
-        //     return redirect()->route('siswaid.index')->withInput()->withErrors($validasi);
-        // }
+        ]);
+        if($validasi->fails())
+        {
+            return redirect()->route('siswaid.index')->withInput()->withErrors($validasi);
+        }
 
         $model->save();
 

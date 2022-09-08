@@ -2,7 +2,7 @@
 @section('isi')
 <div class="main-content text-dark">
    <main>
-   @if ($datasiswa->isNotEmpty())
+  
       @if (session()->has('dont'))
          <div class="alert alert-danger" role="alert">
             {{ session('dont') }}
@@ -26,51 +26,51 @@
          </div>
          <div class="body-card">
             <div class="" >
-               <form action="{{ route('kuisioner.store') }}" method="POST">
+                @foreach ($user as $key )
+                <form action="{{ route('siswaid.update',$key->id) }}" method="POST">
+                    @endforeach
+                    @csrf
+                    <input type="hidden" name="_method" value="PATCH">
+               
+               
                   @csrf 
                   <input type="hidden" class="form-control" id="LocID" name="userID" required value="{{ Auth::user()->id }}" />
-                  @foreach ($data as $key => $pertanyaan) 
+                  @foreach ($jawabans as $key  => $pertanyaan) 
                   @php
                    $p = 1 + $key   
                    @endphp
+                
+                       
                   <input type="hidden" name="jumlahPertanyaan" value="{{ $p }}">
                   <div class="row align-items-center">
-                     <div class="col-lg-10 col-sm-7 mb-3">
-                        <p class="text-dark" style="font-size: 19px">{{ $pertanyaan->pertanyaan }}</p>
+                     <div class="col-lg -10 col-sm-7 mb-3">
+                        <p class="text-dark" style="font-size: 19px">{{ $pertanyaan->pertanyaan->pertanyaan }}</p>
                         <input type="hidden" class="form-control" id="LocID" name="pertanyaanID[{{ $p }}]" required value="{{ $pertanyaan->id }}" />
                      </div>
                      <div class="col-lg-2 col-sm-5 mb-3">
                         <div class="form-check form-check-inline">
                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="jawaban[{{ $p }}]" value="false" required />
+                              <input class="form-check-input" type="radio" name="jawaban[{{ $p }}]"  value="false" required />
                               Tidak
                            </label>
                         </div>
                         <div class="form-check form-check-inline">
                            <label class="form-check-label">
-                              <input class="form-check-input" type="radio" name="jawaban[{{ $p }}]" value="true  " required />
+                              <input class="form-check-input" type="radio" name="jawaban[{{ $p }}]" value="true"  required />
                               Ya
                            </label>
                         </div>
                      </div>
                   </div>
+                  
+                   
                   @endforeach
                   <button style="background-color: #39b1e0; border: unset" type="submit" class="btn btn-primary mb-4">Submit</button>
                </form>
             </div>
          </div>
       </div>
-      @else
-      <div id="error">
-         <div class="container text-center">
-         <div class="pt-2">
-             <h1 class="errors-titles">404</h1>
-             <p>Data not found</p>
-             <a href="/" class="text-blue btn btn-primary">Back to page</a>
-           </div>
-         </div>
-     </div>
-      @endif
+   
    </main>
 </div>
 @endsection

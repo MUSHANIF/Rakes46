@@ -42,7 +42,7 @@
                   <td class="text-center justify-content-center align-self-center d-flex">
                      @if (Auth::user()->level == 5)
                      <a class="btn btn-info text-light border-0" href="{{ route('wali_kelas.edit',$key->id)}}">Ubah</a>
-                     <form action="{{ url('wali_kelas/'.$key->id) }}" method="POST">
+                     <form action="{{ route('wali_kelas.destroy',$key->id)}}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" />
                         <button type="submit" class="btn btn-danger border-0 ms-2">Delete</button>
