@@ -202,7 +202,7 @@
            
 
             <button style="background-color: #39b1e0; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
-            <button type="reset" class="btn btn-danger mt-4">Reset</button>
+            <button type="reset" class="btn btn-danger border-0 mt-4">Reset</button>
          </form>
       </div>
    </div>
@@ -295,10 +295,14 @@
                                           Detail
                                        </button>
                                     </form>
-                                    <a href="#" class="flex m-0 p-0 items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
-                                       <i data-feather="edit" class="w-5"></i>
-                                       Edit
-                                    </a>
+                                    <form action="/editjawaban" method="post">
+                                       @csrf
+                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-cyan-500">
+                                          <input type="hidden" name="group" value="a">
+                                          <i data-feather="edit" class="w-5"></i>
+                                          Edit
+                                       </button>
+                                    </form>
                                  </div>
                               </div>
                            </p>
@@ -340,10 +344,14 @@
                                           Detail
                                        </button>
                                     </form>
-                                    <a href="#" class="flex m-0 p-0 items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
-                                       <i data-feather="edit" class="w-5"></i>
-                                       Edit
-                                    </a>
+                                    <form action="/editjawaban" method="post">
+                                       @csrf
+                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-cyan-500">
+                                          <input type="hidden" name="group" value="b">
+                                          <i data-feather="edit" class="w-5"></i>
+                                          Edit
+                                       </button>
+                                    </form>
                                  </div>
                               </div>
                            </p>

@@ -70,7 +70,7 @@ class jawabanController extends Controller
      */
     public function create()
     {
-        return view('jawaban.update');
+        //    
     }
 
     /**
@@ -116,7 +116,6 @@ class jawabanController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -140,5 +139,32 @@ class jawabanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function editKuisioner(Request $request)
+    {
+        $pertanyaans = pertanyaan::all();
+        $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
+        $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
+        $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
+
+        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
+
+        if ($request->group == "a") {
+            $jawabans = jawaban::where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
+        } elseif ($request->group == "b") {
+            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
+        } elseif ($request->group == 'c') {
+            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+        }
+
+        return view('jawaban.update', compact('pertanyaans', 'jawabans'), [
+            'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
+        ]);
+    }
+
+    public function updateKuisioner(Request $request)
+    {
+        return $request;
     }
 }
