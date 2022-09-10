@@ -15,17 +15,13 @@
                     <label for="formGroupExampleInput">Email</label>
                     <input type="email" class="form-control" id="LocID" name="email" required>
                 </div>
-            
-            
-                    <input type="hidden" class="form-control" id="ProdID" name="level" value="4" required>
-            
+                <input type="hidden" class="form-control" id="ProdID" name="level" value="4" required>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Password</label>
                     <input type="password" class="form-control" id="ProdID" name="password" required>
                 </div>
-
-                <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
-                <button type="reset" class="btn btn-danger mt-4">Reset</button>
+                <button style="background-color: #256D85; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
+                <button type="reset" class="btn btn-danger border-0 mt-4">Reset</button>
             </form>
         </div>
     </main>

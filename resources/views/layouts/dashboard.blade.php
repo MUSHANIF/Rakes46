@@ -245,7 +245,7 @@
             <ul>
                <li class="nav-item dropdown">
                   <a class="nav-link d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     <h5 class="name ">Selamat datang, {{ auth()->user()->name }}</h5>
+                     <h5 class="name ">Selamat Datang, {{ auth()->user()->name }}</h5>
                      <img src="{{ asset('assets/images/avatar-1.png') }}" class="foto" alt="Profil" />
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

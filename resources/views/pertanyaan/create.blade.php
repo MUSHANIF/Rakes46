@@ -21,13 +21,12 @@
                 </div>
                 <label for="formFile" class="form-label">Type</label>
                     <select class="form-select" aria-label="Default select example" name="type" required>
-                    <option value="1"> 1</option>
+                      <option value="1"> 1</option>
                       <option value="2">2</option>
                       <option value="3"> 3 </option>
                       <option value="4">4</option>
-          
                     </select>
-                <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Submit</button>
+                <button style="background-color: #256D85; border: unset" type="submit" class="btn btn-primary mt-4">Submit</button>
             </form>
         </div>
     </main>
