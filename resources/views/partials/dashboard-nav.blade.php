@@ -8,22 +8,22 @@
           <ul class="side-menu">
              @if(Auth::user()->level == 5)
              <li>
-                <a href="/dashboard" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+                <a href="/dashboard" class="{{ Request::is('dashboard*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
              </li>
              <li>
-                <a href="/pertanyaan"> <i class="bx bxs-dashboard icon"></i> Data pertanyaan </a>
+                <a href="/pertanyaan" class="{{ Request::is('pertanyaan*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Data pertanyaan </a>
              </li>
              @elseif(Auth::user()->level == 4)
              <li>
-                <a href="/dashboardkepala" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+                <a href="/dashboardkepala" class="{{ Request::is('dashboard*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
              </li>
              @elseif(Auth::user()->level == 3)
              <li>
-                <a href="/dashboardpuskesmas" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+                <a href="/dashboardpuskesmas" class="{{ Request::is('dashboard*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
              </li>
              @elseif(Auth::user()->level == 2 and $data->isNotEmpty())
              <li>
-                <a href="/dashboardwali" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+                <a href="/dashboardwali" class="{{ Request::is('dashboard*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
              </li>
              @elseif(Auth::user()->level == 1)
              <li>
@@ -33,7 +33,7 @@
 
              @if (Auth::user()->level != 1)
              <li>
-                <a href="#">
+                <a href="#" class="{{ Request::is('dashboard*', 'pertanyaan*') ? '' : 'active'}}">
                    <i class="bx bx-columns icon"></i>
                    List
                    <i class="bx bx-chevron-right icon-right"></i>

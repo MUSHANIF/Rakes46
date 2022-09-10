@@ -15,7 +15,11 @@
 @section("button")
 <div class="main-content">
     <main>
-        <div class="container"><a href="{{ route('pertanyaan.create') }}" class="d-none d-sm-inline-block btn btn-sm text-white shadow-sm" style="background-color: #256d85; margin-top: 100px"><i class="fas fa-download fa-sm text-white"></i>Tambah</a></div>
+        <div class="container">
+            <a href="{{ route('pertanyaan.create') }}" class="d-none d-sm-inline-block btn btn-sm text-white shadow-sm" style="background-color: #256d85;"><i class="fas fa-download fa-sm text-white"></i>
+               Tambah
+            </a>
+        </div>
     </main>
 </div>
 @endsection 

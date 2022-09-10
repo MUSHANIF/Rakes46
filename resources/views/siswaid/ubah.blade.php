@@ -10,11 +10,11 @@
                 <input type="hidden" name="_method" value="PATCH">
          
             <div class="form-group">
-                <label for="formGroupExampleInput">name</label>
+                <label for="formGroupExampleInput">Name</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" name="name" value="{{ $datas->name }}">
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput2">email</label>
+                <label for="formGroupExampleInput2">Email</label>
                 <input type="text" class="form-control" id="formGroupExampleInput2" name="email" value="{{ $datas->email }}">
             </div>
          

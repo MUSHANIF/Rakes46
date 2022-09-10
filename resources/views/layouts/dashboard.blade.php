@@ -295,7 +295,7 @@
 
       <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
       <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
-      <script src="/vendor/jquery/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
       <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
@@ -308,20 +308,44 @@
          @endforeach
          feather.replace({ "aria-hidden": "true" });
       </script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script>
-      function showbutton(){
-  
-       Swal.fire({
-        title: 'Info!',
-        text: "Fitur ini sedang dalam update kami!",
-        icon: 'info',
-       
-        confirmButtonColor: '#3085d6',
-     
-        confirmButtonText: 'Dimengerti'
-        })
-    }
+         function showbutton(){
+         Swal.fire({
+         title: 'Info!',
+         text: "Fitur ini sedang dalam update kami!",
+         icon: 'info',
+         
+         confirmButtonColor: '#3085d6',
+      
+         confirmButtonText: 'Dimengerti'
+         })
+      }
+      
+      $('.reset_data').click(function() {
+         var form =  $(this).closest("form");
+         Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, reset it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+               Swal.fire(
+                  'Deleted!',
+                  'The data has been deleted.',
+                  'success'
+               )
+               setTimeout(() => {
+                  form.submit()
+               }, 1000);
+            }
+            })
+      });
+
       </script>
    </body>
 </html>
