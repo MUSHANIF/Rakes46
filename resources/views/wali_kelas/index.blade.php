@@ -49,7 +49,7 @@
                         <button type="submit" class="btn btn-danger border-0 ms-2" >Reset data</button>
                      </form>
                      @else
-                     
+                     <a class="btn ml-2 border-0 btn-detail" onclick="showbutton()">Detail</a>
                      @endif
                   </td>
                </tr>
