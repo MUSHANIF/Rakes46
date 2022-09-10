@@ -64,17 +64,17 @@
             @csrf
             <div class="form-group">
                <label for="formGroupExampleInput">NIP</label>
-               <input type="number" class="form-control" id="StoreID" name="nip" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="10" />
+               <input type="number" class="form-control" id="StoreID" name="nip" placeholder="1345478434" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="10" />
             </div>
             <input type="hidden" class="form-control" id="LocID" name="userid" required value="{{ Auth::user()->id }}" />
 
             <div class="form-group">
                <label for="formGroupExampleInput">Nama</label>
-               <input type="text" class="form-control" id="LocID" name="nama_guru" required />
+               <input type="text" class="form-control" id="LocID" placeholder="Udin Bahrudin" name="nama_guru" required />
             </div>
             <div class="form-group">
                <label for="formGroupExampleInput">Tahun Ajaran</label>
-               <input type="number" class="form-control" id="ProdID" name="thn_ajaran" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="4" />
+               <input type="number" class="form-control" id="ProdID" name="thn_ajaran" placeholder="2022" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="4" />
             </div>
 
             <label for="formFile" class="form-label">Wali kelas</label>
@@ -137,7 +137,7 @@
             <tbody>
               <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                   <td data-label="Name">{{ $key->name }}</td>
-                  <td data-label="Cost">{{ $key->email }}</td>
+                  <td data-label="Email">{{ $key->email }}</td>
 
                   <td class="text-center justify-content-center align-self-center d-flex">
                      <a class="btn btn-detail border-0 ml-2" href="{{ route('siswakepala.show',$key->id)}}">Detail</a>
@@ -157,7 +157,7 @@
             <tbody>
               <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                   <td data-label="Name">{{ $key->name }}</td>
-                  <td data-label="Cost">{{ $key->email }}</td>
+                  <td data-label="Email">{{ $key->email }}</td>
 
                   <td class="text-center justify-content-center align-self-center d-flex">
                      <a class="btn btn-detail border-0 ml-2" href="{{ route('siswapuskesmas.show',$key->id)}}">Detail</a>
@@ -178,7 +178,7 @@
             <tbody>
               <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                   <td data-label="Name">{{ $key->name }}</td>
-                  <td data-label="Cost">{{ $key->email }}</td>
+                  <td data-label="Email">{{ $key->email }}</td>
 
                   <td class="text-center justify-content-center align-self-center d-flex">
                      <a class="btn btn-info text-light border-0" href="{{ route('siswa.edit',$key->id)}}">Ubah</a>

@@ -1,5 +1,5 @@
 @extends('layouts.dashboard') @section('search')
-<form action="{{ url('siswa') }}" method="GET" class="">
+<form action="{{ url('puskesmas') }}" method="GET" class="">
    @csrf
    <div class="input-group">
       <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}" />
@@ -29,7 +29,7 @@
             <tbody>
                <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                   <td data-label="Name">{{ $key->name }}</td>
-                  <td data-label="Cost">{{ $key->email }}</td>
+                  <td data-label="Email">{{ $key->email }}</td>
 
                   <td class="text-center justify-content-center align-self-center d-flex">
                      @can('superadmin')
@@ -40,7 +40,7 @@
                         <button type="submit" class="btn btn-danger border-0 ms-2">Delete</button>
                      </form>
                      @else
-                     <a class="btn ml-2 border-0 btn-detail" href="">Detail</a>
+                     <a class="btn ml-2 border-0 btn-detail" onclick="showbutton()">Detail</a>
                      @endcan
                   </td>
                </tr>

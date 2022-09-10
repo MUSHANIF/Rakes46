@@ -8,7 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Auth;
+Use Alert;
 class walikelasController extends Controller
 {
     /**
@@ -133,8 +134,10 @@ class walikelasController extends Controller
      */
     public function destroy($id)
     {
-        $kantin = User::findOrFail($id);
-        $kantin->delete();
+        
+        $kantin = kela::where('userID', $id)->get();
+        // $kantin->user()->delete();
+        $kantin->each->delete();
         toastr()->info('Berhasil di hapus!', 'Sukses');
         return redirect('/wali_kelas');
     }

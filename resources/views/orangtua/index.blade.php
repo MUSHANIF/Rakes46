@@ -43,7 +43,7 @@
                     
                   
                         <td data-label="Name">{{ $key->name }}</td>
-                        <td data-label="Cost">{{ $key->email }}</td>
+                        <td data-label="Email">{{ $key->email }}</td>
                     
                          <td class="text-center justify-content-center align-self-center d-flex">
                             

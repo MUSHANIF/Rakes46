@@ -21,7 +21,7 @@ class CreateWalisTable extends Migration
             $table->string('pekerjaan_wali');
             $table->string('alamat_wali');
             $table->timestamps();
-            $table->foreign('userID')->references('id')->on('users');
+            $table->foreign('userID')->references('id')->on('users') ->onDelete('cascade');
         });
     }
 

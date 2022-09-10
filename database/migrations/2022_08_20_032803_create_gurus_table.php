@@ -24,8 +24,8 @@ class CreateGurusTable extends Migration
             $table->enum('jns_kelamin', ['P', 'L']);
             $table->timestamps();
             
-            $table->foreign('kelasID')->references('id')->on('kelas');
-            $table->foreign('userID')->references('id')->on('users');
+            $table->foreign('kelasID')->references('id')->on('kelas') ->onDelete('cascade');
+            $table->foreign('userID')->references('id')->on('users') ->onDelete('cascade');
            
         });
     }

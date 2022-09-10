@@ -19,7 +19,7 @@ class CreatePilihansTable extends Migration
             $table->string('pilihan');
             $table->timestamps();
 
-            $table->foreign('id_pertanyaan')->references('id')->on('pertanyaans');
+            $table->foreign('id_pertanyaan')->references('id')->on('pertanyaans') ->onDelete('cascade');
         });
     }
 

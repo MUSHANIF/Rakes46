@@ -25,7 +25,7 @@ class CreateOrtusTable extends Migration
             $table->string('pekerjaan_ibu');
             $table->string('alamat_ibu');
             $table->timestamps();
-            $table->foreign('userID')->references('id')->on('users');
+            $table->foreign('userID')->references('id')->on('users') ->onDelete('cascade');
 
             
         });

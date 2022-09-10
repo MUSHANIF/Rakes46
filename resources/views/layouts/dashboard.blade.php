@@ -51,13 +51,13 @@
 
          input::-webkit-outer-spin-button,
          input::-webkit-inner-spin-button {
-            /* display: none; <- Crashes Chrome on hover */
+           
             -webkit-appearance: none;
-            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+            margin: 0; 
          }
 
          input[type="number"] {
-            -moz-appearance: textfield; /* Firefox */
+            -moz-appearance: textfield; 
          }
 
          .table {
@@ -229,6 +229,7 @@
    </head>
 
    <body id="page-top">
+      @include('sweetalert::alert')
       <div class="topbar transition">
          <div class="bars">
             <button type="button" class="btn1 transition" id="sidebar-toggle">
@@ -240,8 +241,8 @@
             <ul>
                <li class="nav-item dropdown">
                   <a class="nav-link d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     <h5 class="text-dark ">{{ auth()->user()->name }}</h5>
-                     <img src="{{ asset('assets/images/avatar-1.png') }}" alt="Profil" />
+                     <h5 class="name ">Selamat datang, {{ auth()->user()->name }}</h5>
+                     <img src="{{ asset('assets/images/avatar-1.png') }}" class="foto" alt="Profil" />
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                      <a class="dropdown-item hover:!text-[#081A51] text-white" href="/"><i class="bi bi-arrow-90deg-left"></i> <span>Kembali ke Home</span></a>
@@ -262,12 +263,15 @@
 
       @include('partials.dashboard-nav')
       <div class="sidebar-overlay"></div>
-      <!--Content Start-->
       <div class="content-start transition">
+         @if (Auth::user()->level == '5')
+         <div class="button">
+            @yield('button')
+         </div> 
+         @endif
+              
          <div class="container-fluid dashboard">@yield('isi')</div>
       </div>
-
-      <!-- Footer -->
       <footer>
          <div class="footer">
             <div class="float-start">
@@ -275,7 +279,7 @@
             </div>
             <div class="float-end">
                <p>
-                  Crafted with
+                  Created with
                   <span class="text-danger">
                      <i class="fa fa-heart"></i> by
                      <a href="" class="author-footer">Rakes46</a>
@@ -299,6 +303,21 @@
              Notipin.Alert({msg: " {{ $error }} "});
          @endforeach
          feather.replace({ "aria-hidden": "true" });
+      </script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+      function showbutton(){
+  
+       Swal.fire({
+        title: 'Info!',
+        text: "Fitur ini sedang dalam update kami!",
+        icon: 'info',
+       
+        confirmButtonColor: '#3085d6',
+     
+        confirmButtonText: 'Dimengerti'
+        })
+    }
       </script>
    </body>
 </html>
