@@ -814,6 +814,9 @@ select {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.m-1 {
+  margin: 0.25rem;
+}
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -1664,6 +1667,16 @@ select {
   color: rgb(226 232 240 / var(--tw-text-opacity));
 }
 .text-blue-400 {
+
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity));
+}
+.text-slate-100 {
+  --tw-text-opacity: 1;
+  color: rgb(241 245 249 / var(--tw-text-opacity));
+}
+.text-slate-800 {
+
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity));
 }

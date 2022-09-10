@@ -28,7 +28,7 @@
       <link rel="icon" href="{{ asset('img/favicon.svg')}}" />
       <link href="/assets/css/style.css" rel="stylesheet" />
       
-      <link href="/css/tailwind.output.css" rel="stylesheet" />
+      {{-- <link href="/css/tailwind.output.css" rel="stylesheet" /> --}}
      
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
       <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
@@ -51,7 +51,7 @@
 
          input::-webkit-outer-spin-button,
          input::-webkit-inner-spin-button {
-           
+
             -webkit-appearance: none;
             margin: 0; 
          }
@@ -223,6 +223,10 @@
          .btn-detail:hover {
             opacity: .9;
             color: white;
+         }
+
+         .next-jawaban:hover {
+            color: #035edd !important;
          }
       </style>
       <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>

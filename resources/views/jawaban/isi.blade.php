@@ -43,6 +43,9 @@
                @endforeach
             </div>
          </div>
+         {{-- <div class="text-center my-2">
+            <a href="/kuisioner" class="text-dark next-jawaban fs-5">&laquo; Next Jawaban &raquo;</a>
+         </div> --}}
       </div>
    </main>
 </div>

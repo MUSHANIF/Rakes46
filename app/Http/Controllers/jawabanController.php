@@ -165,6 +165,19 @@ class jawabanController extends Controller
 
     public function updateKuisioner(Request $request)
     {
-        return $request;
+        // $jawaban = jawaban::where('userID', auth()->user()->id)->firstWhere('pertanyaanID', $request->pertanyaanID[1]);
+        // return $jawaban;
+
+        $jumlahPertanyaan = $request["jumlahPertanyaan"];
+
+        for ($i = 1; $i <= $jumlahPertanyaan; $i++) {
+            $model = jawaban::where('userID', auth()->user()->id)->firstWhere('pertanyaanID', $request->pertanyaanID[$i]);
+            $model->userID = $request->userID;
+            $model->pertanyaanID = $request->pertanyaanID[$i];
+            $model->jawaban = $request->jawaban[$i];
+            $model->save();
+        }
+
+        return redirect('/isijawaban');
     }
 }

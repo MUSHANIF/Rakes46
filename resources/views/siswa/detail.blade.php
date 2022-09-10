@@ -64,24 +64,6 @@
             </h2>
             <hr style="color: #4497b8" />
          </div>
-         <div class="card-subtitle">
-            <div class="row">
-               <div class="col-12 ps-4 ms-4 mt-3">
-                  @if ($jawabans->count() > 10)
-                  <h3 class="text-dark">Semua Group</h3> 
-                  @endif
-                  @if ($jawabans[0]->pertanyaan->group == "a" && $jawabans->count() <= $groupA)
-                  <h3 class="text-dark">Group A</h3> 
-                  @endif
-                  @if ($jawabans[0]->pertanyaan->group == "b")
-                  <h3 class="text-dark">Group B</h3> 
-                  @endif
-                  @if ($jawabans[0]->pertanyaan->group == "c")
-                  <h3 class="text-dark">Group C</h3> 
-                  @endif
-               </div>
-            </div>
-         </div>
          <div class="body-card mb-3">
             <div class="container ms-4 text-dark">
                @foreach ($jawabans as $jawaban)
