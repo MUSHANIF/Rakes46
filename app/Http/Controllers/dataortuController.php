@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
 use App\Models\ortu;
 use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class dataortuController extends Controller
@@ -23,14 +23,9 @@ class dataortuController extends Controller
         $siswa = DB::table('siswas')->get();
         // $data =  DB::table('siswas')->where('siswas.userID' , Auth::user()->id)->get();
         $data =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->get();
-        return view(
-            'biodata_ortu.index',
-            compact('datas', 'data', 'siswa'),
-            [
-                "title" => "Data Orang Tua"
-            ]
-
-        );
+        return view('biodata_ortu.index', compact('datas', 'data', 'siswa'), [
+            "title" => "Data Orang Tua"
+        ]);
     }
 
     /**
@@ -53,7 +48,7 @@ class dataortuController extends Controller
     {
         $data = $request->all();
         $model = new ortu;
-       
+
         $model->userID = $request->userID;
         $model->nama_ayah = $request->nama_ayah;
         $model->tmplahir_ayah = $request->tmplahir_ayah;
@@ -65,22 +60,18 @@ class dataortuController extends Controller
         $model->alamat_ibu = $request->alamat_ibu;
 
 
-        $validasi = Validator::make($data,[
-           
-           
-            'nama_ayah' => 'required|max:25',
-            'tmplahir_ayah' => 'required|max:10',
-            'pekerjaan_ayah' => 'required|max:20',
-            'alamat_ayah' => 'required|max:20',
-            'nama_ibu' => 'required|max:15',
-            'tmplahir_ibu' => 'required|max:10',
-            'pekerjaan_ibu' => 'required|max:15',
-            'alamat_ibu' => 'required|max:20',
-
-
+        $validasi = Validator::make($data, [
+            'nama_ayah' => 'required|max:50',
+            'tmplahir_ayah' => 'required|max:225',
+            'pekerjaan_ayah' => 'required|max:100',
+            'alamat_ayah' => 'required|max:225',
+            'nama_ibu' => 'required|max:50',
+            'tmplahir_ibu' => 'required|max:225',
+            'pekerjaan_ibu' => 'required|max:100',
+            'alamat_ibu' => 'required|max:225',
         ]);
-        if($validasi->fails())
-        {
+
+        if ($validasi->fails()) {
             return redirect()->route('siswaid.index')->withInput()->withErrors($validasi);
         }
 

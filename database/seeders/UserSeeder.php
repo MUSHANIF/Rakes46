@@ -24,6 +24,30 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
+            'name' => 'Darmin Pradana',
+            'email' => 'darmin@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'level' => 4
+        ]);
+
+        User::create([
+            'name' => 'Puskesmas',
+            'email' => 'puskesmas@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'level' => 3
+        ]);
+
+        User::create([
+            'name' => 'Anastasia Susanti',
+            'email' => 'anassusanti@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'level' => 2
+        ]);
+
+        User::create([
             'name' => 'Angel Callista',
             'email' => 'angel@gmail.com',
             'email_verified_at' => now(),
@@ -47,6 +71,6 @@ class UserSeeder extends Seeder
             'level' => 1
         ]);
 
-        User::factory()->count(5)->create();
+        User::factory()->count(3)->create();
     }
 }

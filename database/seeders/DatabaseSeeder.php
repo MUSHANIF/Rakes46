@@ -24,15 +24,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         ortu::create([
-            'userID' => 2,
-            'nama_ayah' => 'abidun',
-            'tmplahir_ayah' => 'bekasi',
-            'pekerjaan_ayah' => 'wirausaha',
-            'alamat_ayah' => 'jl bekasi raya',
-            'nama_ibu' => 'siti halimah',
-            'tmplahir_ibu' => 'kebumen',
-            'pekerjaan_ibu' => 'ibu rumah tangga',
-            'alamat_ibu' => 'jl bekasi raya'
+            'userID' => 5,
+            'nama_ayah' => 'Abidun',
+            'tmplahir_ayah' => 'Bekasi',
+            'pekerjaan_ayah' => 'Wirausaha',
+            'alamat_ayah' => 'Jl. Bekasi Raya',
+            'nama_ibu' => 'Siti Halimah',
+            'tmplahir_ibu' => 'Kebumen',
+            'pekerjaan_ibu' => 'Ibu Rumah Tangga',
+            'alamat_ibu' => 'Jl. Bekasi Raya'
         ]);
     }
 }

@@ -15,9 +15,9 @@ class KelasSeeder extends Seeder
     public function run()
     {
         kela::create([
-            'userID' => 5,
+            'userID' => 4,
             'nip' => 4561261,
-            'nama_guru' => 'Guru',
+            'nama_guru' => 'Anastasia Susanti',
             'thn_ajaran' => '2022',
             'kelas' => '12',
             'jurusan' => 'RPL',
