@@ -68,6 +68,7 @@ Route::group(['middleware' => ['revalidate']], function () {
         Route::post('/isijawaban', [siswaController::class, 'tampilkan']);
         Route::resource('dataorangtua', dataortuController::class);
     });
+
     Auth::routes();
 });
 

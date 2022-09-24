@@ -62,7 +62,7 @@
                   </div>
                   <div class="col-md-6 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Nama Lengkap</label>
-                     <input type="text" class="form-control" id="ProdID"  value="{{ old('nama_lengkap') }}" name="nama_lengkap" required placeholder="Siti Halimah Putri">
+                     <input readonly type="text" class="form-control" id="ProdID"  value="{{ old('nama_lengkap', auth()->user()->name) }}" name="nama_lengkap" required placeholder="Siti Halimah Putri">
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Nama Panggilan</label>
@@ -95,7 +95,13 @@
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Gol Darah</label>
-                     <input type="text" class="form-control" id="ProdID"  value="{{ old('gol_darah') }}" name="gol_darah" required placeholder="B">
+                     <select name="gol_darah" class="form-select" id="prodID">
+                        <option {{ old('gol_darah') == "A" ? 'selected' : '' }} value="A">A</option>
+                        <option  {{ old('gol_darah') == "AB" ? 'selected' : '' }}  value="AB">AB</option>
+                        <option  {{ old('gol_darah') == "B" ? 'selected' : '' }}  value="B">B</option>
+                        <option  {{ old('gol_darah') == "O" ? 'selected' : '' }}  value="O">O</option>
+                        <option  {{ old('gol_darah') == "Belum Diketahui" ? 'selected' : '' }}  value="Belum Diketahui">Belum Diketahui</option>
+                     </select>
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Anak Ke</label>
@@ -104,8 +110,8 @@
                  <div class="col-md-4 mb-3">
                      <label for="formFile" class="mb-2">Tinggal Bersama</label>
                      <select class="form-select" aria-label="Default select example"  value="{{ old('tggl_bersama') }}" name="tggl_bersama" required>
-                         <option value="Orang Tua">Orang Tua</option>
-                         <option value="Wali">Wali</option>
+                         <option {{ old('tggl_bersama') == "Orang Tua" ? 'selected' : '' }} value="Orang Tua">Orang Tua</option>
+                         <option {{ old('tggl_bersama') == "Wali" ? 'selected' : '' }} value="Wali">Wali</option>
                      </select>
                  </div>
                  <div class="col-md-4 mb-3">
@@ -120,25 +126,25 @@
                  </div>
                  <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Email</label>
-                     <input type="email" class="form-control" id="ProdID" name="email"  value="{{ old('email') }}" required placeholder="siti@gmail.com">
+                     <input readonly type="email" class="form-control" id="ProdID" name="email"  value="{{ old('email', auth()->user()->email) }}" required placeholder="siti@gmail.com">
                   </div>
                   <div class="col-12 mb-3">
                      <label for="formFile" class="mb-2">Disabilitas</label>
                      <select class="form-select" aria-label="Default select example"  value="{{ old('disabilitas') }}" name="disabilitas" required>        
-                             <option value="Tidak">Tidak</option>
-                             <option value="ADHD">ADHD</option>
-                             <option value="Autisme">Autisme</option>
-                             <option value="Daksa">Daksa</option>
-                             <option value="Ganda">Ganda</option>
-                             <option value="Grahita">Grahita</option>
-                             <option value="Netra">Netra</option>
-                             <option value="Rungu">Rungu</option>
-                             <option value="Rungu Wicara" >Rungu Wicara</option>    
+                             <option {{ old('disabilitas') == "Tidak" ? 'selected' : '' }} value="Tidak">Tidak</option>
+                             <option {{ old('disabilitas') == "ADHD" ? 'selected' : '' }} value="ADHD">ADHD</option>
+                             <option {{ old('disabilitas') == "Autisme" ? 'selected' : '' }} value="Autisme">Autisme</option>
+                             <option {{ old('disabilitas') == "Daksa" ? 'selected' : '' }} value="Daksa">Daksa</option>
+                             <option {{ old('disabilitas') == "Ganda" ? 'selected' : '' }} value="Ganda">Ganda</option>
+                             <option {{ old('disabilitas') == "Grahita" ? 'selected' : '' }} value="Grahita">Grahita</option>
+                             <option {{ old('disabilitas') == "Netra" ? 'selected' : '' }} value="Netra">Netra</option>
+                             <option {{ old('disabilitas') == "Rungu" ? 'selected' : '' }} value="Rungu">Rungu</option>
+                             <option {{ old('disabilitas') == "Rungu Wicara" ? 'selected' : '' }} value="Rungu Wicara" >Rungu Wicara</option>    
                      </select>
                   </div>
 
                   <button style="background-color: #39b1e0; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
-                  <button type="reset" class="btn btn-danger mt-4">Reset</button>
+                  <button type="reset" class="btn btn-danger border-0 mt-4">Reset</button>
                </form>
             </div>
          </div>
@@ -232,7 +238,8 @@
                                </div>
                                <div class="grid grid-cols-2">
                                  <h5>Tanggal Lahir </h5>
-                                 <h5>: {{ $ite->tgl_lahir}}</h5>
+                                 {{-- <h5>: {{ $ite->tgl_lahir}}</h5> --}}
+                                 <h5>: {{ date('d F Y', strtotime($ite->tgl_lahir))}}</h5>
                                </div>
                                <div class="grid grid-cols-2">
                                  <h5>Jenis Kelamin </h5>
