@@ -28,7 +28,7 @@ class CreateSiswasTable extends Migration
             $table->string('anak_ke');
             $table->enum('tggl_bersama', ['Orang Tua', 'Wali']);
             $table->string('alamat');
-            $table->char('no_telp', 12);
+            $table->char('no_telp', 13);
             $table->string('email')->unique();
             $table->enum('disabilitas', ['Tidak', 'Netra', 'Rungu', 'Rungu Wicara', 'Grahita', 'Daksa', 'Autisme', 'Ganda', 'ADHD']);
             $table->timestamps();

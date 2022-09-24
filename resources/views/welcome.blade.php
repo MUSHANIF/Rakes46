@@ -40,8 +40,7 @@
                   </div>
                   <div class="collapse" id="collapseExample">
                      <p class="max-w-xl text-[13px] sm:text-sm md:-mt-1 font-poppins text-slate-700">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ipsa distinctio vel.cumque molestias natus nisi nobis corporis officiis a quo. Dicta maiores vel excepturi suscipit saepe nemo odit recusandae ex.
-                        Reprehenderit.
+                        Rakes 46 adalah catatan kesehatan yang berisi lembar catatan kesehatan peserta didik di SMKN 46 JAKARTA dari hasil pelayanan kesehatan di sekolah, puskesmas/fasilitas kesehatan, yang diperlukan dalam memantau tumbuh kembang dan kesehatan peserta didik
                      </p>
                   </div>
                   <button
@@ -65,11 +64,9 @@
             <div class="items-center justify-center md:flex gap-x-16">
                <div class="flex flex-col max-w-lg md:w-1/2 text-start gap-y-2 md:order-2">
                   <h2 class="text-base lg:text-lg font-bold text-blue-700/90">About Us</h2>
-                  <h1 class="text-xl font-bold text-indigo-800 lg:text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                  <h1 class="text-xl font-bold text-indigo-800 lg:text-2xl">What, Why, and Who?</h1>
                   <p class="text-sm lg:text-base text-justify">
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod distinctio saepe consequatur et commodi, nam ducimus tempore quae unde deserunt sed, architecto, quasi itaque perspiciatis cum earum excepturi tenetur aspernatur
-                     omnis? Tempore voluptatibus nihil ducimus officiis quidem aspernatur alias vero facilis commodi sapiente maiores deleniti, dignissimos distinctio minima temporibus veritatis. Ad tenetur esse voluptatem expedita neque iure animi
-                     unde accusantium saepe explicabo obcaecati molestias illo, repudiandae nostrum. Hic pariatur aut, voluptatibus eligendi ipsa iure delectus harum, cumque, porro excepturi molestias.
+                     Rakes 46 merupakan sebuah website inovasi siswa siswa SMKN 46 Jakarta, yang mana website ini merupakan sebuah inovasi terbaru "paperless" dari Rapor Kesehatan. Di dalam bidang pendidikan, kesehatan tubuh merupakan salah satu hal yang sangat penting, terutama bagi para pelajar dalam menunjang pendidikan di sekolah. Dengan dibuatnya Rakes 46 ini, kami ingin menerapkan gaya hidup ramah lingkungan dengan memodernisasikan rapot kesehatan ini menjadi media elektronik yang mana tidak lagi menggunakan kertas yang nantinya akan dibukukan. Yang dimana nantinya kmai pihak sekolah dan juga orang tua dari siswa/i dapat memantau kesehatan murid/anaknya dengan mudah.
                   </p>
                </div>
                <div class="max-w-lg md:w-1/2 scale-125 lg:scale-100 text-end mt-14 sm:scale-110 sm:mt-0">@include('svg.svg2')</div>

@@ -24,7 +24,7 @@
                     <option value="2">Wali kelas </option>
                     <option value="1">Siswa</option>
                 </select>
-                <button style="background-color: #FF9106; border: unset" type="submit" class="btn btn-primary mt-4">Ubah</button>
+                <button style="background-color: #256D85; border: unset" type="submit" class="btn btn-primary mt-4">Ubah</button>
             </form>
         </div>
     </main>
