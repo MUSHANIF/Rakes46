@@ -95,13 +95,14 @@
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Gol Darah</label>
-                     <select name="gol_darah" class="form-select" id="prodID">
+                     <input type="text" class="form-control" id="ProdID"  value="{{ old('gol_darah') }}" name="gol_darah" required placeholder="B">
+                     {{-- <select name="gol_darah" class="form-select" id="prodID">
                         <option {{ old('gol_darah') == "A" ? 'selected' : '' }} value="A">A</option>
                         <option  {{ old('gol_darah') == "AB" ? 'selected' : '' }}  value="AB">AB</option>
                         <option  {{ old('gol_darah') == "B" ? 'selected' : '' }}  value="B">B</option>
                         <option  {{ old('gol_darah') == "O" ? 'selected' : '' }}  value="O">O</option>
                         <option  {{ old('gol_darah') == "Belum Diketahui" ? 'selected' : '' }}  value="Belum Diketahui">Belum Diketahui</option>
-                     </select>
+                     </select> --}}
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Anak Ke</label>
@@ -223,7 +224,7 @@
                <h2 class="m-3 font-semibold text-center text-gray-700 dark:text-gray-200">Detail Informasi Anda</h2>
 
                <div class="mb-8">
-                  <div class="flex gap-x-6">
+                  <div class="md:flex gap-x-6 ">
                      @foreach($siswa as $ite)
                         <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
                             <h4 class="text-gray-700">Profil Anda:</h4>
@@ -238,8 +239,8 @@
                                </div>
                                <div class="grid grid-cols-2">
                                  <h5>Tanggal Lahir </h5>
-                                 {{-- <h5>: {{ $ite->tgl_lahir}}</h5> --}}
-                                 <h5>: {{ date('d F Y', strtotime($ite->tgl_lahir))}}</h5>
+                                 <h5>: {{ $ite->tgl_lahir}}</h5>
+                                 {{-- <h5>: {{ date('d F Y', strtotime($ite->tgl_lahir))}}</h5> --}}
                                </div>
                                <div class="grid grid-cols-2">
                                  <h5>Jenis Kelamin </h5>

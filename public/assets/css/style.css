@@ -26,7 +26,7 @@ a {
     text-decoration: none;
     color: #3b82f6;
 }
-.nav-link .name{
+.nav-link .name {
     margin-right: 10px;
     color: black;
 }
@@ -182,9 +182,8 @@ p {
     padding: 10px 15px;
 }
 
-.topbar .menu ul li img {
+.topbar .menu ul li .foto {
     width: 50px;
-    height: 50px;
     margin-top: -8px;
     border: 2px solid #d9dadb;
     border-radius: 100px;
@@ -570,7 +569,6 @@ a {
     color: #fff;
 }
 
-
 .content-start {
     padding-top: 50px;
     padding-left: 0;
@@ -582,7 +580,7 @@ a {
     background-color: #ebf3ff;
     border-radius: 30px;
 }
-.content-start .button{
+.content-start .button {
     float: right;
     display: flex;
     margin-right: 45px;
@@ -636,13 +634,15 @@ footer .author-footer {
 }
 
 @media (max-width: 480px) {
-   .menu .name{
-       display: none !important;
-    }
     .dropdown-list .dropdown-list-content {
         width: 230px;
     }
-    .content-start .button{
+
+    .input-group {
+        width: 40% !important;
+    }
+
+    .content-start .button {
         float: right;
         display: flex;
         margin-right: 25px;

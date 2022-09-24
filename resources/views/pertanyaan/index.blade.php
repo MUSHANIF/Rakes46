@@ -3,7 +3,7 @@
    @csrf
    <div class="input-group">
       <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}" />
-      <div class="input-group-append">
+      <div class="input-group-append d-none d-md-inline-block">
          <button class="btn" style="background-color: #256d85" type="submit">
             <i class="fas fa-search fa-sm text-white"></i>
          </button>

@@ -19,7 +19,7 @@ class KelasSeeder extends Seeder
             'nip' => 4561261,
             'nama_guru' => 'Anastasia Susanti',
             'thn_ajaran' => '2022',
-            'kelas' => '12',
+            'kelas' => '10',
             'jurusan' => 'RPL',
         ]);
     }
