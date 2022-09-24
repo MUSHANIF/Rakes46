@@ -2,7 +2,7 @@
     <div class="sidebar-content">
        <div id="sidebar">
           <div class="logo">
-             <h2 class="mb-0"><i class="bi bi-heart-pulse-fill"></i></h2>
+             <h2 class="mb-0"><img src="{{ asset('assets/images/logo.png') }}" style="width: 50px; margin-top: 15px;" alt=""></h2>
           </div>
  
           <ul class="side-menu">

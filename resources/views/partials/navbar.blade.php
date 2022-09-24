@@ -8,7 +8,7 @@
            /> --}}
            <span
                class="self-center text-xl font-semibold md:text-2xl font-poppins whitespace-nowrap dark:text-white"
-               >Rakes46</span
+               ><img src="{{  asset('assets/images/logo.png')  }}" alt="" style="width: 50px"></span
            >
        </a>
 
