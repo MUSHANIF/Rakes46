@@ -113,8 +113,8 @@
                      <input type="text" class="form-control" id="ProdID" name="alamat"  value="{{ old('alamat') }}" required placeholder="Jl. Kemuning Raya No 29 Rt/Rw 01/08">
                   </div>
                   <div class="col-md-4 mb-3">
-                     <label for="formGroupExampleInput">No telepon</label>
-                     <input type="number" class="form-control" id="ProdID" name="no_telp"  value="{{ old('no_telp') }}" required placeholder="0895617036426" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                     <label for="formGroupExampleInput" class="mb-2">No telepon</label>
+                     <input  type="number" class="form-control" id="ProdID" name="no_telp"  value="{{ old('no_telp') }}" required placeholder="0895617036426" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                      type="number"
                      maxlength="13">
                  </div>

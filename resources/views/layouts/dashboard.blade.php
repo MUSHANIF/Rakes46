@@ -237,6 +237,7 @@
       <div class="topbar transition">
          <div class="bars">
             <button type="button" class="btn1 transition" id="sidebar-toggle">
+               
                <i class="fa fa-bars"></i>
             </button>
          </div>
