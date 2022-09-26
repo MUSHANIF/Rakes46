@@ -1,11 +1,11 @@
 <nav id="navbar" class="bg-transparent px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-[101] top-0 left-0 border-b md:border-none border-gray-200 dark:border-gray-600 transition-all duration-700">
    <div class="container flex flex-wrap justify-between mx-auto">
        <a href="/" class="flex items-center">
-           <img
-               src="{{ asset('assets/images/loggorakes.png') }}"
+           {{-- <img
+               src="https://flowbite.com/docs/images/logo.svg"
                class="h-6 mr-3 sm:h-9"
-               alt="Logo Rakes"
-           /> 
+               alt="Flowbite Logo"
+           /> --}}
            <span
                class="self-center text-xl font-semibold md:text-2xl font-poppins whitespace-nowrap dark:text-white"
                ><img src="{{  asset('assets/images/logo.png')  }}" alt="" style="width: 50px"></span
