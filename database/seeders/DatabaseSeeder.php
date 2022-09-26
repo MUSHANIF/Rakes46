@@ -19,20 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             KelasSeeder::class,
-            SiswaSeeder::class,
             PertanyaanSeeder::class,
-        ]);
-
-        ortu::create([
-            'userID' => 5,
-            'nama_ayah' => 'Abidun',
-            'tmplahir_ayah' => 'Bekasi',
-            'pekerjaan_ayah' => 'Wirausaha',
-            'alamat_ayah' => 'Jl. Bekasi Raya',
-            'nama_ibu' => 'Siti Halimah',
-            'tmplahir_ibu' => 'Kebumen',
-            'pekerjaan_ibu' => 'Ibu Rumah Tangga',
-            'alamat_ibu' => 'Jl. Bekasi Raya'
         ]);
     }
 }

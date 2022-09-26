@@ -33,7 +33,7 @@ class CreateSiswasTable extends Migration
             $table->enum('disabilitas', ['Tidak', 'Netra', 'Rungu', 'Rungu Wicara', 'Grahita', 'Daksa', 'Autisme', 'Ganda', 'ADHD']);
             $table->timestamps();
             $table->foreign('kelasID')->references('id')->on('kelas')->onDelete('cascade');
-            $table->foreign('userID')->references('id')->on('users') ->onDelete('cascade');
+            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

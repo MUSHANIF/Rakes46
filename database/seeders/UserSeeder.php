@@ -16,16 +16,16 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'name' => 'Super Admin',
+            'email' => 'superadmin@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'level' => 5
         ]);
 
         User::create([
-            'name' => 'Darmin Pradana',
-            'email' => 'darmin@gmail.com',
+            'name' => 'Kepala Sekolah',
+            'email' => 'kepalasekolah@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'level' => 4
@@ -40,37 +40,51 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Anastasia Susanti',
-            'email' => 'anassusanti@gmail.com',
+            'name' => 'guru10rpl',
+            'email' => '10rpl@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'level' => 2
         ]);
 
         User::create([
-            'name' => 'Angel Callista',
-            'email' => 'angel@gmail.com',
+            'name' => 'guru11rpl',
+            'email' => '11rpl@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'level' => 1
+            'level' => 2
         ]);
 
         User::create([
-            'name' => 'Musthafa Hanif',
-            'email' => 'musthafa@gmail.com',
+            'name' => 'guru12rpl',
+            'email' => '12rpl@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'level' => 1
+            'level' => 2
         ]);
 
         User::create([
-            'name' => 'Khairul Akmal',
-            'email' => 'akmal@gmail.com',
+            'name' => 'guru10dkv',
+            'email' => '10dkv@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'level' => 1
+            'level' => 2
         ]);
 
-        User::factory()->count(3)->create();
+        User::create([
+            'name' => 'guru11dkv',
+            'email' => '11dkv@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'level' => 2
+        ]);
+
+        User::create([
+            'name' => 'guru12dkv',
+            'email' => '12dkv@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'level' => 2
+        ]);
     }
 }

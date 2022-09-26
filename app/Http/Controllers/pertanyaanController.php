@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\pertanyaan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 class pertanyaanController extends Controller
 {
     /**
@@ -16,13 +16,8 @@ class pertanyaanController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('pertanyaans')->where('pertanyaan','like',"%".$cari."%")->get();
-       
-        return view('pertanyaan.index', compact('datas'), 
-        [
-            "title" => "List Pertanyaan"
-        ]
-    );
+        $pertanyaans = pertanyaan::where('pertanyaan', 'like', "%" . $cari . "%")->get();
+        return view('pertanyaan.index', compact('pertanyaans'));
     }
 
     /**
@@ -43,16 +38,16 @@ class pertanyaanController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $model = new pertanyaan;
 
         $model->type = $request->type;
         $model->group = $request->group;
         $model->no = $request->no;
         $model->pertanyaan = $request->pertanyaan;
-      
-       
-        
+
+
+
         $model->save();
         toastr()->success('Berhasil di buat!', 'Sukses');
         return redirect('pertanyaan');
@@ -91,7 +86,7 @@ class pertanyaanController extends Controller
     public function update(Request $request, $id)
     {
         $model = pertanyaan::find($id);
-      
+
         $model->type = $request->type;
         $model->group = $request->group;
         $model->no = $request->no;

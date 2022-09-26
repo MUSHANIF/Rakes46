@@ -76,14 +76,13 @@ class siswaController extends Controller
             'nama_panggilan' => 'required|max:8',
             'tmp_lahir' => 'required|max:10',
             'jns_kelamin' => 'required',
-            'gol_darah' => 'required|max:2',
+            'gol_darah' => 'required',
             'anak_ke' => 'required|max:2',
             'tggl_bersama' => 'required',
             'alamat' => 'required|max:30',
             'no_telp' => 'required|max:13',
             'email' => 'required|max:40',
             'disabilitas' => 'required',
-
         ]);
 
         if ($validasi->fails()) {
