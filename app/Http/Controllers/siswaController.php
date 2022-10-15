@@ -20,13 +20,13 @@ class siswaController extends Controller
     public function index()
     {
         $kelas =  DB::table('kelas')->get();
-        $siswa =  DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get();
-        $ortu =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->get();
+        $siswa =  siswa::where('userID',  Auth::user()->id)->first();
+        $ortu =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->first();
         $pertanyaans = pertanyaan::all();
         $jawabans = collect(jawaban::where('userID', auth()->user()->id)->get());
+        // return $ortu;
         return view('siswaid.index', compact('siswa', 'ortu', 'kelas', 'jawabans', 'pertanyaans'), [
             "title" => "List Siswa",
-            'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
         ]);
     }
 
@@ -68,9 +68,9 @@ class siswaController extends Controller
         $model->disabilitas = $request->disabilitas;
 
         $validasi = Validator::make($data, [
-            'nisn' => 'required|min:10|unique:siswas',
-            'email' => 'required|max:255|unique:siswas',
-            'nis' => 'required|min:5|unique:siswas',
+            'nisn' => 'required|min:10|unique:siswas,nisn',
+            'email' => 'required|max:255|unique:siswas,email',
+            'nis' => 'required|min:5|unique:siswas,nis',
             'nama_lengkap' => 'required|max:25',
             'kelasID' => 'required',
             'nama_panggilan' => 'required|max:8',
@@ -140,25 +140,29 @@ class siswaController extends Controller
         //
     }
 
-    public function tampilkan(Request $request)
+    public function tampilkan()
     {
-        $pertanyaans = pertanyaan::all();
-        $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
-        $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
-        $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
-
-        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
-
-        if ($request->group == "a") {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
-        } elseif ($request->group == "b") {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
-        } elseif ($request->group == 'c') {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+        if (empty(auth()->user()->jawaban)) {
+            return back();
         }
 
-        return view('jawaban.isi', compact('jawabans'), [
-            'groupA' => $jumlahGroupA
-        ]);
+        $jawabanUser = jawaban::where('userID', auth()->user()->id);
+
+        $jawabans = $jawabanUser->get();
+
+        return view('jawaban.isi', compact('jawabans'));
+    }
+
+    public function tampilkanPerGroup(pertanyaan $pertanyaan)
+    {
+        if (empty(auth()->user()->jawaban)) {
+            return back();
+        }
+
+        $jawabanUser = jawaban::where('userID', auth()->user()->id)->whereRelation('pertanyaan', 'group', "$pertanyaan->group");
+
+        $jawabans = $jawabanUser->get();
+
+        return view('jawaban.isi', compact('jawabans'));
     }
 }

@@ -34,7 +34,7 @@
 
 <div class="main-content">
    <main>
-      @if ($siswa->isEmpty())
+      @if (empty($siswa))
       <div class="card">
          <div class="card-title pt-4">
             <h2 class="text-center text-dark fw-bold">BIODATA SISWA</h2>
@@ -95,14 +95,13 @@
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Gol Darah</label>
-                     <input type="text" class="form-control" id="ProdID"  value="{{ old('gol_darah') }}" name="gol_darah" required placeholder="B">
-                     {{-- <select name="gol_darah" class="form-select" id="prodID">
+                     <select name="gol_darah" class="form-select" id="prodID">
                         <option {{ old('gol_darah') == "A" ? 'selected' : '' }} value="A">A</option>
                         <option  {{ old('gol_darah') == "AB" ? 'selected' : '' }}  value="AB">AB</option>
                         <option  {{ old('gol_darah') == "B" ? 'selected' : '' }}  value="B">B</option>
                         <option  {{ old('gol_darah') == "O" ? 'selected' : '' }}  value="O">O</option>
                         <option  {{ old('gol_darah') == "Belum Diketahui" ? 'selected' : '' }}  value="Belum Diketahui">Belum Diketahui</option>
-                     </select> --}}
+                     </select>
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Anak Ke</label>
@@ -150,138 +149,122 @@
             </div>
          </div>
       </div>
-@elseif ($siswa->isNotEmpty() and $ortu->isEmpty())
-<div class="card">
-   <div class="card-title pt-4">
-      <h2 class="text-center text-dark fw-bold">BIODATA ORANG TUA</h2>
-   </div>
-   <div class="card-body">
-      <div class="container">
-         <form class="row" action="{{ route('dataorangtua.store') }}" method="post" >
-            @csrf
-
-            {{-- <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">NISN</label>
-               <input type="number" class="form-control" value="{{ old('nisn') }}" id="StoreID" name="nisn" required placeholder="0045874511" minlength="10" autofocus
-               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-               type="number"
-               maxlength="10"
-               >
-            </div> --}}
- 
-            <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">Nama Ayah</label>
-               <input type="text" class="form-control" id="ProdID"  value="{{ old('nama_ayah') }}" name="nama_ayah" required placeholder="Udin Bahrudin">
-               <input type="hidden" name="userID" value="{{ Auth::user()->id }}">
-            </div>
-            <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">Tempat lahir Ayah</label>
-               <input type="text" class="form-control" id="ProdID"  value="{{ old('tmplahir_ayah') }}" name="tmplahir_ayah" required placeholder="Jakarta">
-            </div>
-          
-            <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">Pekerjaan Ayah</label>
-               <input type="text" class="form-control" value="{{ old('pekerjaan_ayah') }}" id="pekerjaan_ayah" name="pekerjaan_ayah" required placeholder="Wiraswasta">
-            </div>
-            <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">Alamat Ayah</label>
-               <input type="text" class="form-control" id="ProdID"  value="{{ old('alamat_ayah') }}" name="alamat_ayah" required placeholder="Jl. Kemuning Raya No 29 Rt/Rw 01/08">
-            </div>
-           
-            <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">Nama Ibu</label>
-               <input type="text" class="form-control" id="ProdID"  value="{{ old('nama_ibu') }}" name="nama_ibu" required placeholder="Siti">
-            </div>
-            <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">Tempat Lahir Ibu</label>
-               <input type="text" class="form-control" id="ProdID"  value="{{ old('tmplahir_ibu') }}" name="tmplahir_ibu" required placeholder="Bekasi">
-           </div>
+      @elseif (!empty($siswa) && empty($ortu))
+      <div class="card">
+         <div class="card-title pt-4">
+            <h2 class="text-center text-dark fw-bold">BIODATA ORANG TUA</h2>
+         </div>
+         <div class="card-body">
+            <div class="container">
+               <form class="row" action="{{ route('dataorangtua.store') }}" method="post" >
+                  @csrf
+                  <div class="col-md-6 mb-3">
+                     <label for="formGroupExampleInput" class="mb-2">Nama Ayah</label>
+                     <input type="text" class="form-control" id="ProdID"  value="{{ old('nama_ayah') }}" name="nama_ayah" required placeholder="Udin Bahrudin">
+                     <input type="hidden" name="userID" value="{{ Auth::user()->id }}">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                     <label for="formGroupExampleInput" class="mb-2">Tempat lahir Ayah</label>
+                     <input type="text" class="form-control" id="ProdID"  value="{{ old('tmplahir_ayah') }}" name="tmplahir_ayah" required placeholder="Jakarta">
+                  </div>
+               
+                  <div class="col-md-6 mb-3">
+                     <label for="formGroupExampleInput" class="mb-2">Pekerjaan Ayah</label>
+                     <input type="text" class="form-control" value="{{ old('pekerjaan_ayah') }}" id="pekerjaan_ayah" name="pekerjaan_ayah" required placeholder="Wiraswasta">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                     <label for="formGroupExampleInput" class="mb-2">Alamat Ayah</label>
+                     <input type="text" class="form-control" id="ProdID"  value="{{ old('alamat_ayah') }}" name="alamat_ayah" required placeholder="Jl. Kemuning Raya No 29 Rt/Rw 01/08">
+                  </div>
+               
+                  <div class="col-md-6 mb-3">
+                     <label for="formGroupExampleInput" class="mb-2">Nama Ibu</label>
+                     <input type="text" class="form-control" id="ProdID"  value="{{ old('nama_ibu') }}" name="nama_ibu" required placeholder="Siti">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                     <label for="formGroupExampleInput" class="mb-2">Tempat Lahir Ibu</label>
+                     <input type="text" class="form-control" id="ProdID"  value="{{ old('tmplahir_ibu') }}" name="tmplahir_ibu" required placeholder="Bekasi">
+               </div>
+               
+               <div class="col-md-6 mb-3">
+                     <label for="formGroupExampleInput" class="mb-2">Pekerjaan Ibu</label>
+                     <input type="text" class="form-control" id="ProdID" name="pekerjaan_ibu"  value="{{ old('pekerjaan_ibu') }}" required placeholder="Ibu rumah tangga">
+                  </div>
          
-           <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">Pekerjaan Ibu</label>
-               <input type="text" class="form-control" id="ProdID" name="pekerjaan_ibu"  value="{{ old('pekerjaan_ibu') }}" required placeholder="Ibu rumah tangga">
+               <div class="col-md-6 mb-3">
+                     <label for="formGroupExampleInput" class="mb-2">Alamat ibu</label>
+                     <input type="text" class="form-control" id="ProdID" name="alamat_ibu"  value="{{ old('alamat_ibu') }}" required placeholder="Jl. Kemuning Raya No 29 Rt/Rw 01/08">
+                  </div>
+               
+                  <button style="background-color: #39b1e0; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
+                  <button type="reset" class="btn btn-danger border-0 mt-4">Reset</button>
+               </form>
             </div>
-   
-           <div class="col-md-6 mb-3">
-               <label for="formGroupExampleInput" class="mb-2">Alamat ibu</label>
-               <input type="text" class="form-control" id="ProdID" name="alamat_ibu"  value="{{ old('alamat_ibu') }}" required placeholder="Jl. Kemuning Raya No 29 Rt/Rw 01/08">
-            </div>
-           
-
-            <button style="background-color: #39b1e0; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
-            <button type="reset" class="btn btn-danger border-0 mt-4">Reset</button>
-         </form>
+         </div>
       </div>
-   </div>
-</div>
       @else
       <div class="container">
 
-         @if (Auth::user()->level == 1 and $ortu->isNotEmpty())
-
+         @if (!empty($ortu))
+      
          <main>
             <div>
                <h2 class="m-3 font-semibold text-center text-gray-700 dark:text-gray-200">Detail Informasi Anda</h2>
-
+      
                <div class="mb-8">
                   <div class="md:flex gap-x-6 ">
-                     @foreach($siswa as $ite)
                         <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
                             <h4 class="text-gray-700">Profil Anda:</h4>
                             <div class="">
                                <div class="grid grid-cols-2">
                                  <h5>Nama </h5>
-                                 <h5>: {{ $ite->nama_lengkap }}</h5>
+                                 <h5>: {{ $siswa->nama_lengkap }}</h5>
                                </div>
                                <div class="grid grid-cols-2">
                                  <h5>NISN </h5>
-                                 <h5>: {{ $ite->nisn }}</h5>
+                                 <h5>: {{ $siswa->nisn }}</h5>
                                </div>
                                <div class="grid grid-cols-2">
                                  <h5>Tanggal Lahir </h5>
-                                 <h5>: {{ $ite->tgl_lahir}}</h5>
-                                 {{-- <h5>: {{ date('d F Y', strtotime($ite->tgl_lahir))}}</h5> --}}
+                                 <h5>: {{ $siswa->tgl_lahir }}</h5>
                                </div>
                                <div class="grid grid-cols-2">
                                  <h5>Jenis Kelamin </h5>
-                                 <h5>: {{ $ite->jns_kelamin == "L" ? "Laki-Laki" : "Perempuan" }}</h5>
+                                 <h5>: {{ $siswa->jns_kelamin == "L" ? "Laki-Laki" : "Perempuan" }}</h5>
                                </div>
                             </div>
                         </div>
-
-                        @foreach($ortu as $ite)
+      
                         <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
                             <h4 class="text-gray-700">Profil Orangtua Anda:</h4>
                             <div class="">
                               <div class="grid grid-cols-2">
                                 <h5>Nama Ayah</h5>
-                                <h5 class="capitalize">: {{ $ite->nama_ayah }}</h5>
+                                <h5 class="capitalize">: {{ $ortu->nama_ayah }}</h5>
                               </div>
                               <div class="grid grid-cols-2">
                                 <h5>Nama Ibu</h5>
-                                <h5 class="capitalize">: {{ $ite->nama_ibu }}</h5>
+                                <h5 class="capitalize">: {{ $ortu->nama_ibu }}</h5>
                               </div>
                               <div class="grid grid-cols-2">
                                 <h5>Pekerjaan Ayah </h5>
-                                <h5 class="capitalize">: {{ $ite->pekerjaan_ayah}}</h5>
+                                <h5 class="capitalize">: {{ $ortu->pekerjaan_ayah}}</h5>
                               </div>
                               <div class="grid grid-cols-2">
                                 <h5>Pekerjaan Ibu </h5>
-                                <h5 class="capitalize">: {{ $ite->pekerjaan_ibu  }}</h5>
+                                <h5 class="capitalize">: {{ $ortu->pekerjaan_ibu  }}</h5>
                               </div>
                            </div>
                         </div>
-                        @endforeach
-                      @endforeach
                      </div>
                   </div>
-
+      
                   @php
                       $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
                       $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
                       $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
                   @endphp
-
+      
                   <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
                      <h1 class="text-xl mb-4">Pertanyaan</h1>
                      <div class="flex gap-x-1">
@@ -295,14 +278,10 @@
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 1</h3>
                                  </div>
                                  <div class="p-3 flex gap-x-2">
-                                    <form action="/isijawaban" method="post">
-                                       @csrf
-                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
-                                          <input type="hidden" name="group" value="a">
-                                          <i data-feather="align-right" class="w-5"></i>
-                                          Detail
-                                       </button>
-                                    </form>
+                                    <a href="/isijawaban/a" class="flex pt-0 items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
+                                       <i data-feather="align-right" class="w-5"></i>
+                                       Detail
+                                    </a>
                                     <form action="/editjawaban" method="post">
                                        @csrf
                                        <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-cyan-500">
@@ -344,14 +323,10 @@
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 2</h3>
                                  </div>
                                  <div class="p-3 flex gap-x-2">
-                                    <form action="/isijawaban" method="post">
-                                       @csrf
-                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
-                                          <input type="hidden" name="group" value="b">
-                                          <i data-feather="align-right" class="w-5"></i>
-                                          Detail
-                                       </button>
-                                    </form>
+                                    <a href="/isijawaban/b" class="flex pt-0 items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
+                                       <i data-feather="align-right" class="w-5"></i>
+                                       Detail
+                                    </a>
                                     <form action="/editjawaban" method="post">
                                        @csrf
                                        <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-cyan-500">
@@ -382,7 +357,7 @@
                            </p>
                         </div>
                         @endif
-
+      
                         {{-- Jawaban Group C --}}
                         @if ($jawabans->slice($jumlahGroupA + $jumlahGroupB, $jumlahGroupC)->count()  == $jumlahGroupC)
                         <div class="w-full">
@@ -393,14 +368,10 @@
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 3</h3>
                                  </div>
                                  <div class="p-3 flex gap-x-2">
-                                    <form action="/isijawaban" method="post">
-                                       @csrf
-                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
-                                          <input type="hidden" name="group" value="c">
-                                          <i data-feather="align-right" class="w-5"></i>
-                                          Detail
-                                       </button>
-                                    </form>
+                                    <a href="/isijawaban/c" class="flex pt-0 items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
+                                       <i data-feather="align-right" class="w-5"></i>
+                                       Detail
+                                    </a>
                                     <a href="#" class="flex m-0 p-0 items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
                                        <i data-feather="edit" class="w-5"></i>
                                        Edit
@@ -427,12 +398,12 @@
                            </p>
                         </div>
                         @endif
-
+      
                      </div>
                   </div>
             </div>
          </main>
-
+      
         @endif
       </div>
       @endif

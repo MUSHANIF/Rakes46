@@ -2,7 +2,7 @@
 @section('isi')
 <div class="main-content text-dark">
    <main>
-   @if ($datasiswa->isNotEmpty())
+   @if (!empty($siswa))
       <div class="card container px-4">
          <div class="card-title pt-4 pb-2 mb-4">
             <h3 class="text-center">

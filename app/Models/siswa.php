@@ -4,10 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class siswa extends Model
 {
     use HasFactory;
+
+    public function getTglLahirAttribute($value)
+    {
+        return Carbon::parse($value)->isoFormat('DD MMMM Y');
+    }
 
     public function kelas()
     {
@@ -18,9 +24,4 @@ class siswa extends Model
     {
         return $this->belongsTo(User::class, 'userID', 'id');
     }
-
-    // public function siswa()
-    // {
-    //     return $this->hasOne(kela::class, 'kelasID', 'id');
-    // }
 }

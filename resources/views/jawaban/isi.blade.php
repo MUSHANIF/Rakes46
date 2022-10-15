@@ -12,7 +12,10 @@
             <hr style="color: #4497b8" />
          </div>
          <div class="body-card mb-3">
-            <div class="container ms-4 text-dark">
+            <div class="container ms-4 text-black">
+               @if (last(request()->segments()) != "isijawaban")
+               <h3 class="text-black -mt-2 mb-3 text-capitalize">Group {{ last(request()->segments()) }}</h3>
+               @endif
                @foreach ($jawabans as $jawaban)
                <div class="mb-3">
                   <h5>{{ $jawaban->pertanyaan->pertanyaan }}</h5>
