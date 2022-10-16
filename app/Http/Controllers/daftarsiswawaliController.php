@@ -21,23 +21,14 @@ class daftarsiswawaliController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas = kela::with([
-            'guru', 'siswa','user'
-        ])->join('siswas', 'siswas.kelasID', '=', 'kelas.id')
+        $datas = kela::with(['guru', 'siswa', 'user'])
+            ->where('userID',  Auth::user()->id)
+            ->whereRelation('siswa', 'nama_lengkap', 'like', "%" . $cari . "%")
+            ->first();
 
-            ->where('kelas.userID',  Auth::user()->id)
-            ->where('nama_lengkap', 'like', "%" . $cari . "%")
+        $guru = kela::with(['guru', 'siswa', 'user'])->where('userID',  Auth::user()->id)->first();
 
-
-            ->get();
-        $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
-        return view(
-            'siswa.index',
-            compact('datas', 'data'),
-            [
-                "title" => "List Siswa"
-            ]
-        );
+        return view('siswa.index', compact('datas', 'guru'));
     }
 
     /**
@@ -96,13 +87,15 @@ class daftarsiswawaliController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request , $id)
+    public function show(Request $request, $id)
     {
-         $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
+        $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
+
         $jawabans = jawaban::where('userID', $id)->get();
-        $siswa =  DB::table('siswas')->where('siswas.userID', $id)->get();
-        $ortu =  DB::table('ortus')->where('ortus.userID',  $id)->get();
-        return view('siswa.detail', compact('jawabans','data','siswa','ortu'));
+        $siswa =  DB::table('siswas')->where('userID', $id)->get();
+        $ortu =  DB::table('ortus')->where('userID',  $id)->get();
+
+        return view('siswa.detail', compact('jawabans', 'data', 'siswa', 'ortu'));
     }
 
     /**

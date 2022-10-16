@@ -32,5 +32,24 @@ class SiswaSeeder extends Seeder
             'email' => 'angel@gmail.com',
             'disabilitas' => 'Tidak'
         ]);
+
+        siswa::create([
+            'kelasID' => 1,
+            'userID' => 11,
+            'nisn' => '0055281659',
+            'nis' => '11459',
+            'nama_lengkap' => 'Musthafa Hanif',
+            'nama_panggilan' => 'Musthafa',
+            'tmp_lahir' => 'Jakarta',
+            'tgl_lahir' => '2022-04-18',
+            'jns_kelamin' => 'L',
+            'gol_darah' => 'A',
+            'anak_ke' => '2',
+            'tggl_bersama' => 'Orang Tua',
+            'alamat' => 'Jl. Bekasi Timur Raya no 444',
+            'no_telp' => '081421176920',
+            'email' => 'musthafa@gmail.com',
+            'disabilitas' => 'Tidak'
+        ]);
     }
 }

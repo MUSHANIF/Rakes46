@@ -16,7 +16,7 @@ class pertanyaanController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $pertanyaans = pertanyaan::where('pertanyaan', 'like', "%" . $cari . "%")->get();
+        $pertanyaans = pertanyaan::where('pertanyaan', 'like', "%" . $cari . "%")->orderBy('type')->orderBy('group')->orderBy('no')->get();
         return view('pertanyaan.index', compact('pertanyaans'));
     }
 
@@ -46,9 +46,8 @@ class pertanyaanController extends Controller
         $model->no = $request->no;
         $model->pertanyaan = $request->pertanyaan;
 
-
-
         $model->save();
+
         toastr()->success('Berhasil di buat!', 'Sukses');
         return redirect('pertanyaan');
     }

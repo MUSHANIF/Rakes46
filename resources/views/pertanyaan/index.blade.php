@@ -38,7 +38,7 @@
                <th class="text-light">Action</th>
             </thead>
 
-            @foreach ($pertanyaans->sortBy('group')->sortBy('type') as $key) 
+            @foreach ($pertanyaans as $key) 
             <tbody>
                <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                   <td data-label="Type">{{ $key->type }}</td>

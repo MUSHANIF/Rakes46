@@ -51,7 +51,7 @@
                             <form action="{{ url('kepala_sekolah/'.$key->id) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger border-0 ms-2">Delete</button>
+                                <button type="button" id="delete" class="btn btn-danger border-0 ms-2">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -62,7 +62,30 @@
     </main>
 </div>
 
-
-
+<script>
+    $('#delete').click(function() {
+       var form =  $(this).closest("form");
+       Swal.fire({
+          title: 'Are you sure to delete it?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+          if (result.isConfirmed) {
+             Swal.fire(
+                'Deleted!',
+                'The data has been deleted.',
+                'success'
+             )
+             setTimeout(() => {
+                form.submit()
+             }, 700);
+          }
+          })
+    });
+ </script>
   
 @endsection

@@ -9,11 +9,11 @@
                 
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nama</label>
-                    <input type="text" class="form-control" id="LocID" name="name" required>
+                    <input type="text" class="form-control" id="LocID" name="name" value="{{ $errors->get('name')? "" : old('name') }}" required>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Email</label>
-                    <input type="email" class="form-control" id="LocID" name="email" required>
+                    <input type="email" class="form-control" id="LocID" name="email" value="{{ $errors->get('email')? "" : old('email') }}" required>
                 </div>
                     <input type="hidden" class="form-control" id="ProdID" name="level" value="2" required>
                 <div class="form-group">
@@ -26,7 +26,5 @@
         </div>
     </main>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 @endsection

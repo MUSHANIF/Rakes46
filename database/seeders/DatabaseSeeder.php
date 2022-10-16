@@ -32,5 +32,17 @@ class DatabaseSeeder extends Seeder
             'pekerjaan_ibu' => 'Ibu Rumah Tangga',
             'alamat_ibu' => 'Jl. Bekasi Raya'
         ]);
+
+        ortu::create([
+            'userID' => 11,
+            'nama_ayah' => 'Abidun',
+            'tmplahir_ayah' => 'Bekasi',
+            'pekerjaan_ayah' => 'Wirausaha',
+            'alamat_ayah' => 'Jl. Bekasi Raya',
+            'nama_ibu' => 'Siti Aminah',
+            'tmplahir_ibu' => 'Kebumen',
+            'pekerjaan_ibu' => 'Ibu Rumah Tangga',
+            'alamat_ibu' => 'Jl. Bekasi Raya'
+        ]);
     }
 }

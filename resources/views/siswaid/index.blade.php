@@ -278,18 +278,14 @@
                                     <h3 class="font-semibold text-base text-gray-900 dark:text-white">Pertanyaan Group 1</h3>
                                  </div>
                                  <div class="p-3 flex gap-x-2">
-                                    <a href="/isijawaban/a" class="flex pt-0 items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-blue-600">
+                                    <a href="/isijawaban/a" class="flex pt-0 items-center gap-x-1 text-xs font-semibold text-slate-700 hover:text-blue-600">
                                        <i data-feather="align-right" class="w-5"></i>
                                        Detail
                                     </a>
-                                    <form action="/editjawaban" method="post">
-                                       @csrf
-                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-cyan-500">
-                                          <input type="hidden" name="group" value="a">
-                                          <i data-feather="edit" class="w-5"></i>
-                                          Edit
-                                       </button>
-                                    </form>
+                                    <a href="/editjawaban/a" class="flex pt-0 items-center gap-x-1 text-xs font-semibold text-slate-700 hover:text-cyan-500">
+                                       <i data-feather="edit" class="w-5"></i>
+                                       Edit
+                                    </a>
                                  </div>
                               </div>
                            </p>
@@ -327,14 +323,10 @@
                                        <i data-feather="align-right" class="w-5"></i>
                                        Detail
                                     </a>
-                                    <form action="/editjawaban" method="post">
-                                       @csrf
-                                       <button type="submit" class="flex items-center gap-x-1 text-sm font-semibold text-slate-700 hover:text-cyan-500">
-                                          <input type="hidden" name="group" value="b">
-                                          <i data-feather="edit" class="w-5"></i>
-                                          Edit
-                                       </button>
-                                    </form>
+                                    <a href="/editjawaban/b" class="flex pt-0 items-center gap-x-1 text-xs font-semibold text-slate-700 hover:text-cyan-500">
+                                       <i data-feather="edit" class="w-5"></i>
+                                       Edit
+                                    </a>
                                  </div>
                               </div>
                            </p>
@@ -372,7 +364,7 @@
                                        <i data-feather="align-right" class="w-5"></i>
                                        Detail
                                     </a>
-                                    <a href="#" class="flex m-0 p-0 items-center gap-x-1 text-xs text-slate-700 hover:text-cyan-500">
+                                    <a href="/editjawaban/c" class="flex pt-0 items-center gap-x-1 text-xs font-semibold text-slate-700 hover:text-cyan-500">
                                        <i data-feather="edit" class="w-5"></i>
                                        Edit
                                     </a>

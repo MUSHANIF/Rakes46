@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ortu;
 use App\Models\siswa;
 use App\Models\jawaban;
 use App\Models\pertanyaan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class siswaController extends Controller
@@ -19,13 +18,12 @@ class siswaController extends Controller
      */
     public function index()
     {
-        $kelas =  DB::table('kelas')->get();
-        $siswa =  siswa::where('userID',  Auth::user()->id)->first();
-        $ortu =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->first();
+        $siswa =  siswa::where('userID',  auth()->user()->id)->first();
+        $ortu =  ortu::where('userID',  auth()->user()->id)->first();
         $pertanyaans = pertanyaan::all();
-        $jawabans = collect(jawaban::where('userID', auth()->user()->id)->get());
-        // return $ortu;
-        return view('siswaid.index', compact('siswa', 'ortu', 'kelas', 'jawabans', 'pertanyaans'), [
+        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
+
+        return view('siswaid.index', compact('siswa', 'ortu', 'jawabans', 'pertanyaans'), [
             "title" => "List Siswa",
         ]);
     }

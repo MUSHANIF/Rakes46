@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->hasOne(siswa::class, 'userID', 'id');
     }
 
-    public function kelas()
+    public function kela()
     {
         return $this->hasOne(kela::class, 'userID', 'id');
     }

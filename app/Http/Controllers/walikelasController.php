@@ -21,9 +21,9 @@ class walikelasController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 2)->where('name', 'like', "%" . $cari . "%")->get();
+        $datas =  User::where('level', '=', 2)->where('name', 'like', "%" . $cari . "%")->get();
 
-        return view('wali_kelas.index', compact('datas'), ["title" => "Wali Kelas"]);
+        return view('wali_kelas.index', compact('datas'));
     }
 
     /**
@@ -33,7 +33,7 @@ class walikelasController extends Controller
      */
     public function create()
     {
-        return view('wali_kelas.create', ["title" => "Create Wali Kelas"]);
+        return view('wali_kelas.create');
     }
 
     /**
@@ -47,25 +47,20 @@ class walikelasController extends Controller
 
         $data = $request->all();
         $model = new User;
-        $password = $request->password;
-        $encrypted_password = bcrypt($password);
 
         $model->name = $request->name;
         $model->email = $request->email;
-
         $model->level = $request->level;
-        $model->password = $encrypted_password;
-
+        $model->password = bcrypt($request->password);
 
         $validasi = Validator::make($data, [
             'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8',
             'level' => 'required',
-
         ]);
         if ($validasi->fails()) {
-            return redirect()->route('wali_kelas.create')->withInput()->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
 
         $model->save();
@@ -116,11 +111,9 @@ class walikelasController extends Controller
         $validasi = Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-
-
         ]);
         if ($validasi->fails()) {
-            return redirect()->route('wali_kelas.edit', [$id])->withErrors($validasi);
+            return back()->withErrors($validasi);
         }
         $model->save();
         toastr()->success('Berhasil di terupdate!', 'Sukses');

@@ -15,7 +15,7 @@ class siswa extends Model
         return Carbon::parse($value)->isoFormat('DD MMMM Y');
     }
 
-    public function kelas()
+    public function kela()
     {
         return $this->belongsTo(kela::class, 'kelasID', 'id');
     }

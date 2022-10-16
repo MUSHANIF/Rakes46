@@ -94,5 +94,13 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'level' => 1
         ]);
+
+        User::create([
+            'name' => 'Mushthafa Hanif',
+            'email' => 'musthafa@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'level' => 1
+        ]);
     }
 }

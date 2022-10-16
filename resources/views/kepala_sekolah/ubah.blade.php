@@ -15,7 +15,7 @@
               <label for="formGroupExampleInput2">Email</label>
               <input type="text" class="form-control" id="formGroupExampleInput2" name="email" value="{{ $datas->email }}">
           </div>
-          <label for="formFile" class="form-label">Ubah level</label>
+          <label for="formFile" class="form-label">Ubah Level</label>
               <select class="form-select" aria-label="Default select example" name="opsi" required>
                 <option value="4">Kepala sekolah</option>
                 <option value="3">Puskesmas</option>
