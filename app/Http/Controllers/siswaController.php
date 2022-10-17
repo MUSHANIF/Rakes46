@@ -84,7 +84,7 @@ class siswaController extends Controller
         ]);
 
         if ($validasi->fails()) {
-            return redirect()->route('siswaid.index')->withInput()->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
 
         $model->save();
@@ -146,7 +146,7 @@ class siswaController extends Controller
 
         $jmlPertanyaan = pertanyaan::all()->count();
 
-        $jawabanUser = jawaban::where('userID', auth()->user()->id);
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id);
         $jawabans = $jawabanUser->get();
 
         return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan'));
@@ -154,15 +154,20 @@ class siswaController extends Controller
 
     public function tampilkanPerGroup(pertanyaan $pertanyaan)
     {
-        if (empty(auth()->user()->jawaban)) {
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id);
+
+        $jmljawaban = $jawabanUser->count();
+
+        $jawabans = $jawabanUser->whereRelation('pertanyaan', [
+            'group' => "$pertanyaan->group",
+            'type' => "$pertanyaan->type"
+        ])->get();
+
+        if ($jawabans->isEmpty()) {
             return back();
         }
 
         $jmlPertanyaan = pertanyaan::all()->count();
-
-        $jawabanUser = jawaban::where('userID', auth()->user()->id);
-        $jmljawaban = $jawabanUser->count();
-        $jawabans = $jawabanUser->whereRelation('pertanyaan', 'group', "$pertanyaan->group")->get();
 
         return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan', 'jmljawaban'));
     }

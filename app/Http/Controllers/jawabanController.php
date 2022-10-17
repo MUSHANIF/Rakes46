@@ -62,7 +62,7 @@ class jawabanController extends Controller
                 ->take($jumlahGroupA2)->get();
 
 
-            // Ketika user sudah jawab group a, b, c, d, e, f, dan g pada type 1
+            // Ketika user sudah jawab semua pertanyaan type 1
             if ($jawabanGroupA2->isEmpty()) {
                 $data = pertanyaan::where('type', 2)
                     ->where('group', 'a')
@@ -111,10 +111,10 @@ class jawabanController extends Controller
                     ->get();
             }
 
-            // Jika jawaban sudah kejawab semua --sementara
-            if ($jawabanGroupA2->isNotEmpty()) {
-                return redirect('/isijawaban');
-            }
+            // // Jika jawaban sudah kejawab semua --sementara
+            // if ($jawabanGroupA2->isNotEmpty()) {
+            //     return redirect('/isijawaban');
+            // }
         }
 
         // Jika jawaban sudah kejawab semua --kalo dah semua
@@ -143,8 +143,6 @@ class jawabanController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-
         $jumlahPertanyaan = $request["jumlahPertanyaan"];
 
         for ($i = 1; $i <= $jumlahPertanyaan; $i++) {
@@ -156,7 +154,7 @@ class jawabanController extends Controller
         }
 
         toastr()->success('Berhasil Menjawab Pertanyaan!', 'Sukses');
-        return redirect("/isijawaban/$request->group")->with('menjawab', 'Berhasil Menjawab Pertanyaan');
+        return redirect("/isijawaban/$request->type/$request->group")->with('menjawab', 'Berhasil Menjawab Pertanyaan');
     }
 
     /**
@@ -205,21 +203,22 @@ class jawabanController extends Controller
 
     public function editKuisioner(pertanyaan $pertanyaan)
     {
-        if (empty(auth()->user()->jawaban)) {
-            return back();
-        }
-
-        $jawabanUser = jawaban::where('userID', auth()->user()->id)->whereRelation('pertanyaan', 'group', "$pertanyaan->group");
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereRelation('pertanyaan', [
+            'group' => "$pertanyaan->group",
+            'type' => "$pertanyaan->type"
+        ]);
 
         $jawabans = $jawabanUser->get();
+
+        if ($jawabans->isEmpty()) {
+            return back();
+        }
 
         return view('jawaban.update', compact('jawabans'));
     }
 
     public function updateKuisioner(Request $request)
     {
-        // return $jawaban;
-
         $jumlahPertanyaan = $request["jumlahPertanyaan"];
 
         for ($i = 1; $i <= $jumlahPertanyaan; $i++) {
@@ -230,6 +229,6 @@ class jawabanController extends Controller
             $model->save();
         }
 
-        return redirect('/isijawaban');
+        return redirect("/isijawaban/$request->type/$request->group");
     }
 }

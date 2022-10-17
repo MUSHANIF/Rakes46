@@ -16,17 +16,19 @@
                   @csrf 
                   <input type="hidden" class="form-control" name="userID" required value="{{ Auth::user()->id }}" />
                   <input type="hidden" class="form-control" name="group" required value="{{ $data[0]->group }}" />
+                  <input type="hidden" class="form-control" name="type" required value="{{ $data[0]->type }}" />
                   @foreach ($data as $key => $pertanyaan) 
                   @php
                    $p = 1 + $key   
                    @endphp
                   <input type="hidden" name="jumlahPertanyaan" value="{{ $p }}">
                   <div class="row align-items-center">
-                     <div class="col-lg-10 col-sm-7 mb-3">
+                     <div class="col-lg-10 col-sm-7 mb-md-3">
                         <p class="text-dark" style="font-size: 19px">{{ $pertanyaan->pertanyaan }}</p>
                         <input type="hidden" class="form-control" id="LocID" name="pertanyaanID[{{ $p }}]" required value="{{ $pertanyaan->id }}" />
                      </div>
                      <div class="col-lg-2 col-sm-5 mb-3">
+                        @if ($data[0]->type == 1)
                         <div class="form-check form-check-inline">
                            <label class="form-check-label">
                               <input class="form-check-input" type="radio" name="jawaban[{{ $p }}]" value="false" />
@@ -39,6 +41,9 @@
                               Ya
                            </label>
                         </div>
+                        @else
+                        <input required class="form-control form-control-sm" type="text" name="jawaban[{{ $p }}]" placeholder="Ketikkan disini" aria-label="default input example">
+                        @endif
                      </div>
                   </div>
                   @endforeach

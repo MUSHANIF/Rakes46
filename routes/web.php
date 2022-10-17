@@ -60,11 +60,9 @@ Route::group(['middleware' => ['revalidate']], function () {
         Route::resource('kuisioner', jawabanController::class);
 
         Route::get('/isijawaban', [siswaController::class, 'tampilkan']);
-        Route::get('/isijawaban/{pertanyaan:group}', [siswaController::class, 'tampilkanPerGroup']);
-        Route::post('/isijawaban/{pertanyaan:group}', [siswaController::class, 'tampilkanPerGroup']);
+        Route::get('/isijawaban/{type}/{group}', [siswaController::class, 'tampilkanPerGroup']); // atur dari RouteServiceProvider
 
-        Route::get('/editjawaban/{pertanyaan:group}', [jawabanController::class, 'editKuisioner']);
-        Route::post('/editjawaban/{pertanyaan:group}', [jawabanController::class, 'editKuisioner']);
+        Route::get('/editjawaban/{type}/{group}', [jawabanController::class, 'editKuisioner']);
         Route::post('/updatejawaban', [jawabanController::class, 'updateKuisioner']);
     });
 

@@ -113,7 +113,7 @@ class walikelasController extends Controller
             'email' => 'required|email|max:255|unique:users',
         ]);
         if ($validasi->fails()) {
-            return back()->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
         $model->save();
         toastr()->success('Berhasil di terupdate!', 'Sukses');

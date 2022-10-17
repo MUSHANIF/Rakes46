@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\guru;
 use App\Models\kela;
+use App\Models\ortu;
 use App\Models\User;
+use App\Models\siswa;
 use App\Models\jawaban;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -57,25 +59,18 @@ class daftarsiswawaliController extends Controller
         $kelas->kelas = $request->kelas;
         $kelas->jurusan = $request->jurusan;
 
-
         $validasi = Validator::make($data, [
             'nip' => 'required|max:10|unique:kelas',
             'nama_guru' => 'required|max:40',
             'thn_ajaran' => 'required|max:4',
             'kelas' => 'required',
             'jurusan' => 'required',
-
         ]);
         if ($validasi->fails()) {
-            return redirect()->route('siswawali.index')->withInput()->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
 
         $kelas->save();
-
-
-
-
-
 
         toastr()->success('Berhasil di tambah!', 'Selamat');
         return redirect('siswawali');
@@ -89,11 +84,10 @@ class daftarsiswawaliController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
-
+        $data =  kela::where('userID',  Auth::user()->id)->first();
         $jawabans = jawaban::where('userID', $id)->get();
-        $siswa =  DB::table('siswas')->where('userID', $id)->get();
-        $ortu =  DB::table('ortus')->where('userID',  $id)->get();
+        $siswa =  siswa::where('userID', $id)->first();
+        $ortu =  ortu::where('userID',  $id)->first();
 
         return view('siswa.detail', compact('jawabans', 'data', 'siswa', 'ortu'));
     }

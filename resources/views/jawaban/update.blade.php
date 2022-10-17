@@ -17,11 +17,13 @@
                @endif
                <form action="/updatejawaban" method="POST">
                   @csrf 
+                  <input type="hidden" class="form-control" id="LocID" name="userID" required value="{{ Auth::user()->id }}" />
+                  <input type="hidden" class="form-control" name="group" required value="{{ $jawabans[0]->pertanyaan->group }}" />
+                  <input type="hidden" class="form-control" name="type" required value="{{ $jawabans[0]->pertanyaan->type }}" />
                   @foreach ($jawabans as $key => $jawaban) 
                   @php
                    $p = 1 + $key   
                   @endphp
-                  <input type="hidden" class="form-control" id="LocID" name="userID" required value="{{ Auth::user()->id }}" />
                   <input type="hidden" name="jumlahPertanyaan" value="{{ $p }}">
                   <div class="row align-items-center">
                      <div class="col-lg-10 col-sm-7 mb-3">
@@ -29,6 +31,7 @@
                         <input type="hidden" class="form-control" id="LocID" name="pertanyaanID[{{ $p }}]" required value="{{ $jawaban->pertanyaan->id }}" />
                      </div>
                      <div class="col-lg-2 col-sm-5 mb-3">
+                        @if ($jawabans[0]->pertanyaan->type == 1)
                         <div class="form-check form-check-inline">
                            <label class="form-check-label">
                               <input class="form-check-input" type="radio" name="jawaban[{{ $p }}]" {{ $jawaban->jawaban == "false" ? 'checked' : '' }} value="false" />
@@ -41,6 +44,9 @@
                               Ya
                            </label>
                         </div>
+                        @else
+                        <input required class="form-control form-control-sm" type="text" name="jawaban[{{ $p }}]" value="{{ $jawaban->jawaban }}" placeholder="Ketikkan disini" aria-label="default input example">
+                        @endif
                      </div>
                   </div>
                   @endforeach

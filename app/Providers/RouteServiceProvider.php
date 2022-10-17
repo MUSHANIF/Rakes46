@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\pertanyaan;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -35,6 +36,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::bind('type', function ($type) {
+            $group = request()->route('group');
+            return pertanyaan::where('type',  $type)->where('group', $group)->firstOrFail();
+        });
+
         $this->configureRateLimiting();
 
         $this->routes(function () {
