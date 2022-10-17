@@ -35,6 +35,7 @@ class jawabanController extends Controller
             $jumlahGroupE = $pertanyaans->where('type', '1')->where('group', 'e')->count();
             $jumlahGroupF = $pertanyaans->where('type', '1')->where('group', 'f')->count();
             $jumlahGroupG = $pertanyaans->where('type', '1')->where('group', 'g')->count();
+            $jumlahGroupA2 = $pertanyaans->where('type', '2')->where('group', 'a')->count();
 
             $jawabanGroupA = $jawabanUser->skip(0)
                 ->take($jumlahGroupA)->get();
@@ -56,6 +57,17 @@ class jawabanController extends Controller
 
             $jawabanGroupG = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE + $jumlahGroupF)
                 ->take($jumlahGroupG)->get();
+
+            $jawabanGroupA2 = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE + $jumlahGroupF + $jumlahGroupG)
+                ->take($jumlahGroupA2)->get();
+
+
+            // Ketika user sudah jawab group a, b, c, d, e, f, dan g pada type 1
+            if ($jawabanGroupA2->isEmpty()) {
+                $data = pertanyaan::where('type', 2)
+                    ->where('group', 'a')
+                    ->get();
+            }
 
             // Ketika user sudah jawab group a, b, c, d, e, dan f
             if ($jawabanGroupG->isEmpty()) {
@@ -100,7 +112,7 @@ class jawabanController extends Controller
             }
 
             // Jika jawaban sudah kejawab semua --sementara
-            if ($jawabanGroupG->isNotEmpty()) {
+            if ($jawabanGroupA2->isNotEmpty()) {
                 return redirect('/isijawaban');
             }
         }

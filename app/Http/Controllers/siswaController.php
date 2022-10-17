@@ -160,9 +160,10 @@ class siswaController extends Controller
 
         $jmlPertanyaan = pertanyaan::all()->count();
 
-        $jawabanUser = jawaban::where('userID', auth()->user()->id)->whereRelation('pertanyaan', 'group', "$pertanyaan->group");
-        $jawabans = $jawabanUser->get();
+        $jawabanUser = jawaban::where('userID', auth()->user()->id);
+        $jmljawaban = $jawabanUser->count();
+        $jawabans = $jawabanUser->whereRelation('pertanyaan', 'group', "$pertanyaan->group")->get();
 
-        return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan'));
+        return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan', 'jmljawaban'));
     }
 }
