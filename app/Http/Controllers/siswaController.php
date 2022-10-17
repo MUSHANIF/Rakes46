@@ -154,7 +154,6 @@ class siswaController extends Controller
 
     public function tampilkanPerGroup(pertanyaan $pertanyaan)
     {
-        return $pertanyaan;
         if (empty(auth()->user()->jawaban)) {
             return back();
         }
