@@ -144,23 +144,26 @@ class siswaController extends Controller
             return back();
         }
 
-        $jawabanUser = jawaban::where('userID', auth()->user()->id);
+        $jmlPertanyaan = pertanyaan::all()->count();
 
+        $jawabanUser = jawaban::where('userID', auth()->user()->id);
         $jawabans = $jawabanUser->get();
 
-        return view('jawaban.isi', compact('jawabans'));
+        return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan'));
     }
 
     public function tampilkanPerGroup(pertanyaan $pertanyaan)
     {
+        return $pertanyaan;
         if (empty(auth()->user()->jawaban)) {
             return back();
         }
 
-        $jawabanUser = jawaban::where('userID', auth()->user()->id)->whereRelation('pertanyaan', 'group', "$pertanyaan->group");
+        $jmlPertanyaan = pertanyaan::all()->count();
 
+        $jawabanUser = jawaban::where('userID', auth()->user()->id)->whereRelation('pertanyaan', 'group', "$pertanyaan->group");
         $jawabans = $jawabanUser->get();
 
-        return view('jawaban.isi', compact('jawabans'));
+        return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan'));
     }
 }

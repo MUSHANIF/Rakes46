@@ -62,6 +62,7 @@ Route::group(['middleware' => ['revalidate']], function () {
         Route::get('/isijawaban', [siswaController::class, 'tampilkan']);
         Route::get('/isijawaban/{pertanyaan:group}', [siswaController::class, 'tampilkanPerGroup']);
         Route::post('/isijawaban/{pertanyaan:group}', [siswaController::class, 'tampilkanPerGroup']);
+
         Route::get('/editjawaban/{pertanyaan:group}', [jawabanController::class, 'editKuisioner']);
         Route::post('/editjawaban/{pertanyaan:group}', [jawabanController::class, 'editKuisioner']);
         Route::post('/updatejawaban', [jawabanController::class, 'updateKuisioner']);

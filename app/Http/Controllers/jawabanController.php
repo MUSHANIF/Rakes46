@@ -7,7 +7,6 @@ use App\Models\siswa;
 use App\Models\jawaban;
 use App\Models\pertanyaan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class jawabanController extends Controller
@@ -21,6 +20,7 @@ class jawabanController extends Controller
     {
         $siswa =  siswa::where('userID', Auth::user()->id)->first();
         $pertanyaans = pertanyaan::all();
+        $jawabanUser = auth()->user()->jawaban;
 
         // Ketika user blm jawab samsek
         $data = pertanyaan::where('type', 1)
@@ -28,34 +28,86 @@ class jawabanController extends Controller
             ->get();
 
         if (!empty(auth()->user()->jawaban)) {
-            $jawabanUser = auth()->user()->jawaban;
-
             $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
             $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
             $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
+            $jumlahGroupD = $pertanyaans->where('type', '1')->where('group', 'd')->count();
+            $jumlahGroupE = $pertanyaans->where('type', '1')->where('group', 'e')->count();
+            $jumlahGroupF = $pertanyaans->where('type', '1')->where('group', 'f')->count();
+            $jumlahGroupG = $pertanyaans->where('type', '1')->where('group', 'g')->count();
 
-            $jawabanGroupA = $jawabanUser->skip(0)->take($jumlahGroupA)->get();
-            $jawabanGroupB = $jawabanUser->skip($jumlahGroupA)->take($jumlahGroupB)->get();
-            $jawabanGroupC = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+            $jawabanGroupA = $jawabanUser->skip(0)
+                ->take($jumlahGroupA)->get();
 
-            // Ketika user baru jawab group a dan b
+            $jawabanGroupB = $jawabanUser->skip($jumlahGroupA)
+                ->take($jumlahGroupB)->get();
+
+            $jawabanGroupC = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB)
+                ->take($jumlahGroupC)->get();
+
+            $jawabanGroupD = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC)
+                ->take($jumlahGroupD)->get();
+
+            $jawabanGroupE = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD)
+                ->take($jumlahGroupE)->get();
+
+            $jawabanGroupF = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE)
+                ->take($jumlahGroupF)->get();
+
+            $jawabanGroupG = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE + $jumlahGroupF)
+                ->take($jumlahGroupG)->get();
+
+            // Ketika user sudah jawab group a, b, c, d, e, dan f
+            if ($jawabanGroupG->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'g')
+                    ->get();
+            }
+
+            // Ketika user sudah jawab group a, b, c, d, dan e
+            if ($jawabanGroupF->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'f')
+                    ->get();
+            }
+
+            // Ketika user sudah jawab group a, b, c, dan d
+            if ($jawabanGroupE->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'e')
+                    ->get();
+            }
+
+            // Ketika user sudah jawab group a, b, dan c
+            if ($jawabanGroupD->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'd')
+                    ->get();
+            }
+
+            // Ketika user sudah jawab group a dan b
             if ($jawabanGroupC->isEmpty()) {
                 $data = pertanyaan::where('type', 1)
                     ->where('group', 'c')
                     ->get();
             }
 
-            // Ketika user baru jawab group a
+            // Ketika user sudah jawab group a
             if ($jawabanGroupB->isEmpty()) {
                 $data = pertanyaan::where('type', 1)
                     ->where('group', 'b')
                     ->get();
             }
 
-            // Jika jawaban sudah kejawab semua
-            if ($jawabanGroupC->isNotEmpty() && $jawabanGroupB->isNotEmpty()) {
+            // Jika jawaban sudah kejawab semua --sementara
+            if ($jawabanGroupG->isNotEmpty()) {
                 return redirect('/isijawaban');
             }
+        }
+
+        // Jika jawaban sudah kejawab semua --kalo dah semua
+        if ($jawabanUser->count() == $pertanyaans->count()) {
+            return redirect('/isijawaban');
         }
 
         return view('jawaban.index', compact('data', 'siswa'));
@@ -91,7 +143,8 @@ class jawabanController extends Controller
             $model->save();
         }
 
-        return redirect('/isijawaban');
+        toastr()->success('Berhasil Menjawab Pertanyaan!', 'Sukses');
+        return redirect("/isijawaban/$request->group")->with('menjawab', 'Berhasil Menjawab Pertanyaan');
     }
 
     /**

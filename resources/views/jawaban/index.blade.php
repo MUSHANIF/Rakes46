@@ -14,11 +14,12 @@
             <div class="ml-4 text-black">
                <form action="{{ route('kuisioner.store') }}" method="POST">
                   @csrf 
+                  <input type="hidden" class="form-control" name="userID" required value="{{ Auth::user()->id }}" />
+                  <input type="hidden" class="form-control" name="group" required value="{{ $data[0]->group }}" />
                   @foreach ($data as $key => $pertanyaan) 
                   @php
                    $p = 1 + $key   
                    @endphp
-                  <input type="hidden" class="form-control" id="LocID" name="userID" required value="{{ Auth::user()->id }}" />
                   <input type="hidden" name="jumlahPertanyaan" value="{{ $p }}">
                   <div class="row align-items-center">
                      <div class="col-lg-10 col-sm-7 mb-3">
