@@ -15,7 +15,7 @@ class SiswaSeeder extends Seeder
     public function run()
     {
         siswa::create([
-            'kelasID' => 1,
+            'kelasID' => 3,
             'userID' => 10,
             'nisn' => '0054587451',
             'nis' => '11459',
@@ -34,7 +34,7 @@ class SiswaSeeder extends Seeder
         ]);
 
         siswa::create([
-            'kelasID' => 1,
+            'kelasID' => 3,
             'userID' => 11,
             'nisn' => '0055281659',
             'nis' => '11459',

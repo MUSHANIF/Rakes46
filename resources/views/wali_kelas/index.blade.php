@@ -46,7 +46,7 @@
                      <form action="{{ route('wali_kelas.destroy',$key->id)}}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button type="button" class="btn btn-danger border-0 ms-2 reset_data">Reset Data Kelas</button>
+                        <button type="button" class="btn btn-danger border-0 ms-2 reset_data">Reset Data Guru</button>
                      </form>
                      @else
                      <a class="btn ml-2 border-0 btn-detail" onclick="showbutton()">Detail</a>

@@ -16,13 +16,13 @@ class CreateKelasTable extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('userID');
-            $table->string('nip');
-            $table->string('nama_guru');
-            $table->string('thn_ajaran');
+            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
+            $table->string('nip')->nullable();
+            $table->string('nama_guru')->nullable();
+            $table->string('thn_ajaran')->nullable();
             $table->string('kelas');
             $table->enum('jurusan', ['AKL 1', 'AKL 2', 'BDP 1', 'BDP 2', 'OTKP 1', 'OTKP 2', 'DKV', 'RPL']);
             $table->timestamps();
-            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

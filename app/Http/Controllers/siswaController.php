@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kela;
 use App\Models\ortu;
 use App\Models\siswa;
 use App\Models\jawaban;
@@ -21,11 +22,10 @@ class siswaController extends Controller
         $siswa =  siswa::where('userID',  auth()->user()->id)->first();
         $ortu =  ortu::where('userID',  auth()->user()->id)->first();
         $pertanyaans = pertanyaan::all();
+        $kelas = kela::all();
         $jawabans = jawaban::where('userID', auth()->user()->id)->get();
 
-        return view('siswaid.index', compact('siswa', 'ortu', 'jawabans', 'pertanyaans'), [
-            "title" => "List Siswa",
-        ]);
+        return view('siswaid.index', compact('siswa', 'ortu', 'jawabans', 'pertanyaans', 'kelas'));
     }
 
     /**

@@ -129,10 +129,13 @@ class walikelasController extends Controller
     public function destroy($id)
     {
 
-        $kantin = kela::where('userID', $id)->get();
-        // $kantin->user()->delete();
-        $kantin->each->delete();
-        toastr()->info('Berhasil di hapus!', 'Sukses');
+        kela::where('userID', $id)->update([
+            'nip' => null,
+            'nama_guru' => null,
+            'thn_ajaran' => null,
+        ]);
+
+        toastr()->info('Berhasil di reset!', 'Sukses');
         return redirect('/wali_kelas');
     }
 }

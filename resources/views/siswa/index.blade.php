@@ -59,7 +59,7 @@
 <div class="main-content">
    <main>
       @can('wali_kelas')
-         @if (empty($guru))
+         @if (empty($kelas->nip) && empty($kelas->nama_guru))
          <div class="container" style="position: relative">
             <h2 class="text-center text-dark">Mohon isi data dahulu!</h2>
             <form action="{{ route('siswawali.store') }}" method="post">
@@ -69,7 +69,6 @@
                   <input type="number" class="form-control" id="StoreID" name="nip" placeholder="1345478434" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="10" />
                </div>
                <input type="hidden" class="form-control" id="LocID" name="userid" required value="{{ Auth::user()->id }}" />
-
                <div class="form-group">
                   <label for="formGroupExampleInput">Nama</label>
                   <input type="text" class="form-control" id="LocID" placeholder="Udin Bahrudin" name="nama_guru" required />
@@ -78,25 +77,15 @@
                   <label for="formGroupExampleInput">Tahun Ajaran</label>
                   <input type="number" class="form-control" id="ProdID" name="thn_ajaran" placeholder="2022" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="4" />
                </div>
-
                <label for="formFile" class="form-label">Wali kelas</label>
                <select class="form-select" aria-label="Default select example" name="kelas" required>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
+                  <option value="{{ $kelas->kelas }}">{{ $kelas->kelas }}</option>
                </select>
                <label for="formFile" class="form-label">Jurusan</label>
                <select class="form-select" aria-label="Default select example" name="jurusan" required>
-                  <option value="AKL 1">AKL 1</option>
-                  <option value="AKL 2">AKL 2</option>
-                  <option value="BDP 1">BDP 1</option>
-                  <option value="BDP 2">BDP 2</option>
-                  <option value="OTKP 1">OTKP</option>
-                  <option value="OTKP 2">OTKP 2</option>
-                  <option value="DKV">DKV</option>
-                  <option value="RPL">RPL</option>
+                  <option value="{{ $kelas->jurusan }}">{{ $kelas->jurusan }}</option>
                </select>
-               <button style="background-color: #1960a7; border: unset" type="submit" class="btn btn-primary mt-4">Tambah</button>
+               <button style="background-color: #1960a7; border: unset" type="submit" class="btn btn-primary mt-4">Submit</button>
                <button type="reset" class="btn btn-danger border-0 mt-4" style="background-color: #dc3545">Reset</button>
             </form>
          </div>
@@ -104,7 +93,7 @@
       @endcan
 
       <div class="container">
-         @if (Auth::user()->level == 2)
+         @if (Auth::user()->level == 2 && !empty($kelas->nip))
          <h3 class="text-slate-800">List Siswa Anda</h3>
          <table class="table mt-3" cellpadding="10" cellspace="0">
             <thead class="align-self-center text-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">

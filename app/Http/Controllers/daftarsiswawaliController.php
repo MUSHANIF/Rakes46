@@ -23,14 +23,12 @@ class daftarsiswawaliController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas = kela::with(['guru', 'siswa', 'user'])
-            ->where('userID',  Auth::user()->id)
-            ->whereRelation('siswa', 'nama_lengkap', 'like', "%" . $cari . "%")
-            ->first();
 
-        $guru = kela::with(['guru', 'siswa', 'user'])->where('userID',  Auth::user()->id)->first();
+        $kelas = kela::where('userID', Auth::user()->id)->first();
 
-        return view('siswa.index', compact('datas', 'guru'));
+        $datas = kela::where('userID', Auth::user()->id)->with(['guru', 'siswa', 'user'])->whereRelation('siswa', 'nama_lengkap', 'like', "%" . $cari . "%")->first();
+
+        return view('siswa.index', compact('kelas', 'datas'));
     }
 
     /**
@@ -51,17 +49,9 @@ class daftarsiswawaliController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $kelas = new kela;
-        $kelas->userID = $request->userid;
-        $kelas->nip = $request->nip;
-        $kelas->nama_guru = $request->nama_guru;
-        $kelas->thn_ajaran = $request->thn_ajaran;
-        $kelas->kelas = $request->kelas;
-        $kelas->jurusan = $request->jurusan;
-
         $validasi = Validator::make($data, [
             'nip' => 'required|max:10|unique:kelas',
-            'nama_guru' => 'required|max:40',
+            'nama_guru' => 'required|max:50',
             'thn_ajaran' => 'required|max:4',
             'kelas' => 'required',
             'jurusan' => 'required',
@@ -69,6 +59,14 @@ class daftarsiswawaliController extends Controller
         if ($validasi->fails()) {
             return back()->withInput()->withErrors($validasi);
         }
+
+        $kelas = kela::firstWhere('userID', $request->userid);
+        $kelas->userID = $request->userid;
+        $kelas->nip = $request->nip;
+        $kelas->nama_guru = $request->nama_guru;
+        $kelas->thn_ajaran = $request->thn_ajaran;
+        $kelas->kelas = $request->kelas;
+        $kelas->jurusan = $request->jurusan;
 
         $kelas->save();
 

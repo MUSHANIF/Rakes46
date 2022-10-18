@@ -43,7 +43,6 @@
             <div class="container">
                <form class="row" action="{{ route('siswaid.store') }}" method="post" >
                   @csrf
-      
                   <div class="col-md-6 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">NISN</label>
                      <input type="number" class="form-control" value="{{ old('nisn') }}" id="StoreID" name="nisn" required placeholder="0045874511" minlength="10" autofocus
@@ -73,11 +72,10 @@
                      <label for="formFile" class="mb-2">Kelas</label>
                      <select class="form-select" aria-label="Default select example" name="kelasID" required>
                            @foreach ($kelas as $data)
-                              <option value="{{ $data->id }}">{{ $data->kelas }} {{ $data->jurusan }}</option>
+                              <option value="{{ $data->id }}">{{ $data->kelas }} - {{ $data->jurusan }}</option>
                            @endforeach
                      </select>
                   </div>
-               
                   <div class="col-md-6 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Tempat lahir</label>
                      <input type="text" class="form-control" value="{{ old('tmp_lahir') }}" id="ProdID" name="tmp_lahir" required placeholder="Surabaya">
@@ -97,15 +95,15 @@
                      <label for="formGroupExampleInput" class="mb-2">Gol Darah</label>
                      <select name="gol_darah" class="form-select" id="prodID">
                         <option {{ old('gol_darah') == "A" ? 'selected' : '' }} value="A">A</option>
-                        <option  {{ old('gol_darah') == "AB" ? 'selected' : '' }}  value="AB">AB</option>
-                        <option  {{ old('gol_darah') == "B" ? 'selected' : '' }}  value="B">B</option>
-                        <option  {{ old('gol_darah') == "O" ? 'selected' : '' }}  value="O">O</option>
-                        <option  {{ old('gol_darah') == "Belum Diketahui" ? 'selected' : '' }}  value="Belum Diketahui">Belum Diketahui</option>
+                        <option {{ old('gol_darah') == "AB" ? 'selected' : '' }} value="AB">AB</option>
+                        <option {{ old('gol_darah') == "B" ? 'selected' : '' }} value="B">B</option>
+                        <option {{ old('gol_darah') == "O" ? 'selected' : '' }} value="O">O</option>
+                        <option {{ old('gol_darah') == "Belum Diketahui" ? 'selected' : '' }}  value="Belum Diketahui">Belum Diketahui</option>
                      </select>
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="formGroupExampleInput" class="mb-2">Anak Ke</label>
-                     <input type="text" class="form-control" id="ProdID"  value="{{ old('anak_ke') }}" name="anak_ke" required placeholder="2">
+                     <input type="number" class="form-control" id="ProdID"  value="{{ old('anak_ke') }}" name="anak_ke" required placeholder="2">
                  </div>
                  <div class="col-md-4 mb-3">
                      <label for="formFile" class="mb-2">Tinggal Bersama</label>
