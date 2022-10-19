@@ -210,47 +210,47 @@
                <h2 class="my-10 font-semibold text-center text-gray-700 dark:text-gray-200 text-2xl md:text-3xl">Detail Informasi Anda</h2>
       
                <div class="mb-8">
-                  <div class="md:flex gap-x-6 ">
+                  <div class="md:flex gap-x-6">
                         <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
                             <h4 class="text-gray-700 text-xl md:text-2xl">Profil Anda:</h4>
-                            <div class="">
+                            <div>
                                <div class="grid grid-cols-2">
-                                 <h5 class="text-base md:text-xl">Nama </h5>
-                                 <h5 class="text-base md:text-xl">: {{ $siswa->nama_lengkap }}</h5>
+                                 <h5 class="text-base md:text-lg lg:text-xl">Nama </h5>
+                                 <h5 class="text-base md:text-lg lg:text-xl">: {{ $siswa->nama_lengkap }}</h5>
                                </div>
                                <div class="grid grid-cols-2">
-                                 <h5 class="text-base md:text-xl">NISN </h5>
-                                 <h5 class="text-base md:text-xl">: {{ $siswa->nisn }}</h5>
+                                 <h5 class="text-base md:text-lg lg:text-xl">NISN </h5>
+                                 <h5 class="text-base md:text-lg lg:text-xl">: {{ $siswa->nisn }}</h5>
                                </div>
                                <div class="grid grid-cols-2">
-                                 <h5 class="text-base md:text-xl">Tanggal Lahir </h5>
-                                 <h5 class="text-base md:text-xl">: {{ $siswa->tgl_lahir }}</h5>
+                                 <h5 class="text-base md:text-lg lg:text-xl">Tanggal Lahir </h5>
+                                 <h5 class="text-base md:text-lg lg:text-xl">: {{ $siswa->tgl_lahir }}</h5>
                                </div>
                                <div class="grid grid-cols-2">
-                                 <h5 class="text-base md:text-xl">Jenis Kelamin </h5>
-                                 <h5 class="text-base md:text-xl">: {{ $siswa->jns_kelamin == "L" ? "Laki-Laki" : "Perempuan" }}</h5>
+                                 <h5 class="text-base md:text-lg lg:text-xl">Jenis Kelamin </h5>
+                                 <h5 class="text-base md:text-lg lg:text-xl">: {{ $siswa->jns_kelamin == "L" ? "Laki-Laki" : "Perempuan" }}</h5>
                                </div>
                             </div>
                         </div>
       
                         <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
                             <h4 class="text-gray-700 text-xl md:text-2xl">Profil Orangtua Anda:</h4>
-                            <div class="">
+                            <div>
                               <div class="grid grid-cols-2">
-                                <h5 class="text-base md:text-xl">Nama Ayah</h5>
-                                <h5 class="text-base md:text-xl capitalize">: {{ $ortu->nama_ayah }}</h5>
+                                <h5 class="text-base md:text-lg lg:text-xl">Nama Ayah</h5>
+                                <h5 class="text-base md:text-lg lg:text-xl capitalize">: {{ $ortu->nama_ayah }}</h5>
                               </div>
                               <div class="grid grid-cols-2">
-                                <h5 class="text-base md:text-xl">Nama Ibu</h5>
-                                <h5 class="text-base md:text-xl capitalize">: {{ $ortu->nama_ibu }}</h5>
+                                <h5 class="text-base md:text-lg lg:text-xl">Nama Ibu</h5>
+                                <h5 class="text-base md:text-lg lg:text-xl capitalize">: {{ $ortu->nama_ibu }}</h5>
                               </div>
                               <div class="grid grid-cols-2">
-                                <h5 class="text-base md:text-xl">Pekerjaan Ayah </h5>
-                                <h5 class="text-base md:text-xl capitalize">: {{ $ortu->pekerjaan_ayah}}</h5>
+                                <h5 class="text-base md:text-lg lg:text-xl">Pekerjaan Ayah </h5>
+                                <h5 class="text-base md:text-lg lg:text-xl capitalize">: {{ $ortu->pekerjaan_ayah}}</h5>
                               </div>
                               <div class="grid grid-cols-2">
-                                <h5 class="text-base md:text-xl">Pekerjaan Ibu </h5>
-                                <h5 class="text-base md:text-xl capitalize">: {{ $ortu->pekerjaan_ibu  }}</h5>
+                                <h5 class="text-base md:text-lg lg:text-xl">Pekerjaan Ibu </h5>
+                                <h5 class="text-base md:text-lg lg:text-xl capitalize">: {{ $ortu->pekerjaan_ibu  }}</h5>
                               </div>
                            </div>
                         </div>
@@ -274,7 +274,7 @@
                         <h3 class="text-base mb-4">Type 1</h3>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-12">
                            {{-- Jawaban Group A --}}
-                           @if ($jawabans->slice(0, $jumlahGroupA)->count() == $jumlahGroupA)
+                           @if ($jawabans->isNotEmpty() && !empty($jawabans['1']['a']) && $jawabans['1']['a']->count() == $jumlahGroupA)
                            <div class="w-full">
                               <div class="bg-blue-600 h-1"></div>
                               <button class="text-black mt-3 relative w-full text-start" data-popover-trigger="click" data-popover-target="popover-groupA1" data-popover-placement="bottom">Group A
@@ -315,7 +315,7 @@
                            @endif
                         
                            {{-- Jawaban Group B --}}
-                           @if ($jawabans->slice($jumlahGroupA, $jumlahGroupB)->count()  == $jumlahGroupB)
+                           @if ($jawabans->isNotEmpty() && !empty($jawabans['1']['b']) && $jawabans['1']['b']->count() == $jumlahGroupB)
                            <div class="w-full">
                               <div class="bg-blue-600 h-1"></div>
                               <button class="text-black mt-3 relative w-full text-start" data-popover-trigger="click" data-popover-target="popover-groupB1" data-popover-placement="bottom">Group B
@@ -356,7 +356,7 @@
                            @endif
 
                            {{-- Jawaban Group C --}}
-                           @if ($jawabans->slice($jumlahGroupA + $jumlahGroupB, $jumlahGroupC)->count()  == $jumlahGroupC)
+                           @if ($jawabans->isNotEmpty() && !empty($jawabans['1']['c']) && $jawabans['1']['c']->count() == $jumlahGroupC)
                            <div class="w-full">
                               <div class="bg-blue-600 h-1"></div>
                               <button class="text-black mt-3 relative w-full text-start" data-popover-trigger="click" data-popover-target="popover-groupC1" data-popover-placement="bottom">Group C
@@ -397,7 +397,7 @@
                            @endif
 
                            {{-- Jawaban Group D --}}
-                           @if ($jawabans->slice($jumlahGroupA + $jumlahGroupB + $jumlahGroupC, $jumlahGroupD)->count()  == $jumlahGroupD)
+                           @if ($jawabans->isNotEmpty() && !empty($jawabans['1']['d']) && $jawabans['1']['d']->count() == $jumlahGroupD)
                            <div class="w-full">
                               <div class="bg-blue-600 h-1"></div>
                               <button class="text-black mt-3 relative w-full text-start" data-popover-trigger="click" data-popover-target="popover-groupD1" data-popover-placement="bottom">Group D
@@ -438,7 +438,7 @@
                            @endif
 
                            {{-- Jawaban Group E --}}
-                           @if ($jawabans->slice($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD, $jumlahGroupE)->count()  == $jumlahGroupE)
+                           @if ($jawabans->isNotEmpty() && !empty($jawabans['1']['e']) && $jawabans['1']['e']->count() == $jumlahGroupE)
                            <div class="w-full">
                               <div class="bg-blue-600 h-1"></div>
                               <button class="text-black mt-3 relative w-full text-start" data-popover-trigger="click" data-popover-target="popover-groupE1" data-popover-placement="bottom">Group E
@@ -479,7 +479,7 @@
                            @endif
                            
                            {{-- Jawaban Group F --}}
-                           @if ($jawabans->slice($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE, $jumlahGroupF)->count()  == $jumlahGroupF)
+                           @if ($jawabans->isNotEmpty() && !empty($jawabans['1']['f']) && $jawabans['1']['f']->count() == $jumlahGroupF)
                            <div class="w-full">
                               <div class="bg-blue-600 h-1"></div>
                               <button class="text-black mt-3 relative w-full text-start" data-popover-trigger="click" data-popover-target="popover-groupF1" data-popover-placement="bottom">Group F
@@ -520,7 +520,7 @@
                            @endif
 
                            {{-- Jawaban Group G --}}
-                           @if ($jawabans->slice($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE + $jumlahGroupF, $jumlahGroupG)->count()  == $jumlahGroupG)
+                           @if ($jawabans->isNotEmpty() && !empty($jawabans['1']['g']) && $jawabans['1']['g']->count() == $jumlahGroupG)
                            <div class="w-full">
                               <div class="bg-blue-600 h-1"></div>
                               <button class="text-black mt-3 relative w-full text-start" data-popover-trigger="click" data-popover-target="popover-groupG1" data-popover-placement="bottom">Group G
@@ -567,7 +567,7 @@
                         <h3 class="text-base my-4">Type 2</h3>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-12">
                            {{-- Jawaban Group A Type 2 --}}
-                           @if ($jawabans->slice($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE + $jumlahGroupF + $jumlahGroupG, $jumlahGroupA2)->count()  == $jumlahGroupA2)
+                           @if ($jawabans->isNotEmpty() && !empty($jawabans['2']['a']) && $jawabans['2']['a']->count() == $jumlahGroupA2)
                            <div class="w-full">
                               <div class="bg-blue-600 h-1"></div>
                               <button class="text-black mt-3 relative w-full text-start" data-popover-trigger="click" data-popover-target="popover-groupA2" data-popover-placement="bottom">Group A

@@ -272,42 +272,42 @@ class PertanyaanSeeder extends Seeder
             'type' => 2,
             'group' => 'a',
             'no' => '1',
-            'pertanyaan' => 'Tekanan Darah'
+            'pertanyaan' => 'Jumlah Tekanan Darah (mmHg)'
         ]);
 
         pertanyaan::create([
             'type' => 2,
             'group' => 'a',
             'no' => '2',
-            'pertanyaan' => 'Denyut Nadi'
+            'pertanyaan' => 'Jumlah Denyut Nadi'
         ]);
 
         pertanyaan::create([
             'type' => 2,
             'group' => 'a',
             'no' => '3',
-            'pertanyaan' => 'Frekuensi Pernapasan'
+            'pertanyaan' => 'Jumlah Frekuensi Pernapasan'
         ]);
 
         pertanyaan::create([
             'type' => 2,
             'group' => 'a',
             'no' => '4',
-            'pertanyaan' => 'Suhu'
+            'pertanyaan' => 'Suhu (°C)'
         ]);
 
         pertanyaan::create([
             'type' => 2,
             'group' => 'a',
             'no' => '5',
-            'pertanyaan' => 'Bising Jantung'
+            'pertanyaan' => 'Jumlah Bising Jantung (Hertz)'
         ]);
 
         pertanyaan::create([
             'type' => 2,
             'group' => 'a',
             'no' => '6',
-            'pertanyaan' => 'Bising Paru'
+            'pertanyaan' => 'Jumlah Bising Paru (Hertz)'
         ]);
     }
 }

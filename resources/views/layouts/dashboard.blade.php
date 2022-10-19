@@ -17,11 +17,9 @@
       @endcan
 
       @yield('head')
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
       <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
       <link rel="icon" href="{{ asset('img/favicon.svg')}}" />
       <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
       
@@ -30,12 +28,11 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
       <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
       <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-      <link href="/assets/modules/boxicons/css/boxicons.min.css" rel="stylesheet" />
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
       <link href="/assets/modules/bootstrap-5.1.3/css/bootstrap.css" rel="stylesheet" />
-      <link href="/assets/modules/fontawesome6.1.1/css/all.css" rel="stylesheet" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-      <script src="https://cdn.statically.io/gh/devanka761/notipin/v1.24.49/all.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
       <style>
          a {
             text-decoration: none;
@@ -216,8 +213,8 @@
             color: #035edd !important;
          }
       </style>      
-      <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="https://cdn.statically.io/gh/devanka761/notipin/v1.24.49/all.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
    </head>
 
@@ -245,7 +242,7 @@
                
                <div id="dropdownDivider" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-300 shadow dark:bg-gray-700 dark:divide-gray-600">
                   <div class="py-1">
-                    <a href="#" class="flex gap-x-4 items-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="bi bi-arrow-90deg-left"></i> Kembali ke Home</a>
+                    <a href="/" class="flex gap-x-4 items-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="bi bi-arrow-90deg-left"></i> Kembali ke Home</a>
                   </div>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
                   <div class="py-1">
@@ -287,7 +284,6 @@
          </div>
       </footer>
 
-      <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
       <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 

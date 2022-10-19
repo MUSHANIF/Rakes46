@@ -22,8 +22,8 @@ class siswaController extends Controller
         $siswa =  siswa::where('userID',  auth()->user()->id)->first();
         $ortu =  ortu::where('userID',  auth()->user()->id)->first();
         $pertanyaans = pertanyaan::all();
-        $kelas = kela::all();
-        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
+        $kelas = kela::get(['kelas', 'jurusan']);
+        $jawabans = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->get()->groupBy(['pertanyaan.type', 'pertanyaan.group']);
 
         return view('siswaid.index', compact('siswa', 'ortu', 'jawabans', 'pertanyaans', 'kelas'));
     }

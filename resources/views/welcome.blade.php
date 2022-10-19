@@ -8,7 +8,7 @@
          name="description"
          content="Rakes 46 is an independent organization managed for SMKN 46 Jakarta. They are dedicated to helping puskesmas and schools to get reports on student health easily, without wasting a lot of paper and in less time"
       />
-      <title>Kesehatan</title>
+      <title>Rakes 46</title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
