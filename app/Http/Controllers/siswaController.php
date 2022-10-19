@@ -140,16 +140,15 @@ class siswaController extends Controller
 
     public function tampilkan()
     {
-        if (empty(auth()->user()->jawaban)) {
-            return back();
-        }
+        // Dalam Peninjauan
+        return back();
 
-        $jmlPertanyaan = pertanyaan::all()->count();
+        // $jmlPertanyaan = pertanyaan::all()->count();
 
-        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id);
-        $jawabans = $jawabanUser->get();
+        // $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id);
+        // $jawabans = $jawabanUser->get();
 
-        return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan'));
+        // return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan'));
     }
 
     public function tampilkanPerGroup(pertanyaan $pertanyaan)

@@ -110,16 +110,13 @@ class jawabanController extends Controller
                     ->where('group', 'b')
                     ->get();
             }
-
-            // // Jika jawaban sudah kejawab semua --sementara
-            // if ($jawabanGroupA2->isNotEmpty()) {
-            //     return redirect('/isijawaban');
-            // }
         }
 
         // Jika jawaban sudah kejawab semua --kalo dah semua
-        if ($jawabanUser->count() == $pertanyaans->count()) {
-            return redirect('/isijawaban');
+        if (!empty($jawabanUser)) {
+            if ($jawabanUser->count() == $pertanyaans->count()) {
+                return back();
+            }
         }
 
         return view('jawaban.index', compact('data', 'siswa'));

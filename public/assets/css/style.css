@@ -98,15 +98,14 @@ p {
     transition: all 0.3s;
     z-index: 9997;
 }
-.topbar .search {
+.search {
     float: left;
-
     align-items: center;
     margin-top: 23px;
     height: 75px;
     margin-left: 20px;
 }
-.topbar .bars {
+.bars {
     float: left;
     display: flex;
     align-items: center;
@@ -114,22 +113,21 @@ p {
     margin-left: 10px;
 }
 
-.topbar .bars button {
+.bars button {
     color: var(--default-color);
-    box-shadow: none;
     display: block;
     box-shadow: none !important;
 }
 
-.topbar .bars button i {
+.bars button i {
     font-size: 28px;
 }
 
-.topbar .bars button:hover {
+.bars button:hover {
     color: var(--default-color);
 }
 
-.topbar .menu {
+.menu {
     float: right;
     display: flex;
     align-items: center;
@@ -137,36 +135,36 @@ p {
     padding: 0 10px;
 }
 
-.topbar .menu ul {
+.menu ul {
     padding: 0;
     margin: 0;
 }
-.topbar .menu ul li span {
+.menu ul li span {
     margin-left: 12px;
     font-size: 15px;
 }
 
-.topbar .menu ul li {
+.menu ul li {
     display: inline-block;
     margin: 8px 10px 0 10px;
 }
 
-.topbar .menu ul li a {
+.menu ul li a {
     text-decoration: none;
     color: var(--default-color);
 }
 
-.topbar .menu ul li a:hover,
-.topbar .menu ul li .dropdown-toggle:hover {
+.menu ul li a:hover,
+.menu ul li .dropdown-toggle:hover {
     color: var(--default-color);
 }
 
-.topbar .menu ul li .dropdown-toggle {
+.menu ul li .dropdown-toggle {
     color: var(--default-color);
     cursor: pointer;
 }
 
-.topbar .menu ul li .dropdown-menu {
+.menu ul li .dropdown-menu {
     margin-top: 30px;
     margin-right: 10px;
     border: 0;
@@ -174,7 +172,7 @@ p {
     background: #081a51;
 }
 
-.topbar .menu ul li .dropdown-menu a {
+.menu ul li .dropdown-menu a {
     color: #017efa;
     font-weight: 500;
     margin-top: 10px;
@@ -182,14 +180,14 @@ p {
     padding: 10px 15px;
 }
 
-.topbar .menu ul li .foto {
+.menu ul li .foto {
     width: 50px;
     margin-top: -8px;
     border: 2px solid #d9dadb;
     border-radius: 100px;
 }
 
-.topbar .menu ul li a .notif {
+.menu ul li a .notif {
     position: absolute;
     margin-top: -10px;
     margin-left: -10px;
@@ -197,22 +195,21 @@ p {
     font-size: 11px;
 }
 @media (max-width: 500px) {
-    .topbar .bars {
+    /* .bars {
         float: left;
         display: flex;
         align-items: center;
         height: 80px;
         margin-left: 10px;
     }
-    .topbar .search {
+    .search {
         float: center;
-
         align-items: center;
         margin-top: 23px;
         height: 75px;
         margin-left: 20px;
     }
-    .topbar .menu {
+    .menu {
         float: top;
         display: flex;
         align-items: center;
@@ -220,7 +217,7 @@ p {
         margin-left: 190px;
         margin-right: -20px;
         margin-top: -65px;
-    }
+    } */
 }
 
 .dropdown-list .dropdown-list-content {
@@ -596,10 +593,6 @@ footer .author-footer {
 }
 
 @media (min-width: 992px) {
-    .topbar {
-        margin-left: 275px;
-    }
-
     .sidebar {
         left: 0;
     }
@@ -616,7 +609,7 @@ footer .author-footer {
     .content-start .content-header p {
         width: 600px;
     }
-    .topbar .bars button {
+    .bars button {
         display: none;
     }
 
@@ -636,10 +629,6 @@ footer .author-footer {
 @media (max-width: 480px) {
     .dropdown-list .dropdown-list-content {
         width: 230px;
-    }
-
-    .input-group {
-        width: 40% !important;
     }
 
     .content-start .button {

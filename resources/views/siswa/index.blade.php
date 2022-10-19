@@ -5,7 +5,7 @@
       <form action="{{ url('siswawali') }}" method="GET" class="">
          @csrf
          <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}" />
+            <input type="text" class="form-control form-control-sm bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}" />
             <div class="input-group-append">
                <button class="btn" style="background-color: #256d85" type="submit">
                   <i class="fas fa-search fa-sm text-white"></i>

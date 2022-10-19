@@ -223,48 +223,53 @@
 
    <body id="page-top">
       @include('sweetalert::alert')
-      <div class="topbar transition">
-         <div class="bars">
-            <button type="button" class="btn1 transition" id="sidebar-toggle">
-               <i class="fa fa-bars"></i>
-            </button>
+
+      <div class="h-[75px] ml-8 sm:ml-16 md2:ml-[310px] z-[999] flex mt-6 justify-between">
+
+         <div class="flex items-center">
+            <div class="flex items-center h-[80px] md2:hidden">
+               <button type="button" class="transition text-[#5a5c69] block shadow-none" id="sidebar-toggle">
+                  <i class="fa fa-bars text-[28px]"></i>
+               </button>
+            </div>
+
+            <div class="flex items-center h-[75px] ml-5 md2:ml-0">@yield('search')</div>
          </div>
-         <div class="search">@yield('search')</div>
-         <div class="menu">
-            <ul>
-               <li class="nav-item dropdown">
-                  <a class="nav-link d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     <h5 class="name text-xs sm:text-base">Selamat Datang, {{ auth()->user()->name }}</h5>
-                     <img src="{{ asset('assets/images/avatar-1.png') }}" class="foto" alt="Profil" />
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item hover:!text-[#081A51] text-white" href="/"><i class="bi bi-arrow-90deg-left"></i> <span>Kembali ke Home</span></a>
-                     <hr class="dropdown-divider bg-white" />
-                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
-                     <a
-                        class="dropdown-item hover:!text-[#081A51] text-white"
-                        href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();"
-                        ><i class="bi bi-box-arrow-in-left"></i> <span>Keluar</span></a
-                     >
-                  </ul>
-               </li>
-            </ul>
+
+         <div class="flex items-center h-[75px] py-0 px-10 float-left">
+            <div class="p-0 m-0">
+               <button type="button" class="inline-flex justify-center w-full items-center font-medium focus:outline-none text-slate-700 md:text-base text-sm" id="dropdownDefault" data-dropdown-toggle="dropdownDivider">
+                  <span class="hidden md:flex items-center font-semibold">Selamat Datang, {{ Auth::user()->name }}</span>
+                  <img src="{{ asset('assets/images/avatar-1.png') }}" class="w-[50px] rounded-full shadow-none border-2 border-[#d9dadb] ml-1" alt="Profil" />
+               </button>
+               
+               <div id="dropdownDivider" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-300 shadow dark:bg-gray-700 dark:divide-gray-600">
+                  <div class="py-1">
+                    <a href="#" class="flex gap-x-4 items-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="bi bi-arrow-90deg-left"></i> Kembali ke Home</a>
+                  </div>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
+                  <div class="py-1">
+                    <a onclick="event.preventDefault(); $('#logout-form').submit();" href="#" class="flex gap-x-4 items-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="bi bi-box-arrow-in-left"></i>  Keluar</a>
+                  </div>
+              </div>
+               
+            </div>
          </div>
       </div>
 
       @include('partials.dashboard-nav')
       <div class="sidebar-overlay"></div>
-      <div class="content-start transition">
+
+      <div class="min-h-screen pt-12 mx-0 md2:pl-[310px] md2:pr-16">
          @if (Auth::user()->level == '5')
-         <div class="button">
+         <div class="text-right container">
             @yield('button')
          </div> 
          @endif
               
-         <div class="container-fluid dashboard">@yield('isi')</div>
+         <div class="container">@yield('isi')</div>
       </div>
+
       <footer>
          <div class="footer">
             <div class="float-start">
