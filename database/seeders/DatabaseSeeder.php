@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             KelasSeeder::class,
             SiswaSeeder::class,
             PertanyaanSeeder::class,
+            JawabanSeeder::class,
         ]);
 
         ortu::create([

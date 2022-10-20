@@ -83,7 +83,7 @@ class daftarsiswawaliController extends Controller
     public function show(Request $request, $id)
     {
         $data =  kela::where('userID',  Auth::user()->id)->first();
-        $jawabans = jawaban::where('userID', $id)->get();
+        $jawabans = jawaban::where('userID', $id)->whereTahunIni()->get();
         $siswa =  siswa::where('userID', $id)->first();
         $ortu =  ortu::where('userID',  $id)->first();
 
@@ -115,7 +115,6 @@ class daftarsiswawaliController extends Controller
 
         $model->name = $request->name;
         $model->email = $request->email;
-
         $model->level = $request->opsi;
 
         $model->save();
@@ -131,8 +130,9 @@ class daftarsiswawaliController extends Controller
      */
     public function destroy($id)
     {
-        $kantin = User::find($id);
-        $kantin->delete();
+        $user = User::find($id);
+        $user->delete();
+
         toastr()->info('Berhasil di hapus!', 'Sukses');
         return redirect('siswa');
     }

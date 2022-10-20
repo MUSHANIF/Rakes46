@@ -55,7 +55,7 @@ class daftarsiswaController extends Controller
     public function show(Request $request, $id)
     {
         $data =  kela::where('userID',  Auth::user()->id)->first();
-        $jawabans = jawaban::where('userID', $id)->get();
+        $jawabans = jawaban::where('userID', $id)->whereTahunIni()->get();
         $siswa =  siswa::where('userID', $id)->first();
         $ortu =  ortu::where('userID',  $id)->first();
 

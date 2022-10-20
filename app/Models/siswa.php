@@ -12,7 +12,7 @@ class siswa extends Model
 
     public function getTglLahirAttribute($value)
     {
-        return Carbon::parse($value)->isoFormat('DD MMMM Y');
+        return Carbon::parse($value)->translatedFormat('d F Y');
     }
 
     public function kela()

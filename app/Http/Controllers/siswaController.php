@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\kela;
 use App\Models\ortu;
 use App\Models\siswa;
@@ -19,11 +20,18 @@ class siswaController extends Controller
      */
     public function index()
     {
+        /**
+         * $tanggalAwal = Carbon::create(Carbon::now()->year, 06, 01)->toDateTimeString(); // -> tanggal awal dari bulan juli tahun ini
+         * where('created_at', '<=', Carbon::today()) -> dimana tanggal created jawaban kurang dari Hari Ini (kemarin)
+         * where('created_at', '>=', Carbon::today()) -> dimana tanggal created jawaban lebih dari Hari Ini (besok)
+         */
+
         $siswa =  siswa::where('userID',  auth()->user()->id)->first();
         $ortu =  ortu::where('userID',  auth()->user()->id)->first();
         $pertanyaans = pertanyaan::all();
         $kelas = kela::get(['kelas', 'jurusan']);
-        $jawabans = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->get()->groupBy(['pertanyaan.type', 'pertanyaan.group']);
+        $jawabans = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->get() // whereTahunIni() berasal dari scope buatan di model
+            ->groupBy(['pertanyaan.type', 'pertanyaan.group']);
 
         return view('siswaid.index', compact('siswa', 'ortu', 'jawabans', 'pertanyaans', 'kelas'));
     }
@@ -153,7 +161,8 @@ class siswaController extends Controller
 
     public function tampilkanPerGroup(pertanyaan $pertanyaan)
     {
-        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id);
+
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni();
 
         $jmljawaban = $jawabanUser->count();
 
@@ -163,7 +172,7 @@ class siswaController extends Controller
         ])->get();
 
         if ($jawabans->isEmpty()) {
-            return back();
+            return redirect('siswaid');
         }
 
         $jmlPertanyaan = pertanyaan::all()->count();

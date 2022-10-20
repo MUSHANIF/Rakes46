@@ -20,14 +20,16 @@ class jawabanController extends Controller
     {
         $siswa =  siswa::where('userID', Auth::user()->id)->first();
         $pertanyaans = pertanyaan::all();
-        $jawabanUser = auth()->user()->jawaban;
+        $jawabanFullUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->get(); // whereTahunIni() berasal dari scope buatan di model
+
+        $jawabanUser = $jawabanFullUser->groupBy(['pertanyaan.type', 'pertanyaan.group']);;
 
         // Ketika user blm jawab samsek
         $data = pertanyaan::where('type', 1)
             ->where('group', 'a')
             ->get();
 
-        if (!empty(auth()->user()->jawaban)) {
+        if (!empty(auth()->user()->jawaban->whereTahunIni()->first())) {
             $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
             $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
             $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
@@ -37,30 +39,16 @@ class jawabanController extends Controller
             $jumlahGroupG = $pertanyaans->where('type', '1')->where('group', 'g')->count();
             $jumlahGroupA2 = $pertanyaans->where('type', '2')->where('group', 'a')->count();
 
-            $jawabanGroupA = $jawabanUser->skip(0)
-                ->take($jumlahGroupA)->get();
+            $kosong = collect([]);
 
-            $jawabanGroupB = $jawabanUser->skip($jumlahGroupA)
-                ->take($jumlahGroupB)->get();
-
-            $jawabanGroupC = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB)
-                ->take($jumlahGroupC)->get();
-
-            $jawabanGroupD = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC)
-                ->take($jumlahGroupD)->get();
-
-            $jawabanGroupE = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD)
-                ->take($jumlahGroupE)->get();
-
-            $jawabanGroupF = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE)
-                ->take($jumlahGroupF)->get();
-
-            $jawabanGroupG = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE + $jumlahGroupF)
-                ->take($jumlahGroupG)->get();
-
-            $jawabanGroupA2 = $jawabanUser->skip($jumlahGroupA + $jumlahGroupB + $jumlahGroupC + $jumlahGroupD + $jumlahGroupE + $jumlahGroupF + $jumlahGroupG)
-                ->take($jumlahGroupA2)->get();
-
+            $jawabanGroupA = $jawabanUser['1']['a'] ?? $kosong;
+            $jawabanGroupB = $jawabanUser['1']['b'] ?? $kosong;
+            $jawabanGroupC = $jawabanUser['1']['c'] ?? $kosong;
+            $jawabanGroupD = $jawabanUser['1']['d'] ?? $kosong;
+            $jawabanGroupE = $jawabanUser['1']['e'] ?? $kosong;
+            $jawabanGroupF = $jawabanUser['1']['f'] ?? $kosong;
+            $jawabanGroupG = $jawabanUser['1']['g'] ?? $kosong;
+            $jawabanGroupA2 = $jawabanUser['2']['a'] ?? $kosong;
 
             // Ketika user sudah jawab semua pertanyaan type 1
             if ($jawabanGroupA2->isEmpty()) {
@@ -113,9 +101,9 @@ class jawabanController extends Controller
         }
 
         // Jika jawaban sudah kejawab semua --kalo dah semua
-        if (!empty($jawabanUser)) {
-            if ($jawabanUser->count() == $pertanyaans->count()) {
-                return back();
+        if (!empty($jawabanFullUser)) {
+            if ($jawabanFullUser->count() == $pertanyaans->count()) {
+                return redirect('/siswaid');
             }
         }
 
@@ -200,7 +188,7 @@ class jawabanController extends Controller
 
     public function editKuisioner(pertanyaan $pertanyaan)
     {
-        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereRelation('pertanyaan', [
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->whereRelation('pertanyaan', [
             'group' => "$pertanyaan->group",
             'type' => "$pertanyaan->type"
         ]);
@@ -219,7 +207,7 @@ class jawabanController extends Controller
         $jumlahPertanyaan = $request["jumlahPertanyaan"];
 
         for ($i = 1; $i <= $jumlahPertanyaan; $i++) {
-            $model = jawaban::where('userID', auth()->user()->id)->firstWhere('pertanyaanID', $request->pertanyaanID[$i]);
+            $model = jawaban::where('userID', auth()->user()->id)->whereTahunIni()->firstWhere('pertanyaanID', $request->pertanyaanID[$i]);
             $model->userID = $request->userID;
             $model->pertanyaanID = $request->pertanyaanID[$i];
             $model->jawaban = $request->jawaban[$i];
