@@ -31,7 +31,10 @@
              </li>
              @elseif(Auth::user()->level == 1)
              <li>
-                <a href="/siswaid" class="active"> <i class="bx bxs-dashboard icon"></i> Biodata siswa </a>
+                <a href="/siswaid" class="{{ Request::is('siswaid*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Biodata siswa </a>
+                @if ($jawabanlama > 0)
+                <a href="/jawabanlama" class="{{ Request::is('jawabanlama*') ? 'active' : ''}}"> <i class='bx bxs-book-content icon'></i> Jawaban Tahun Lalu </a>
+                @endif
              </li>
              @endif 
 

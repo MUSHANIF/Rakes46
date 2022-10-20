@@ -146,19 +146,6 @@ class siswaController extends Controller
         //
     }
 
-    public function tampilkan()
-    {
-        // Dalam Peninjauan
-        return back();
-
-        // $jmlPertanyaan = pertanyaan::all()->count();
-
-        // $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id);
-        // $jawabans = $jawabanUser->get();
-
-        // return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan'));
-    }
-
     public function tampilkanPerGroup(pertanyaan $pertanyaan)
     {
 
@@ -178,5 +165,21 @@ class siswaController extends Controller
         $jmlPertanyaan = pertanyaan::all()->count();
 
         return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan', 'jmljawaban'));
+    }
+
+    public function tampilkanJawabanLama()
+    {
+        $tanggalAwal = Carbon::today()->subYear(1)->startOfYear();
+        $tanggalAkhir = Carbon::today()->subYear(1)->lastOfYear();
+
+        $tahun = $tanggalAwal->year;
+
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereCustomTanggal([$tanggalAwal, $tanggalAkhir])->get();
+
+        $jawabans = $jawabanUser->groupBy(['pertanyaan.type', 'pertanyaan.group']);
+
+        // return $jawabans;
+
+        return view('jawaban.lama', compact('jawabans', 'tahun'));
     }
 }

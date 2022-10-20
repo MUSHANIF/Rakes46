@@ -59,8 +59,8 @@ Route::group(['middleware' => ['revalidate']], function () {
         Route::resource('siswaid', siswaController::class);
         Route::resource('kuisioner', jawabanController::class);
 
-        Route::get('/isijawaban', [siswaController::class, 'tampilkan']);
         Route::get('/isijawaban/{type}/{group}', [siswaController::class, 'tampilkanPerGroup']); // atur dari RouteServiceProvider
+        Route::get('/jawabanlama', [siswaController::class, 'tampilkanJawabanLama']);
 
         Route::get('/editjawaban/{type}/{group}', [jawabanController::class, 'editKuisioner']);
         Route::post('/updatejawaban', [jawabanController::class, 'updateKuisioner']);
