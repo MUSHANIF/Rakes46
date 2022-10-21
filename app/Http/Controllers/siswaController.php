@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\kela;
+use App\Models\ortu;
 use App\Models\siswa;
 use App\Models\jawaban;
 use App\Models\pertanyaan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class siswaController extends Controller
@@ -19,15 +20,20 @@ class siswaController extends Controller
      */
     public function index()
     {
-        $kelas =  DB::table('kelas')->get();
-        $siswa =  DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get();
-        $ortu =  DB::table('ortus')->where('ortus.userID',  Auth::user()->id)->get();
+        /**
+         * $tanggalAwal = Carbon::create(Carbon::now()->year, 06, 01)->toDateTimeString(); // -> tanggal awal dari bulan juli tahun ini
+         * where('created_at', '<=', Carbon::today()) -> dimana tanggal created jawaban kurang dari Hari Ini (kemarin)
+         * where('created_at', '>=', Carbon::today()) -> dimana tanggal created jawaban lebih dari Hari Ini (besok)
+         */
+
+        $siswa =  siswa::where('userID',  auth()->user()->id)->first();
+        $ortu =  ortu::where('userID',  auth()->user()->id)->first();
         $pertanyaans = pertanyaan::all();
-        $jawabans = collect(jawaban::where('userID', auth()->user()->id)->get());
-        return view('siswaid.index', compact('siswa', 'ortu', 'kelas', 'jawabans', 'pertanyaans'), [
-            "title" => "List Siswa",
-            'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
-        ]);
+        $kelas = kela::get(['kelas', 'jurusan']);
+        $jawabans = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->get() // whereTahunIni() berasal dari scope buatan di model
+            ->groupBy(['pertanyaan.type', 'pertanyaan.group']);
+
+        return view('siswaid.index', compact('siswa', 'ortu', 'jawabans', 'pertanyaans', 'kelas'));
     }
 
     /**
@@ -68,9 +74,9 @@ class siswaController extends Controller
         $model->disabilitas = $request->disabilitas;
 
         $validasi = Validator::make($data, [
-            'nisn' => 'required|min:10|unique:siswas',
-            'email' => 'required|max:255|unique:siswas',
-            'nis' => 'required|min:5|unique:siswas',
+            'nisn' => 'required|min:10|unique:siswas,nisn',
+            'email' => 'required|max:255|unique:siswas,email',
+            'nis' => 'required|min:5|unique:siswas,nis',
             'nama_lengkap' => 'required|max:25',
             'kelasID' => 'required',
             'nama_panggilan' => 'required|max:8',
@@ -86,7 +92,7 @@ class siswaController extends Controller
         ]);
 
         if ($validasi->fails()) {
-            return redirect()->route('siswaid.index')->withInput()->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
 
         $model->save();
@@ -140,25 +146,40 @@ class siswaController extends Controller
         //
     }
 
-    public function tampilkan(Request $request)
+    public function tampilkanPerGroup(pertanyaan $pertanyaan)
     {
-        $pertanyaans = pertanyaan::all();
-        $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
-        $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
-        $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
 
-        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni();
 
-        if ($request->group == "a") {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
-        } elseif ($request->group == "b") {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
-        } elseif ($request->group == 'c') {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+        $jmljawaban = $jawabanUser->count();
+
+        $jawabans = $jawabanUser->whereRelation('pertanyaan', [
+            'group' => "$pertanyaan->group",
+            'type' => "$pertanyaan->type"
+        ])->get();
+
+        if ($jawabans->isEmpty()) {
+            return redirect('siswaid');
         }
 
-        return view('jawaban.isi', compact('jawabans'), [
-            'groupA' => $jumlahGroupA
-        ]);
+        $jmlPertanyaan = pertanyaan::all()->count();
+
+        return view('jawaban.isi', compact('jawabans', 'jmlPertanyaan', 'jmljawaban'));
+    }
+
+    public function tampilkanJawabanLama()
+    {
+        $tanggalAwal = Carbon::today()->subYear(1)->startOfYear();
+        $tanggalAkhir = Carbon::today()->subYear(1)->lastOfYear();
+
+        $tahun = $tanggalAwal->year;
+
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereCustomTanggal([$tanggalAwal, $tanggalAkhir])->get();
+
+        $jawabans = $jawabanUser->groupBy(['pertanyaan.type', 'pertanyaan.group']);
+
+        // return $jawabans;
+
+        return view('jawaban.lama', compact('jawabans', 'tahun'));
     }
 }

@@ -17,16 +17,14 @@ class CreateGurusTable extends Migration
             $table->id();
             $table->integer('nip');
             $table->unsignedBigInteger('userID');
+            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('kelasID');
+            $table->foreign('kelasID')->references('id')->on('kelas')->onDelete('cascade');
             $table->string('nama');
             $table->string('tmp_lahir');
             $table->date('tgl_lahir');
             $table->enum('jns_kelamin', ['P', 'L']);
             $table->timestamps();
-            
-            $table->foreign('kelasID')->references('id')->on('kelas') ->onDelete('cascade');
-            $table->foreign('userID')->references('id')->on('users') ->onDelete('cascade');
-           
         });
     }
 

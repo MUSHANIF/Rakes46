@@ -30,7 +30,7 @@
             @csrf
             <div class="mb-4">
                <label for="name" class="block mb-2 font-poppins text-sm text-slate-700 font-semibold">Email</label>
-               <input type="text" class="w-full px-4 py-2 rounded-lg focus:outline-none placeholder:text-slate-600/50 placeholder:text-sm text-slate-800 focus:ring form-normal-login @error('email') form-invalid @enderror" placeholder="Input Your Email" id="email" name="email" value="{{ old('email') }}">
+               <input autofocus type="text" class="w-full px-4 py-2 rounded-lg focus:outline-none placeholder:text-slate-600/50 placeholder:text-sm text-slate-800 focus:ring form-normal-login @error('email') form-invalid @enderror" placeholder="Input Your Email" id="email" name="email" value="{{ old('email') }}">
                @error('email')
                   <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                      {{ $message }}

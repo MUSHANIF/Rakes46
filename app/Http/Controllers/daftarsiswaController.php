@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kela;
+use App\Models\ortu;
 use App\Models\User;
+use App\Models\siswa;
 use App\Models\jawaban;
-use App\Models\pertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +21,9 @@ class daftarsiswaController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  User::with([
-            'kelas'
-        ])->where('level', '=', 1)->where('name', 'like', "%" . $cari . "%")->get();
-        $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
-        return view('siswa.index', compact('datas', 'data'));
+        $datas =  User::where('level', '=', 1)->where('name', 'like', "%" . $cari . "%")->get();
+
+        return view('siswa.index', compact('datas'));
     }
 
     /**
@@ -54,14 +54,12 @@ class daftarsiswaController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $jumlahGroupA = pertanyaan::where('type', '1')->where('group', 'a')->count();
-        $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
-        $jawabans = jawaban::where('userID', $id)->get();
-        $siswa =  DB::table('siswas')->where('siswas.userID', $id)->get();
-        $ortu =  DB::table('ortus')->where('ortus.userID',  $id)->get();
-        return view('siswa.detail', compact('jawabans', 'data', 'siswa', 'ortu'), [
-            'groupA' => $jumlahGroupA //buat ngecek
-        ]);
+        $data =  kela::where('userID',  Auth::user()->id)->first();
+        $jawabans = jawaban::where('userID', $id)->whereTahunIni()->get();
+        $siswa =  siswa::where('userID', $id)->first();
+        $ortu =  ortu::where('userID',  $id)->first();
+
+        return view('siswa.detail', compact('jawabans', 'data', 'siswa', 'ortu'));
     }
 
     /**

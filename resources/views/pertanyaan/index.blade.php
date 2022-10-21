@@ -2,8 +2,8 @@
 <form action="{{ url('pertanyaan') }}" method="GET" class="">
    @csrf
    <div class="input-group">
-      <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}" />
-      <div class="input-group-append d-none d-md-inline-block">
+      <input type="text" class="form-control form-control-sm bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="cari" value="{{ request('cari') }}" />
+      <div class="input-group-append d-none d-sm-inline-block">
          <button class="btn" style="background-color: #256d85" type="submit">
             <i class="fas fa-search fa-sm text-white"></i>
          </button>
@@ -16,7 +16,7 @@
 <div class="main-content">
     <main>
         <div class="container">
-            <a href="{{ route('pertanyaan.create') }}" class="d-none d-sm-inline-block btn btn-sm text-white shadow-sm" style="background-color: #256d85;"><i class="fas fa-download fa-sm text-white"></i>
+            <a href="{{ route('pertanyaan.create') }}" class="btn btn-sm text-white shadow-sm" style="background-color: #256d85;"><i class="fas fa-download fa-sm text-white"></i>
                Tambah
             </a>
         </div>
@@ -38,7 +38,7 @@
                <th class="text-light">Action</th>
             </thead>
 
-            @foreach ($pertanyaans->sortBy('group')->sortBy('type') as $key) 
+            @foreach ($pertanyaans as $key) 
             <tbody>
                <tr class="align-self-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                   <td data-label="Type">{{ $key->type }}</td>

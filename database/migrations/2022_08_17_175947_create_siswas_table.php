@@ -15,8 +15,9 @@ class CreateSiswasTable extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kelasID');
+            $table->foreignId('kelasID')->nullable()->references('id')->on('kelas')->onDelete('set null');
             $table->unsignedBigInteger('userID');
+            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
             $table->string('nisn');
             $table->char('nis');
             $table->string('nama_lengkap');
@@ -32,8 +33,6 @@ class CreateSiswasTable extends Migration
             $table->string('email')->unique();
             $table->enum('disabilitas', ['Tidak', 'Netra', 'Rungu', 'Rungu Wicara', 'Grahita', 'Daksa', 'Autisme', 'Ganda', 'ADHD']);
             $table->timestamps();
-            $table->foreign('kelasID')->references('id')->on('kelas')->onDelete('cascade');
-            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

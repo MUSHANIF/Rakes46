@@ -21,6 +21,9 @@ module.exports = {
                 barlow: ["Barlow", ...defaultTheme.fontFamily.sans],
                 poppins: ["Poppins", ...defaultTheme.fontFamily.sans],
             },
+            screens: {
+                md2: "992px",
+            },
         },
     },
 

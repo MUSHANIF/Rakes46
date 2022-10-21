@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\guru;
 use App\Models\kela;
+use App\Models\ortu;
 use App\Models\User;
+use App\Models\siswa;
 use App\Models\jawaban;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,23 +23,12 @@ class daftarsiswawaliController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas = kela::with([
-            'guru', 'siswa','user'
-        ])->join('siswas', 'siswas.kelasID', '=', 'kelas.id')
 
-            ->where('kelas.userID',  Auth::user()->id)
-            ->where('nama_lengkap', 'like', "%" . $cari . "%")
+        $kelas = kela::where('userID', Auth::user()->id)->first();
 
+        $datas = kela::where('userID', Auth::user()->id)->with(['guru', 'siswa', 'user'])->whereRelation('siswa', 'nama_lengkap', 'like', "%" . $cari . "%")->first();
 
-            ->get();
-        $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
-        return view(
-            'siswa.index',
-            compact('datas', 'data'),
-            [
-                "title" => "List Siswa"
-            ]
-        );
+        return view('siswa.index', compact('kelas', 'datas'));
     }
 
     /**
@@ -58,7 +49,18 @@ class daftarsiswawaliController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $kelas = new kela;
+        $validasi = Validator::make($data, [
+            'nip' => 'required|max:10|unique:kelas',
+            'nama_guru' => 'required|max:50',
+            'thn_ajaran' => 'required|max:4',
+            'kelas' => 'required',
+            'jurusan' => 'required',
+        ]);
+        if ($validasi->fails()) {
+            return back()->withInput()->withErrors($validasi);
+        }
+
+        $kelas = kela::firstWhere('userID', $request->userid);
         $kelas->userID = $request->userid;
         $kelas->nip = $request->nip;
         $kelas->nama_guru = $request->nama_guru;
@@ -66,25 +68,7 @@ class daftarsiswawaliController extends Controller
         $kelas->kelas = $request->kelas;
         $kelas->jurusan = $request->jurusan;
 
-
-        $validasi = Validator::make($data, [
-            'nip' => 'required|max:10|unique:kelas',
-            'nama_guru' => 'required|max:40',
-            'thn_ajaran' => 'required|max:4',
-            'kelas' => 'required',
-            'jurusan' => 'required',
-
-        ]);
-        if ($validasi->fails()) {
-            return redirect()->route('siswawali.index')->withInput()->withErrors($validasi);
-        }
-
         $kelas->save();
-
-
-
-
-
 
         toastr()->success('Berhasil di tambah!', 'Selamat');
         return redirect('siswawali');
@@ -96,13 +80,14 @@ class daftarsiswawaliController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request , $id)
+    public function show(Request $request, $id)
     {
-         $data =  DB::table('kelas')->where('kelas.userID',  Auth::user()->id)->get();
-        $jawabans = jawaban::where('userID', $id)->get();
-        $siswa =  DB::table('siswas')->where('siswas.userID', $id)->get();
-        $ortu =  DB::table('ortus')->where('ortus.userID',  $id)->get();
-        return view('siswa.detail', compact('jawabans','data','siswa','ortu'));
+        $data =  kela::where('userID',  Auth::user()->id)->first();
+        $jawabans = jawaban::where('userID', $id)->whereTahunIni()->get();
+        $siswa =  siswa::where('userID', $id)->first();
+        $ortu =  ortu::where('userID',  $id)->first();
+
+        return view('siswa.detail', compact('jawabans', 'data', 'siswa', 'ortu'));
     }
 
     /**
@@ -130,7 +115,6 @@ class daftarsiswawaliController extends Controller
 
         $model->name = $request->name;
         $model->email = $request->email;
-
         $model->level = $request->opsi;
 
         $model->save();
@@ -146,8 +130,9 @@ class daftarsiswawaliController extends Controller
      */
     public function destroy($id)
     {
-        $kantin = User::find($id);
-        $kantin->delete();
+        $user = User::find($id);
+        $user->delete();
+
         toastr()->info('Berhasil di hapus!', 'Sukses');
         return redirect('siswa');
     }

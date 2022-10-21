@@ -27,13 +27,16 @@
              <li>
                 <a href="/dashboardpuskesmas" class="{{ Request::is('dashboard*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
              </li>
-             @elseif(Auth::user()->level == 2 and $data->isNotEmpty())
+             @elseif(Auth::user()->level == 2)
              <li>
                 <a href="/dashboardwali" class="{{ Request::is('dashboard*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
              </li>
              @elseif(Auth::user()->level == 1)
              <li>
-                <a href="/siswaid" class="active"> <i class="bx bxs-dashboard icon"></i> Biodata siswa </a>
+                <a href="/siswaid" class="{{ Request::is('siswaid*', 'kuisioner*', 'isijawaban*', 'editjawaban*') ? 'active' : ''}}"> <i class="bx bxs-dashboard icon"></i> Biodata siswa </a>
+                @if ($jawabanlama > 0)
+                <a href="/jawabanlama" class="{{ Request::is('jawabanlama*') ? 'active' : ''}}"> <i class='bx bxs-book-content icon'></i> Jawaban Tahun Lalu </a>
+                @endif
              </li>
              @endif 
 
@@ -69,12 +72,6 @@
                 @endif
              </li>
              @else 
-             {{-- <li>
-                <a href="/dataorangtua"> <i class="bx bxs-dashboard icon"></i>dataorangtua </a>
-             </li>
-             <li>
-                <a href="{{ Auth::user()->jawaban ? '/isikuisioner' : '/kuisioner'}}"> <i class="bx bxs-dashboard icon"></i>pertanyaan </a>
-             </li> --}}
              @endif
           </ul>
        </div>

@@ -17,7 +17,7 @@ class kepalasekolahController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 4)->where('name', 'like', "%" . $cari . "%")->get();
+        $datas =  User::where('level', '=', 4)->where('name', 'like', "%" . $cari . "%")->get();
 
         return view('kepala_sekolah.index', compact('datas'));
     }
@@ -40,39 +40,29 @@ class kepalasekolahController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->all();
-        $model = new User;
-        $password = $request->password;
-        $encrypted_password = bcrypt($password);
 
+        $model = new User;
         $model->name = $request->name;
         $model->email = $request->email;
-
         $model->level = $request->level;
-        $model->password = $encrypted_password;
-
+        $model->password = bcrypt($request->password);
 
         $validasi = Validator::make($data, [
             'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8',
             'level' => 'required',
-
         ]);
+
         if ($validasi->fails()) {
-            return redirect()->route('kepala_sekolah.create')->withInput()->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
 
         $model->save();
 
         toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect(
-            '/kepala_sekolah',
-            [
-                "title" => "Kepala Sekolah"
-            ]
-        );
+        return redirect('/kepala_sekolah');
     }
 
     /**
@@ -117,12 +107,11 @@ class kepalasekolahController extends Controller
         $validasi = Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-
-
         ]);
         if ($validasi->fails()) {
-            return redirect()->route('kepala_sekolah.edit', [$id])->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
+
         $model->save();
         toastr()->success('Berhasil di terupdate!', 'Sukses');
         return redirect('/kepala_sekolah');
@@ -138,6 +127,7 @@ class kepalasekolahController extends Controller
     {
         $kantin = User::findOrFail($id);
         $kantin->delete();
+
         toastr()->info('Berhasil di hapus!', 'Sukses');
         return redirect('kepala_sekolah');
     }

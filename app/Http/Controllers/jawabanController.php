@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\siswa;
 use App\Models\jawaban;
 use App\Models\pertanyaan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class jawabanController extends Controller
@@ -18,49 +18,96 @@ class jawabanController extends Controller
      */
     public function index(Request $request)
     {
-        $siswa =  DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get();
+        $siswa =  siswa::where('userID', Auth::user()->id)->first();
+        $pertanyaans = pertanyaan::all();
+        $jawabanFullUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->get(); // whereTahunIni() berasal dari scope buatan di model
 
-        if (auth()->user()->jawaban != NULL) {
-            $pertanyaans = pertanyaan::all();
+        $jawabanUser = $jawabanFullUser->groupBy(['pertanyaan.type', 'pertanyaan.group']);;
+
+        // Ketika user blm jawab samsek
+        $data = pertanyaan::where('type', 1)
+            ->where('group', 'a')
+            ->get();
+
+        if (!empty(auth()->user()->jawaban->whereTahunIni()->first())) {
             $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
             $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
             $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
+            $jumlahGroupD = $pertanyaans->where('type', '1')->where('group', 'd')->count();
+            $jumlahGroupE = $pertanyaans->where('type', '1')->where('group', 'e')->count();
+            $jumlahGroupF = $pertanyaans->where('type', '1')->where('group', 'f')->count();
+            $jumlahGroupG = $pertanyaans->where('type', '1')->where('group', 'g')->count();
+            $jumlahGroupA2 = $pertanyaans->where('type', '2')->where('group', 'a')->count();
 
-            $jawabanGroupA = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
-            $jawabanGroupB = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
-            $jawabanGroupC = auth()->user()->jawaban->where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+            $kosong = collect([]);
 
-            if ($jawabanGroupB->count() == 0) {
-                $data = pertanyaan::where('type', '=', 1)
-                    ->where('group', '=', 'b')
+            $jawabanGroupA = $jawabanUser['1']['a'] ?? $kosong;
+            $jawabanGroupB = $jawabanUser['1']['b'] ?? $kosong;
+            $jawabanGroupC = $jawabanUser['1']['c'] ?? $kosong;
+            $jawabanGroupD = $jawabanUser['1']['d'] ?? $kosong;
+            $jawabanGroupE = $jawabanUser['1']['e'] ?? $kosong;
+            $jawabanGroupF = $jawabanUser['1']['f'] ?? $kosong;
+            $jawabanGroupG = $jawabanUser['1']['g'] ?? $kosong;
+            $jawabanGroupA2 = $jawabanUser['2']['a'] ?? $kosong;
+
+            // Ketika user sudah jawab semua pertanyaan type 1
+            if ($jawabanGroupA2->isEmpty()) {
+                $data = pertanyaan::where('type', 2)
+                    ->where('group', 'a')
                     ->get();
-                return view('jawaban.index', compact('data', 'siswa'), [
-                    "title" => "Kuisioner",
-                    'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
-                ]);
             }
 
-            if ($jawabanGroupC->count() == 0) {
-                $data = pertanyaan::where('type', '=', 1)
-                    ->where('group', '=', 'c')
+            // Ketika user sudah jawab group a, b, c, d, e, dan f
+            if ($jawabanGroupG->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'g')
                     ->get();
-                return view('jawaban.index', compact('data', 'siswa'), [
-                    "title" => "Kuisioner",
-                    'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
-                ]);
             }
 
-            $jawabans = jawaban::where('userID', auth()->user()->id)->get();
-            return view('jawaban.isi', compact('jawabans'));
+            // Ketika user sudah jawab group a, b, c, d, dan e
+            if ($jawabanGroupF->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'f')
+                    ->get();
+            }
+
+            // Ketika user sudah jawab group a, b, c, dan d
+            if ($jawabanGroupE->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'e')
+                    ->get();
+            }
+
+            // Ketika user sudah jawab group a, b, dan c
+            if ($jawabanGroupD->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'd')
+                    ->get();
+            }
+
+            // Ketika user sudah jawab group a dan b
+            if ($jawabanGroupC->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'c')
+                    ->get();
+            }
+
+            // Ketika user sudah jawab group a
+            if ($jawabanGroupB->isEmpty()) {
+                $data = pertanyaan::where('type', 1)
+                    ->where('group', 'b')
+                    ->get();
+            }
         }
 
-        $data = pertanyaan::where('type', '=', 1)
-            ->where('group', '=', 'a')
-            ->get();
-        return view('jawaban.index', compact('data', 'siswa'), [
-            "title" => "Kuisioner",
-            'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
-        ]);
+        // Jika jawaban sudah kejawab semua --kalo dah semua
+        if (!empty($jawabanFullUser)) {
+            if ($jawabanFullUser->count() == $pertanyaans->count()) {
+                return redirect('/siswaid');
+            }
+        }
+
+        return view('jawaban.index', compact('data', 'siswa'));
     }
 
     /**
@@ -81,9 +128,6 @@ class jawabanController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->jawaban[2];
-        // return $request;
-
         $jumlahPertanyaan = $request["jumlahPertanyaan"];
 
         for ($i = 1; $i <= $jumlahPertanyaan; $i++) {
@@ -94,7 +138,8 @@ class jawabanController extends Controller
             $model->save();
         }
 
-        return redirect('/isijawaban');
+        toastr()->success('Berhasil Menjawab Pertanyaan!', 'Sukses');
+        return redirect("/isijawaban/$request->type/$request->group")->with('menjawab', 'Berhasil Menjawab Pertanyaan');
     }
 
     /**
@@ -141,43 +186,34 @@ class jawabanController extends Controller
         //
     }
 
-    public function editKuisioner(Request $request)
+    public function editKuisioner(pertanyaan $pertanyaan)
     {
-        $pertanyaans = pertanyaan::all();
-        $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
-        $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
-        $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
+        $jawabanUser = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->whereRelation('pertanyaan', [
+            'group' => "$pertanyaan->group",
+            'type' => "$pertanyaan->type"
+        ]);
 
-        $jawabans = jawaban::where('userID', auth()->user()->id)->get();
+        $jawabans = $jawabanUser->get();
 
-        if ($request->group == "a") {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip(0)->take($jumlahGroupA)->get();
-        } elseif ($request->group == "b") {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA)->take($jumlahGroupB)->get();
-        } elseif ($request->group == 'c') {
-            $jawabans = jawaban::where('userID', auth()->user()->id)->skip($jumlahGroupA + $jumlahGroupB)->take($jumlahGroupC)->get();
+        if ($jawabans->isEmpty()) {
+            return back();
         }
 
-        return view('jawaban.update', compact('pertanyaans', 'jawabans'), [
-            'datasiswa' => DB::table('siswas')->where('siswas.userID',  Auth::user()->id)->get(),
-        ]);
+        return view('jawaban.update', compact('jawabans'));
     }
 
     public function updateKuisioner(Request $request)
     {
-        // $jawaban = jawaban::where('userID', auth()->user()->id)->firstWhere('pertanyaanID', $request->pertanyaanID[1]);
-        // return $jawaban;
-
         $jumlahPertanyaan = $request["jumlahPertanyaan"];
 
         for ($i = 1; $i <= $jumlahPertanyaan; $i++) {
-            $model = jawaban::where('userID', auth()->user()->id)->firstWhere('pertanyaanID', $request->pertanyaanID[$i]);
+            $model = jawaban::where('userID', auth()->user()->id)->whereTahunIni()->firstWhere('pertanyaanID', $request->pertanyaanID[$i]);
             $model->userID = $request->userID;
             $model->pertanyaanID = $request->pertanyaanID[$i];
             $model->jawaban = $request->jawaban[$i];
             $model->save();
         }
 
-        return redirect('/isijawaban');
+        return redirect("/isijawaban/$request->type/$request->group");
     }
 }

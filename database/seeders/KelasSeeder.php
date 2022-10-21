@@ -16,11 +16,38 @@ class KelasSeeder extends Seeder
     {
         kela::create([
             'userID' => 4,
-            'nip' => 4561261,
-            'nama_guru' => 'Anastasia Susanti',
-            'thn_ajaran' => '2022',
             'kelas' => '10',
             'jurusan' => 'RPL',
+        ]);
+
+        kela::create([
+            'userID' => 5,
+            'kelas' => '11',
+            'jurusan' => 'RPL',
+        ]);
+
+        kela::create([
+            'userID' => 6,
+            'kelas' => '12',
+            'jurusan' => 'RPL',
+        ]);
+
+        kela::create([
+            'userID' => 7,
+            'kelas' => '10',
+            'jurusan' => 'DKV',
+        ]);
+
+        kela::create([
+            'userID' => 8,
+            'kelas' => '11',
+            'jurusan' => 'DKV',
+        ]);
+
+        kela::create([
+            'userID' => 9,
+            'kelas' => '12',
+            'jurusan' => 'DKV',
         ]);
     }
 }

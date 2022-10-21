@@ -17,7 +17,7 @@ class puskesmasController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  DB::table('users')->where('level', '=', 3)->where('name', 'like', "%" . $cari . "%")->get();
+        $datas =  User::where('level', '=', 3)->where('name', 'like', "%" . $cari . "%")->get();
 
         return view('puskesmas.index', compact('datas'));
     }
@@ -43,25 +43,20 @@ class puskesmasController extends Controller
 
         $data = $request->all();
         $model = new User;
-        $password = $request->password;
-        $encrypted_password = bcrypt($password);
 
         $model->name = $request->name;
         $model->email = $request->email;
-
         $model->level = $request->level;
-        $model->password = $encrypted_password;
-
+        $model->password = bcrypt($request->password);
 
         $validasi = Validator::make($data, [
             'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8',
             'level' => 'required',
-
         ]);
         if ($validasi->fails()) {
-            return redirect()->route('puskesmas.create')->withInput()->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
 
         $model->save();
@@ -112,20 +107,15 @@ class puskesmasController extends Controller
         $validasi = Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-
-
         ]);
         if ($validasi->fails()) {
-            return redirect()->route('puskesmas.edit', [$id])->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
+
         $model->save();
+
         toastr()->success('Berhasil di terupdate!', 'Sukses');
-        return redirect(
-            '/puskesmas',
-            [
-                "title" => "List Puskesmas"
-            ]
-        );
+        return redirect('/puskesmas');
     }
 
     /**

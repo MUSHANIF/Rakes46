@@ -16,7 +16,7 @@
                     <label for="formGroupExampleInput2">Email</label>
                     <input type="text" class="form-control" id="formGroupExampleInput2" name="email" value="{{ $datas->email }}">
                 </div>
-            
+        
                 <label for="formFile" class="form-label">Ubah level</label>
                 <select class="form-select" aria-label="Default select example" name="opsi" required>
                     <option value="3">Puskesmas</option>
@@ -29,16 +29,5 @@
         </div>
     </main>
 </div>
-<!-- Optional JavaScript; choose one of the two! -->
-
-
-
-
-
-
-<!-- Optional JavaScript; choose one of the two! -->
-
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 @endsection

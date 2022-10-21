@@ -72,7 +72,7 @@ class dataortuController extends Controller
         ]);
 
         if ($validasi->fails()) {
-            return redirect()->route('siswaid.index')->withInput()->withErrors($validasi);
+            return back()->withInput()->withErrors($validasi);
         }
 
         $model->save();

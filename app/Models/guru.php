@@ -14,7 +14,7 @@ class guru extends Model
     //     return $this->belongsTo(kela::class, 'kelasID', 'id');
     // }
 
-    public function kelas()
+    public function kela()
     {
         return $this->belongsTo(kela::class, 'kelasID', 'id');
     }
