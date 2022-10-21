@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
 use App\Models\jawaban;
 use Illuminate\Database\Seeder;
 
@@ -26,8 +25,8 @@ class JawabanSeeder extends Seeder
                 'userID' => 10,
                 'pertanyaanID' => $i,
                 'jawaban' => 'true',
-                'created_at' => Carbon::now()->toDateTimeString(),
-                'updated_at' => Carbon::now()->toDateTimeString(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
 
@@ -36,8 +35,8 @@ class JawabanSeeder extends Seeder
                 'userID' => 10,
                 'pertanyaanID' => $i,
                 'jawaban' => '200',
-                'created_at' => Carbon::now()->toDateTimeString(),
-                'updated_at' => Carbon::now()->toDateTimeString(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }
@@ -49,8 +48,8 @@ class JawabanSeeder extends Seeder
                 'userID' => 10,
                 'pertanyaanID' => $i,
                 'jawaban' => 'false',
-                'created_at' => Carbon::now()->subYear(1)->toDateTimeString(),
-                'updated_at' => Carbon::now()->subYear(1)->toDateTimeString(),
+                'created_at' => now()->subYear(1),
+                'updated_at' => now()->subYear(1),
             ]);
         }
 
@@ -59,8 +58,8 @@ class JawabanSeeder extends Seeder
                 'userID' => 10,
                 'pertanyaanID' => $i,
                 'jawaban' => '100',
-                'created_at' => Carbon::now()->subYear(1)->toDateTimeString(),
-                'updated_at' => Carbon::now()->subYear(1)->toDateTimeString(),
+                'created_at' => now()->subYear(1),
+                'updated_at' => now()->subYear(1),
             ]);
         }
     }
