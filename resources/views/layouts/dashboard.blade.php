@@ -100,41 +100,6 @@
             }
       
             .table td::before {
-               content: attr(data-label);
-               position: absolute;
-               left: 0;
-               width: 50%;
-               padding-left: 15px;
-               font-size: 15px;
-               font-weight: bold;
-               text-align: left;
-            }
-         }
-      
-         @media (max-width: 500px) {
-            .table thead {
-               display: none;
-            }
-      
-            .table,
-            .table tbody,
-            .table tr,
-            .table td {
-               display: block;
-               width: 100%;
-            }
-      
-            .table tr {
-               margin-bottom: 15px;
-            }
-      
-            .table td {
-               text-align: right;
-               position: relative;
-            }
-      
-            .table td::before {
-               content: attr(data-label);
                position: absolute;
                left: 0;
                width: 50%;
@@ -208,14 +173,11 @@
             opacity: 0.9;
             color: white;
          }
-      
-         .next-jawaban:hover {
-            color: #035edd !important;
-         }
       </style>      
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="https://cdn.statically.io/gh/devanka761/notipin/v1.24.49/all.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
    </head>
 
    <body id="page-top">
@@ -240,7 +202,10 @@
                   <img src="{{ asset('assets/images/avatar-1.png') }}" class="w-[50px] rounded-full shadow-none border-2 border-[#d9dadb] ml-1" alt="Profil" />
                </button>
                
-               <div id="dropdownDivider" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-300 shadow dark:bg-gray-700 dark:divide-gray-600">
+               <div id="dropdownDivider" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-300/80 shadow dark:bg-gray-700 dark:divide-gray-600">
+                  <div class="py-3 px-4 text-sm font-semibold text-gray-900 dark:text-white md:hidden">
+                     <div class="flex items-center gap-x-4"><i class='bi bi-person-circle'></i> Selamat Datang, {{ Auth::user()->name }}</div>
+                  </div>
                   <div class="py-1">
                     <a href="/" class="flex gap-x-4 items-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><i class="bi bi-arrow-90deg-left"></i> Kembali ke Home</a>
                   </div>
@@ -288,6 +253,7 @@
       <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>  
       <script src="{{ asset('/assets/js/script.js')}}"></script>
 
       <script>

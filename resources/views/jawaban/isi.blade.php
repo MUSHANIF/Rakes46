@@ -36,7 +36,7 @@
             </div>
             @if (session()->has('menjawab') && $jmljawaban < $jmlPertanyaan)
             <div class="text-right my-4">
-               <a href="/kuisioner" class="text-dark next-jawaban text-sm">Pertanyaan Selanjutnya &raquo;</a>
+               <a href="/kuisioner" class="text-black hover:!text-blue-600 text-sm">Pertanyaan Selanjutnya &raquo;</a>
             </div>
             @endif
          </div>
