@@ -28,7 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['revalidate']], function () {
+Route::group(['middleware' => ['revalidate','verified']], function () {
     Route::group(['middleware' => ['superadmin']], function () {
         Route::get('/dashboard', [dashboardController::class, 'index']);
         Route::resource('siswa', daftarsiswaController::class);
@@ -66,7 +66,7 @@ Route::group(['middleware' => ['revalidate']], function () {
         Route::post('/updatejawaban', [jawabanController::class, 'updateKuisioner']);
     });
 
-    Auth::routes();
+
 });
 
 require __DIR__ . '/auth.php';

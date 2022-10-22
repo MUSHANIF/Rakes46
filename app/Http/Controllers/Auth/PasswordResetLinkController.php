@@ -38,6 +38,7 @@ class PasswordResetLinkController extends Controller
         $status = Password::sendResetLink(
             $request->only('email')
         );
+        // toastr()->success('Sukses terkirim','Silahkan cek email anda');
 
         return $status == Password::RESET_LINK_SENT
                     ? back()->with('status', __($status))

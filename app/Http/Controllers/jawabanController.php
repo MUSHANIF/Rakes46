@@ -29,7 +29,7 @@ class jawabanController extends Controller
             ->where('group', 'a')
             ->get();
 
-        if (!empty(auth()->user()->jawaban->whereTahunIni()->first())) {
+        if (!empty(jawaban::where('userID', auth()->user()->id)->whereTahunIni()->first())) {
             $jumlahGroupA = $pertanyaans->where('type', '1')->where('group', 'a')->count();
             $jumlahGroupB = $pertanyaans->where('type', '1')->where('group', 'b')->count();
             $jumlahGroupC = $pertanyaans->where('type', '1')->where('group', 'c')->count();
