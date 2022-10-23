@@ -28,7 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['revalidate','verified']], function () {
+Route::group(['middleware' => ['revalidate', 'verified']], function () {
     Route::group(['middleware' => ['superadmin']], function () {
         Route::get('/dashboard', [dashboardController::class, 'index']);
         Route::resource('siswa', daftarsiswaController::class);
@@ -40,7 +40,7 @@ Route::group(['middleware' => ['revalidate','verified']], function () {
 
     Route::group(['middleware' => ['wali_kelas']], function () {
         Route::get('/dashboardwali', [dashboardController::class, 'index']);
-        Route::resource('siswawali', daftarsiswawaliController::class)->only(['index', 'show']);
+        Route::resource('siswawali', daftarsiswawaliController::class)->except('edit', 'update', 'destroy');
     });
 
     Route::group(['middleware' => ['kepala_sekolah']], function () {
@@ -65,8 +65,6 @@ Route::group(['middleware' => ['revalidate','verified']], function () {
         Route::get('/editjawaban/{type}/{group}', [jawabanController::class, 'editKuisioner']);
         Route::post('/updatejawaban', [jawabanController::class, 'updateKuisioner']);
     });
-
-
 });
 
 require __DIR__ . '/auth.php';

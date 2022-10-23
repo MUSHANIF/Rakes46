@@ -30,10 +30,12 @@ class siswaController extends Controller
         $ortu =  ortu::where('userID',  auth()->user()->id)->first();
         $pertanyaans = pertanyaan::all();
         $kelas = kela::get(['kelas', 'jurusan']);
-        $jawabans = jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->get() // whereTahunIni() berasal dari scope buatan di model
-            ->groupBy(['pertanyaan.type', 'pertanyaan.group']);
+        $jawabanUser =  jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->get(); // whereTahunIni() berasal dari scope buatan di model
 
-        return view('siswaid.index', compact('siswa', 'ortu', 'jawabans', 'pertanyaans', 'kelas'));
+        $jawabans = $jawabanUser->groupBy(['pertanyaan.type', 'pertanyaan.group']);
+
+        $persentasi = round(($jawabanUser->count() / $pertanyaans->count()) * 100);
+        return view('siswaid.index', compact('siswa', 'ortu', 'jawabans', 'pertanyaans', 'kelas', 'persentasi'));
     }
 
     /**

@@ -5,7 +5,7 @@
       @if (!empty($siswa) && !empty($ortu))
          <h2 class="my-10 font-semibold text-center text-dark text-gray-700 dark:text-gray-200 text-2xl md:text-3xl">Detail Informasi</h2>
          
-         <div class="mb-8">
+         <div class="mb-3">
             <div class="md:flex gap-x-6">
                <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
                   <h4 class="text-gray-700 text-xl md:text-2xl">Profil Siswa:</h4>
@@ -52,6 +52,17 @@
                </div>
             </div>
          </div>
+
+         <div class="text-gray-800 text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
+            <div class="flex justify-between mb-2.5">
+               <span class="text-base font-medium dark:text-white">Progress Jawaban</span>
+               <span class="text-sm font-medium text-blue-700 dark:text-white">{{ $persentasi }}%</span>
+             </div>
+             <div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+               <div class="bg-blue-600 h-1.5 rounded-full" style="width: {{ $persentasi }}%"></div>
+             </div>
+         </div>
+         
          @if ($jawabans->isNotEmpty())
          
          <div class="swiper">

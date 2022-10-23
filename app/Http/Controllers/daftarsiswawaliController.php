@@ -8,6 +8,7 @@ use App\Models\ortu;
 use App\Models\User;
 use App\Models\siswa;
 use App\Models\jawaban;
+use App\Models\pertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -87,7 +88,8 @@ class daftarsiswawaliController extends Controller
         $siswa =  siswa::where('userID', $id)->first();
         $ortu =  ortu::where('userID',  $id)->first();
 
-        return view('siswa.detail', compact('jawabans', 'data', 'siswa', 'ortu'));
+        $persentasi = round(($jawabans->count() / pertanyaan::count()) * 100);
+        return view('siswa.detail', compact('jawabans', 'data', 'siswa', 'ortu', 'persentasi'));
     }
 
     /**

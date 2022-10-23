@@ -80,8 +80,8 @@ class walikelasController extends Controller
     {
         $datas =  kela::where('userID', $id)->first();
         $guru = $datas->id;
-        $siswa = siswa::where('kelasID', $guru )->get();
-        return view('wali_kelas.detail',compact('datas','siswa'));
+        $siswa = siswa::where('kelasID', $guru)->get();
+        return view('wali_kelas.detail', compact('datas', 'siswa'));
     }
 
     /**
