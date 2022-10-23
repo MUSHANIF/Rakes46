@@ -49,7 +49,7 @@
                         <button type="button" class="btn btn-danger border-0 ms-2 reset_data">Reset Data Guru</button>
                      </form>
                      @else
-                     <a class="btn ml-2 border-0 btn-detail" onclick="showbutton()">Detail</a>
+                     <a class="btn btn-detail border-0 ml-2" href="{{ route('wali_kelaskepala.show',$key->id)}}">Detail</a>
                      @endcan
                   </td>
                </tr>

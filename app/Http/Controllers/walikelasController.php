@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\guru;
+use App\Models\siswa;
 use App\Models\kela;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -77,7 +78,10 @@ class walikelasController extends Controller
      */
     public function show($id)
     {
-        //
+        $datas =  kela::where('userID', $id)->first();
+        $guru = $datas->id;
+        $siswa = siswa::where('kelasID', $guru )->get();
+        return view('wali_kelas.detail',compact('datas','siswa'));
     }
 
     /**
