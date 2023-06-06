@@ -2,9 +2,9 @@
 @section('isi')
 <div class="main-content">
    <main>
-      <div href="#" class="block p-6 max-w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <div href="#" class="block p-6 max-w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100">
          <div>
-            <h2 class="mb-2 text-3xl text-center tracking-tight text-gray-900 dark:text-white">REKAM MEDIS KESEHATAN SISWA
+            <h2 class="mb-2 text-3xl text-center tracking-tight text-gray-900">REKAM MEDIS KESEHATAN SISWA
                <br>
                SMKN 46 JAKARTA
             </h2>
