@@ -29,7 +29,7 @@ class siswaController extends Controller
         $siswa =  siswa::where('userID',  auth()->user()->id)->first();
         $ortu =  ortu::where('userID',  auth()->user()->id)->first();
         $pertanyaans = pertanyaan::all();
-        $kelas = kela::get(['kelas', 'jurusan']);
+        $kelas = kela::all();
         $jawabanUser =  jawaban::with('pertanyaan')->where('userID', auth()->user()->id)->whereTahunIni()->get(); // whereTahunIni() berasal dari scope buatan di model
 
         $jawabans = $jawabanUser->groupBy(['pertanyaan.type', 'pertanyaan.group']);

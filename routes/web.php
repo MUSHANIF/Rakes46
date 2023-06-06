@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\daftarsiswaController;
 use App\Http\Controllers\daftarsiswawaliController;
+use App\Http\Controllers\dataortuController;
 use App\Http\Controllers\kepalasekolahController;
 use App\Http\Controllers\walikelasController;
 use App\Http\Controllers\puskesmasController;
@@ -59,6 +60,7 @@ Route::group(['middleware' => ['revalidate', 'verified']], function () {
         Route::resource('siswaid', siswaController::class);
         Route::resource('kuisioner', jawabanController::class);
 
+        Route::resource('dataorangtua', dataortuController::class);
         Route::get('/isijawaban/{type}/{group}', [siswaController::class, 'tampilkanPerGroup']); // atur dari RouteServiceProvider
         Route::get('/jawabanlama', [siswaController::class, 'tampilkanJawabanLama']);
 

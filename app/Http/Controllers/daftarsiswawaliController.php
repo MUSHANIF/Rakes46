@@ -26,10 +26,12 @@ class daftarsiswawaliController extends Controller
         $cari = $request->cari;
 
         $kelas = kela::where('userID', Auth::user()->id)->first();
+        $kelasguru = kela::all();
+
 
         $datas = kela::where('userID', Auth::user()->id)->with(['guru', 'siswa', 'user'])->whereRelation('siswa', 'nama_lengkap', 'like', "%" . $cari . "%")->first();
 
-        return view('siswa.index', compact('kelas', 'datas'));
+        return view('siswa.index', compact('kelas', 'datas', 'kelasguru'));
     }
 
     /**
@@ -61,6 +63,10 @@ class daftarsiswawaliController extends Controller
             return back()->withInput()->withErrors($validasi);
         }
 
+        if (kela::whereNot('userID', $request->userid)) {
+            toastr()->info('Anda bukan guru yang terdaftar! tolong infokan ke kepala sekolah', 'Gagal daftar');
+            return redirect()->back();
+        }
         $kelas = kela::firstWhere('userID', $request->userid);
         $kelas->userID = $request->userid;
         $kelas->nip = $request->nip;
@@ -70,7 +76,6 @@ class daftarsiswawaliController extends Controller
         $kelas->jurusan = $request->jurusan;
 
         $kelas->save();
-
         toastr()->success('Berhasil di tambah!', 'Selamat');
         return redirect('siswawali');
     }
