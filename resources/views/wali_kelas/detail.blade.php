@@ -1,9 +1,9 @@
 @extends('layouts.dashboard') 
 @section('isi')
-<h2 class="my-2 font-semibold text-center text-black dark:text-black text-2xl md:text-3xl">Detail Informasi</h2>
+<h2 class="my-2 font-semibold text-center text-black text-2xl md:text-3xl">Detail Informasi</h2>
 <div class="mb-8">
    <div class="md:flex gap-x-6">
-      <div class="text-black text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-gray-100">
+      <div class="text-black text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md">
          <div>
             <div class="grid grid-cols-2">
                <h5 class="text-base md:text-lg lg:text-xl">Nama</h5>
@@ -25,7 +25,7 @@
       </div>
    </div>
 
-   <div class="text-black text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-200 dark:text-black">
+   <div class="text-black text-sm font-normal w-full px-4 py-4 mb-8 bg-white rounded-lg shadow-md">
       <h4 class="text-xl md:text-2xl flex justify-between items-center">
         <span>Siswa {{ $datas->kelas }} {{ $datas->jurusan }} yang sudah terdaftar </span>
         <span class="text-xl">{{ $siswa->count() }}</span>

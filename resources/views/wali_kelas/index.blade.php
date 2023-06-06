@@ -27,7 +27,7 @@
 <div class="main-content">
    <main>
       <div class="container">
-         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">List Wali Kelas</h2>
+         <h2 class="my-6 text-2xl font-semibold text-gray-700">List Wali Kelas</h2>
          <table class="table mt-3" cellpadding="10" cellspace="0">
             <thead class="align-self-center text-center" style="border: 1px solid rgba(0, 0, 0, 0.4)">
                <th class="text-light">Nama</th>
